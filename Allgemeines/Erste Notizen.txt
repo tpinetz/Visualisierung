@@ -1,0 +1,42 @@
++----------+
+|10.03.2016|
++----------+
+
+
+
+Implementierungsidee
+====================
+
+Technik
+=======
+C++
+OpenCV für Bildverarbeitung
+OpenGL Anzeige des fertigen Modells
+MFC wenn OpenCV nicht ausreichend
+Blender
+eventuell eigenes Objektformat zum Labeln von Vertices 
+
+
+Theoretischer Teil
+==================
+
+Bestimmen der Facial features
+-----------------------------
+2 Fotos einlesen (OpenCV)
+Erkennen der Face regions: Hauterkennung anhand Farbe, abziehen vom Bild,
+Threshold -> Binärbild. Konturen erkennen und Mittelpunkte bestimmen -> Feature points.
+Verbesserung: Active Contours um den obigen Schritt robuster zu machen: es werden dabei kleine 
+Störungen ignoriert
+
+3d Modell
+---------
+Gesichtsmodell (selber zeichnen mit Blender oder WWW)
+im Modell Label für einzelne Vertices vergeben ("Feature points"). Evtl. eigenes Format nötig?
+gelabelten Vertices im Modell an die berechneten Positionen verschieben und rotieren
+Vertices in der Nähe auch verschieben, gewichtet mit Radial Basis Function
+Texture Mapping der beiden Bilder. Seitenbild 2mal verwenden für L und R.
+
+Aufgabenteilung 1. Abgabe
+=========================
+Harald: Zusammenfassung
+Thomas: PPT
