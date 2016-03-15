@@ -84,7 +84,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Detection.cpp" />
     <ClCompile Include="Face3d.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common.hpp" />
+    <ClInclude Include="Detection.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

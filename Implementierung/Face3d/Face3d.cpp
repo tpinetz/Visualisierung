@@ -1,15 +1,20 @@
+#include "Detection.hpp"
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include "Common.hpp"
+
+
 
 int main(int argc, char** argv)
 {
 
-	std::cout << "Hallo\n";
+	cv::Mat front = cv::imread("input/front.jpg");
+	
 
-	// teste OpenCV
-	cv::Mat img = cv::imread("input/HelloWorld.bmp");
-	cv::imshow("Vis2",img);
-	cv::waitKey(0);
+	Face3D::Detection detection(front, front);
+	detection.doAllSteps();
+
+
 
 	return 0;
 }
