@@ -67,18 +67,24 @@ namespace Face3D
 
 		/*
 		TODO: hier weitermachen (größte Kontur finden, das ist die Haut, diese abziehen, es verbleiben Augen und Mund und Störungen. Augen und Mund erkennen
-
+		*/
 
 
 		std::vector<std::vector<cv::Point> > contours;
 		std::vector<cv::Vec4i> hierarchy;
 		cv::findContours(m_FaceExtracted[0], contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
 
-		for (size_t i = 0; i < contours.size(); ++i)
-		{
-			contours[i].
+		cv::Mat contourImg = cv::Mat(m_Preprocessed[0].rows, m_Preprocessed[0].cols, CV_8UC1, cv::Scalar(0));
+		for (auto contour : contours) {
+			if (contour.size() > this->minContourSize) {
+				for (auto point : contour) {
+					contourImg.at<uchar>(point) = 255;
+				}
+			}
 		}
-		*/
+
+		dbgShow(contourImg);
+		
 
 	}
 

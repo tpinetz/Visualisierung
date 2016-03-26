@@ -38,6 +38,7 @@ namespace Face3D
 		// original images, stored in array to help generalize some of the algorithms (by just iterating over the elements)
 		const size_t frontImgNr = 0;
 		const size_t sideImgNr = 1;
+		const size_t minContourSize = 10;
 		std::vector<cv::Mat> m_Originals;
 		std::vector<cv::Mat> m_Preprocessed;
 		std::vector<cv::Mat> m_FaceExtracted;

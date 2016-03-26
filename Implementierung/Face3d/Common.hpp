@@ -10,6 +10,13 @@ namespace Face3D
 		cv::imshow(msg, img);
 		cv::waitKey(0);
 	}
+
+	inline void dbgContourToImg(std::vector<cv::Point> contour, cv::Mat& result) {
+		for (auto point : contour) {
+			std::cout << point << std::endl;
+			result.at<int>(point) = 255;
+		}
+	}
 	
 }
 
