@@ -33,6 +33,7 @@ namespace Face3D
 	private:
 		void doPreprocessing();
 		void doFaceExtraction();
+		void doFacialComponentsExtraction();
 
 
 		// original images, stored in array to help generalize some of the algorithms (by just iterating over the elements)
