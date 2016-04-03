@@ -104,17 +104,19 @@ namespace Face3D
 		cv::Mat tmp;
 		m_Originals[0].copyTo(tmp);
 
+		/*
+		from http://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#findcontours:
+		hierarchy – Optional output vector, containing information about the image topology. It has as many elements as the number of contours.
+		For each i-th contour contours[i] , the elements hierarchy[i][0] , hiearchy[i][1] , hiearchy[i][2] , and hiearchy[i][3]
+		are set to 0-based indices in contours of the next and previous contours at the same hierarchical level, the first child contour and the parent contour,
+		respectively. If for the contour i there are no next, previous, parent, or nested contours, the corresponding elements of hierarchy[i] will be negative.
+		*/
+		const int NEXT_CONTOUR = 0, PREV_CONTOUR = 1, CHILD_CONTOUR = 2, PARENT_CONTOUR = 3;
+
 		assert(contours.size() == hierarchy.size()); // should be the same according to opencv doc!
 		for (size_t i = 0; i < contours.size(); ++i)
 		{
-			/*
-			from http://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#findcontours:
-			hierarchy – Optional output vector, containing information about the image topology. It has as many elements as the number of contours.
-			For each i-th contour contours[i] , the elements hierarchy[i][0] , hiearchy[i][1] , hiearchy[i][2] , and hiearchy[i][3]
-			are set to 0-based indices in contours of the next and previous contours at the same hierarchical level, the first child contour and the parent contour,
-			respectively. If for the contour i there are no next, previous, parent, or nested contours, the corresponding elements of hierarchy[i] will be negative.
-			*/
-			const int NEXT_CONTOUR = 0, PREV_CONTOUR = 1, CHILD_CONTOUR = 2, PARENT_CONTOUR = 3;
+			
 
 			// draw just those contours which are nestet, i.e. which have a parent contour!
 			if (hierarchy[i][PARENT_CONTOUR] >= 0)
@@ -139,49 +141,86 @@ namespace Face3D
 
 		
 		// functor such that STL can be used to sort contours according to area
-		struct ContourArea
+		struct ContourInfo
 		{
-			ContourArea() : indexOfContour(0),areaOfContour(0.0){}
+			ContourInfo() : indexOfContour(0),areaOfContour(0.0),cogX(0.0),cogY(0.0){}
 			size_t indexOfContour;
 			double areaOfContour;
+			double cogX, cogY;
 
-			bool operator<(const ContourArea& other) 
+			bool operator<(const ContourInfo& other) 
 			{
 				return areaOfContour>other.areaOfContour;
 			}
 		};
 
 
-		std::vector<ContourArea> contourAreas;
+		std::vector<ContourInfo> contourInfos;
 		for (size_t i = 0; i < potentialFacialComponents.size(); ++i)
 		{			
-			ContourArea contourArea;
-			contourArea.indexOfContour = potentialFacialComponents[i];
-			contourArea.areaOfContour = cv::contourArea(contours[potentialFacialComponents[i]]);									
+			ContourInfo contourInfo;
+			contourInfo.indexOfContour = potentialFacialComponents[i];
+			contourInfo.areaOfContour = cv::contourArea(contours[potentialFacialComponents[i]]);
 
-			contourAreas.push_back(contourArea);
+			cv::Moments moments = cv::moments(contours[potentialFacialComponents[i]]);
+			contourInfo.cogX = moments.m10 / moments.m00;
+			contourInfo.cogY = moments.m01 / moments.m00;
+
+			contourInfos.push_back(contourInfo);
 		}
 
-		std::sort(contourAreas.begin(), contourAreas.end());
+		std::sort(contourInfos.begin(), contourInfos.end());
 
 		// we need at least 3 elements (left & right eye, mouth)
-		if (contourAreas.size()<3)
+		if (contourInfos.size()<3)
 		{
 			throw std::exception("we need at least 3 regions for classification as left & right eye, mouth");
 		}
 
-		contourAreas.erase(contourAreas.begin()+3, contourAreas.end());
+		contourInfos.erase(contourInfos.begin() + 3, contourInfos.end());
 
 
 		// debug draw		
 		m_Originals[0].copyTo(tmp);
-		for (size_t i = 0; i < contourAreas.size(); ++i)
+		for (size_t i = 0; i < contourInfos.size(); ++i)
 		{
-			cv::drawContours(tmp, contours, contourAreas[i].indexOfContour, cv::Scalar(0, 0, 255), -1);
+			cv::drawContours(tmp, contours, contourInfos[i].indexOfContour, cv::Scalar(0, 0, 255), -1);
 		}
 		dbgShow(tmp, "left and right eye, mouth");
 
 
+		// simple classification:
+		const size_t contourIndexFace = hierarchy[contourInfos[0].indexOfContour][PARENT_CONTOUR];
+		cv::Moments moments= cv::moments(contours[contourIndexFace]);
+		const double cogX = moments.m10 / moments.m00;
+		const double cogY = moments.m01 / moments.m00;
+
+		ContourInfo mouth;
+		std::vector<ContourInfo> eyes;
+		for (size_t i = 0; i < contourInfos.size(); ++i)
+		{
+			if (contourInfos[i].cogY > cogY)
+			{
+				mouth = contourInfos[i];
+			}
+			else
+			{
+				eyes.push_back(contourInfos[i]);
+			}
+		}
+
+		// left / right eye
+		ContourInfo leftEye = eyes[0].cogX < eyes[1].cogX ? eyes[0] : eyes[1];
+		ContourInfo rightEye = eyes[0].cogX > eyes[1].cogX ? eyes[0] : eyes[1];
+
+		// debug draw	
+		m_Originals[0].copyTo(tmp);
+		cv::drawContours(tmp, contours, mouth.indexOfContour, cv::Scalar(255, 0, 0), -1);		
+		cv::drawContours(tmp, contours, leftEye.indexOfContour, cv::Scalar(0, 255, 0), -1);
+		cv::drawContours(tmp, contours, rightEye.indexOfContour, cv::Scalar(0, 0, 255), -1);
+
+
+		dbgShow(tmp, "mouth=blue, left eye=green, right eye=red");
 	}
 
 }
