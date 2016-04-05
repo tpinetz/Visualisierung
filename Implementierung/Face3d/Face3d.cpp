@@ -8,11 +8,24 @@
 int main(int argc, char** argv)
 {
 
-	cv::Mat front = cv::imread("input/front.jpg");
-	
+	try
+	{
+		cv::Mat front = cv::imread("input/haraldFront.jpg");
+		cv::Mat side = cv::imread("input/haraldSide.jpg");
 
-	Face3D::Detection detection(front, front);
-	detection.doAllSteps();
+
+		Face3D::Detection detection(front, side);
+		detection.doAllSteps();
+	}
+	catch (std::exception e)
+	{
+		std::cout<<"Exception: "<<e.what()<<"\n";
+	}
+	catch (...)
+	{
+		std::cout << "Exception\n";
+	}
+	
 
 
 
