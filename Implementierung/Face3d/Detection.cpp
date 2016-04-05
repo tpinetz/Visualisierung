@@ -26,16 +26,15 @@ namespace Face3D
 
 
 	//-------------------------------------------------------------------------
-	// execute all steps
-	Detection::DetectionResult Detection::doAllSteps()
+	// execute all steps	
+	FaceGeometry Detection::detectFaceGeometry()
 	{
 		doPreprocessing();		
 		doFaceExtraction();
 		doFacialComponentsExtraction();
-		// ...
+		doMatchCoordinates();
 
-
-		return DetectionResult();
+		return m_FaceGeometry;
 	}
 
 
@@ -284,6 +283,12 @@ namespace Face3D
 		return contourInfos;
 	}
 
+
+	//-------------------------------------------------------------------------
+	void Detection::doMatchCoordinates()
+	{
+		m_FaceGeometry.merge3d();
+	}
 
 
 }

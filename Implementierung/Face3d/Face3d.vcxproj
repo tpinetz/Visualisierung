@@ -86,10 +86,12 @@
   <ItemGroup>
     <ClCompile Include="Detection.cpp" />
     <ClCompile Include="Face3d.cpp" />
+    <ClCompile Include="FaceGeometry.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.hpp" />
     <ClInclude Include="Detection.hpp" />
+    <ClInclude Include="FaceGeometry.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
