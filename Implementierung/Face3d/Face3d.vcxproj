@@ -10,6 +10,16 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Common.hpp" />
+    <ClInclude Include="src\Detection.hpp" />
+    <ClInclude Include="src\FaceGeometry.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Detection.cpp" />
+    <ClCompile Include="src\Face3d.cpp" />
+    <ClCompile Include="src\FaceGeometry.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2443E682-55F4-4262-85E4-1B068662D362}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -83,16 +93,6 @@
       <AdditionalDependencies>opencv_core2410d.lib;opencv_highgui2410d.lib;opencv_imgproc2410d.lib;libjpegd.lib;libpngd.lib;libtiffd.lib;zlibd.lib;IlmImfd.lib;libjasperd.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Detection.cpp" />
-    <ClCompile Include="Face3d.cpp" />
-    <ClCompile Include="FaceGeometry.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Common.hpp" />
-    <ClInclude Include="Detection.hpp" />
-    <ClInclude Include="FaceGeometry.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
