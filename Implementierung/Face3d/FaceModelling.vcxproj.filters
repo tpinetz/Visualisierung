@@ -12,12 +12,27 @@
     <ClCompile Include="src\Viewer.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Model.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShaderLoader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GLDebug.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GLHeader.hpp">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Viewer.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Model.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShaderLoader.hpp">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

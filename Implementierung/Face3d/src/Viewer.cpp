@@ -1,5 +1,8 @@
 #include "Viewer.hpp"
 #include <exception>
+#include "Model.hpp"
+#include "GLDebug.hpp"
+#include <iostream>
 
 namespace Face3D
 {
@@ -32,22 +35,45 @@ namespace Face3D
 			throw std::exception("glewInit() != GLEW_OK");
 		}
 
-		glCullFace(GL_BACK);
-		glFrontFace(GL_CCW);
+
+#define GL_DEBUG
+#ifdef GL_DEBUG
+		GLint flags = 0;
+		glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
+		if (flags & GL_CONTEXT_FLAG_DEBUG_BIT)
+		{
+			std::cout << "Debug Output available!\n";
+		}
+
+		glEnable(GL_DEBUG_OUTPUT);
+		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+		glDebugMessageCallback(debugMessage, 0);
+		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, 0, GL_TRUE);
+#endif
+		
+
+
 		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_CULL_FACE);
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
 
 	void Viewer::run()
 	{
+
+		// TODO: init world
+		Model model("models/simple.obj");		
+
 		while (!glfwWindowShouldClose(m_pWindow))
 		{
 			// clear window content
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
-			glClearColor(1, 0, 0, 0);
+			glClearColor(0, 0, 0, 0);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			// draw
 			// TODO ...
+			model.render();
 
 			// Swap buffers
 			glfwSwapBuffers(m_pWindow);
