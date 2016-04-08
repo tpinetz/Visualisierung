@@ -55,6 +55,7 @@ namespace Face3D
 
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
+		glCullFace(GL_FRONT);
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
 
@@ -62,7 +63,9 @@ namespace Face3D
 	{
 
 		// TODO: init world
-		Model model("models/simple.obj");		
+		Model model("models/simple.obj", "ipc/front.jpg", "ipc/side.jpg");
+		//Model model("models/complex.obj");
+		
 
 		while (!glfwWindowShouldClose(m_pWindow))
 		{

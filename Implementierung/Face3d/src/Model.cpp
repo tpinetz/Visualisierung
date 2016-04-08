@@ -2,14 +2,17 @@
 #include "ShaderLoader.hpp"
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include "Texture.hpp"
 
 // Implementation follows: http://www.learnopengl.com/#!Model-Loading/Model
 namespace Face3D
 {
 	// CTOR
-	Model::Model(const std::string& path)
+	Model::Model(const std::string& modelPath, const std::string& textureFront, const std::string& textureSide)
 	{
-		load(path);	
+		load(modelPath);
+		m_TextureFrontID = Texture::Instance().loadFromImage(textureFront);
+		m_TextureSideID = Texture::Instance().loadFromImage(textureSide);
 	}
 
 
@@ -19,6 +22,8 @@ namespace Face3D
 		m_pMeshes = std::make_shared<std::vector<Mesh>>();
 		m_ShaderID = ShaderLoader::Instance().getProgram("Default");
 		m_MVPMatrixLocation = glGetUniformLocation(m_ShaderID, "mvpMatrix");
+		m_TextureFrontSamplerLocation = glGetUniformLocation(m_ShaderID, "textureFrontSampler");
+		m_TextureSideSamplerLocation = glGetUniformLocation(m_ShaderID, "textureSideSampler");
 
 		// Create an instance of the importer class
 		Assimp::Importer importer;
@@ -102,31 +107,42 @@ namespace Face3D
 				indices.push_back(face.mIndices[b]);
 			}
 		}
-		// TODO Process materials
+
 
 		return Mesh(vertices, indices);
 	}
 
 	void Model::render()
 	{
+		// enable shader
 		glUseProgram(m_ShaderID);
-		
-		
-		//m_MVPMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(0.1+std::fmod(glfwGetTime(), 1.0)));
-		GLfloat rot = std::fmod(glfwGetTime(), 2*M_PI);
-		m_MVPMatrix = glm::rotate(glm::mat4(1.0f), rot, glm::vec3(0, 1, 0));
-		m_MVPMatrix = glm::translate(m_MVPMatrix, glm::vec3(-.5, -.5, 0.0));
-		m_MVPMatrix = glm::scale(m_MVPMatrix, glm::vec3(0.25));
-		
-
-
-		glUniformMatrix4fv(m_MVPMatrixLocation, 1, GL_FALSE, &m_MVPMatrix[0][0]);
-
+		glUniform1i(m_TextureFrontSamplerLocation, 0);
+		glUniform1i(m_TextureSideSamplerLocation, 1);
 
 		for (GLuint a = 0; a < m_pMeshes->size(); a++)
 		{
+			// calc MVP matrix
+			GLfloat rot = std::fmod(glfwGetTime(), 2 * M_PI);
+			m_MVPMatrix = glm::rotate(glm::mat4(1.0f), rot, glm::vec3(0, 1, 0));
+			m_MVPMatrix = glm::scale(m_MVPMatrix, glm::vec3(0.25));
+			//m_MVPMatrix = glm::translate(m_MVPMatrix, -(*m_pMeshes)[a].getCenter());
+			
+			// set MVP matrix
+			glUniformMatrix4fv(m_MVPMatrixLocation, 1, GL_FALSE, &m_MVPMatrix[0][0]);
+
+			// activate texture unit
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, m_TextureFrontID);
+
+			glActiveTexture(GL_TEXTURE1);
+			glBindTexture(GL_TEXTURE_2D, m_TextureSideID);
+
+
+			// render mesh
 			(*m_pMeshes)[a].render();
 		}
+
+		// disable shader
 		glUseProgram(0);
 	}
 
@@ -135,6 +151,7 @@ namespace Face3D
 	, m_Indices(indices)
 	{	
 		setup();
+		calcMeshInfo();
 	}
 
 
@@ -170,14 +187,58 @@ namespace Face3D
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 
+	void Mesh::calcMeshInfo()
+	{
+		assert(m_Vertices.size()>0);
+
+		glm::vec4 meanVec;
+		for (size_t i = 0; i < m_Vertices.size(); ++i)
+		{
+			glm::vec4 currPos = m_Vertices[i].position;
+
+
+			if (m_MinVertex.x > currPos.x)
+			{
+				m_MinVertex.x = currPos.x;
+			}
+			if (m_MinVertex.y > currPos.y)
+			{
+				m_MinVertex.y = currPos.y;
+			}
+			if (m_MinVertex.z > currPos.z)
+			{
+				m_MinVertex.z = currPos.z;
+			}
+
+
+			if (m_MaxVertex.x < currPos.x)
+			{
+				m_MaxVertex.x = currPos.x;
+			}
+			if (m_MaxVertex.y < currPos.y)
+			{
+				m_MaxVertex.y = currPos.y;
+			}
+			if (m_MaxVertex.z < currPos.z)
+			{
+				m_MaxVertex.z = currPos.z;
+			}
+
+
+			meanVec+=m_Vertices[i].position;
+		}
+		
+		meanVec /= m_Vertices.size();		
+		m_MeanVertex = glm::vec3(meanVec);
+	}
+
 	void Mesh::render()
 	{
 		// Retrieve saved data / Bind VAO
 		glBindVertexArray(m_VaoID);
 
-		
+		// draw all triangles
 		glDrawElements(GL_TRIANGLES, m_Indices.size(), GL_UNSIGNED_INT, 0);
-
 
 		// Unbind VAO
 		glBindVertexArray(0);

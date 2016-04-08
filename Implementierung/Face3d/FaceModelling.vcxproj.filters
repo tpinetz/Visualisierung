@@ -21,6 +21,9 @@
     <ClCompile Include="src\GLDebug.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GLHeader.hpp">
@@ -33,6 +36,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\ShaderLoader.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stb_image.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Texture.hpp">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

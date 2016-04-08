@@ -15,12 +15,15 @@
     <ClCompile Include="src\GLDebug.cpp" />
     <ClCompile Include="src\Model.cpp" />
     <ClCompile Include="src\ShaderLoader.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Viewer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GLHeader.hpp" />
     <ClInclude Include="src\Model.hpp" />
     <ClInclude Include="src\ShaderLoader.hpp" />
+    <ClInclude Include="src\stb_image.h" />
+    <ClInclude Include="src\Texture.hpp" />
     <ClInclude Include="src\Viewer.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

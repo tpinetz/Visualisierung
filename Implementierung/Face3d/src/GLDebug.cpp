@@ -1,98 +1,87 @@
 #include "GLDebug.hpp"
-#include <stdio.h>
+#include <iostream>
 
 void APIENTRY debugMessage(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const void *userParam)
 {
-	// add IDs of messages which you want to ignore 
-	switch (id)
-	{
-	case 131169: // The driver allocated storage for renderbuffer
-	case 131185: // glBufferData
-	case 131076:
-	case 131154:
-		return;
-	}
+	std::cout<<"\n*********OpenGL Debug Begin****************\n";
+	std::cout << "ID: " << id << "\n";
+	std::cout << "Message: " << message << "\n";
 
-	printf("\n*********OpenGL Debug Begin****************\n");
-	printf("ID: %d\n", id);
-	printf("Message: %s\n", message);
-
-	printf("Source: ");
+	std::cout<<"Source: ";
 	switch (source)
 	{
 	case GL_DEBUG_SOURCE_API:
-		printf("API");
+		std::cout << "API";
 		break;
 	case GL_DEBUG_SOURCE_WINDOW_SYSTEM:
-		printf("Window System");
+		std::cout << "Window System";
 		break;
 	case GL_DEBUG_SOURCE_SHADER_COMPILER:
-		printf("Shader Compiler");
+		std::cout << "Shader Compiler";
 		break;
 	case GL_DEBUG_SOURCE_THIRD_PARTY:
-		printf("Third Party");
+		std::cout << "Third Party";
 		break;
 	case GL_DEBUG_SOURCE_APPLICATION:
-		printf("Application");
+		std::cout << "Application";
 		break;
 	case GL_DEBUG_SOURCE_OTHER:
-		printf("Other");
+		std::cout << "Other";
 		break;
 	}
-	printf("\n");
+	std::cout << "\n";
 
 
-	printf("Type: ");
+	std::cout << "Type: ";
 	switch (type)
 	{
 	case GL_DEBUG_TYPE_ERROR:
-		printf("Error");
+		std::cout << "Error";
 		break;
 	case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
-		printf("Deprecated Behaviour");
+		std::cout << "Deprecated Behaviour";
 		break;
 	case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
-		printf("Undefined Behaviour");
+		std::cout << "Undefined Behaviour";
 		break;
 	case GL_DEBUG_TYPE_PORTABILITY:
-		printf("Portability");
+		std::cout << "Portability";
 		break;
 	case GL_DEBUG_TYPE_PERFORMANCE:
-		printf("Performance");
+		std::cout << "Performance";
 		break;
 	case GL_DEBUG_TYPE_MARKER:
-		printf("Marker");
+		std::cout << "Marker";
 		break;
 	case GL_DEBUG_TYPE_PUSH_GROUP:
-		printf("Push Group");
+		std::cout << "Push Group";
 		break;
 	case GL_DEBUG_TYPE_POP_GROUP:
-		printf("Pop Group");
+		std::cout << "Pop Group";
 		break;
 	case GL_DEBUG_TYPE_OTHER:
-		printf("Other");
+		std::cout << "Other";
 		break;
 	}
-	printf("\n");
+	std::cout << "\n";
 
 
-	printf("Severity: ");
+	std::cout << "Severity: ";
 	switch (severity)
 	{
 	case GL_DEBUG_SEVERITY_HIGH:
-		printf("High");
+		std::cout << "High";
 		break;
 	case GL_DEBUG_SEVERITY_MEDIUM:
-		printf("Medium");
+		std::cout << "Medium";
 		break;
 	case GL_DEBUG_SEVERITY_LOW:
-		printf("Low");
+		std::cout << "Low";
 		break;
 	case GL_DEBUG_SEVERITY_NOTIFICATION:
-		printf("Notification");
+		std::cout << "Notification";
 		break;
 	}
 
-	printf("\n*********OpenGL Debug End****************\n");
-	printf("\n\n");
+	std::cout << ("\n*********OpenGL Debug End****************\n\n\n");
 }
