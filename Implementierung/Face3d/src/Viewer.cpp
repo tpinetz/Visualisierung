@@ -17,7 +17,7 @@ namespace Face3D
 
 		// setup window
 		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
-		m_pWindow = glfwCreateWindow(m_WindowHeight, m_WindowHeight, "Face3d: Viewer", 0, 0);
+		m_pWindow = glfwCreateWindow(m_WindowHeight, m_WindowHeight, "Face3d: Viewer. Press LEFT / RIGHT arrow key to rotate model.", 0, 0);
 
 		// error?
 		if (!m_pWindow)
@@ -66,7 +66,8 @@ namespace Face3D
 		Model model("models/simple.obj", "ipc/front.jpg", "ipc/side.jpg");
 		//Model model("models/complex.obj");
 		
-
+		GLfloat rotationsVal = 0.0f;
+		const GLfloat rotationsValIncrease = 0.001f;
 		while (!glfwWindowShouldClose(m_pWindow))
 		{
 			// clear window content
@@ -86,6 +87,18 @@ namespace Face3D
 			if (glfwGetKey(m_pWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			{
 				glfwSetWindowShouldClose(m_pWindow, GL_TRUE);
+			}
+
+			if (glfwGetKey(m_pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
+			{
+				rotationsVal += rotationsValIncrease;
+				model.rotate(rotationsVal);
+			}
+
+			if (glfwGetKey(m_pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
+			{
+				rotationsVal -= rotationsValIncrease;
+				model.rotate(rotationsVal);
 			}
 		}
 	}

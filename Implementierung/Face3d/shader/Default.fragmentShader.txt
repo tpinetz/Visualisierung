@@ -53,6 +53,7 @@ vec4 textureShading()
 	float z=1.0-(modelPosition.y+2.1)/5.1; // TODO read value from image processing app!
 	
 	
+	// TODO: adjust textures in a away that they don't have to span the whole circle (2pi) - 1pi is enough, but therefore the face must span the whole texture -> image processing app
 	vec2 texCoordsFront=vec2(phi/(2*M_PI),z);
 	vec3 texColorFront = vec3(texture(textureFrontSampler, texCoordsFront));
 	
@@ -67,7 +68,7 @@ vec4 textureShading()
 	// diffuse color from texture
 	
 	float ff=frontFactor(phi);
-	float sf=1.0-ff;
+	float sf=1.0-frontFactor(phi);
 	vec3 color=texColorFront*ff+(texColorSide1+texColorSide2)*sf;
 	if(color==vec3(0.0))
 		return vec4(0.1);
@@ -77,8 +78,7 @@ vec4 textureShading()
 
 
 void main()
-{  
-	//float phi=(atan(modelPosition.z,modelPosition.x)+M_PI)/(2*M_PI);
+{  	
 	gl_FragColor=textureShading();
 }
 

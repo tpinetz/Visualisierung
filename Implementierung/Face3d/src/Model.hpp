@@ -29,6 +29,7 @@ namespace Face3D
 	{
 	public:
 		Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices);
+		
 		void render();
 		//glm::vec3 getCenter() const { return m_Center; }
 
@@ -38,8 +39,8 @@ namespace Face3D
 		glm::vec3 m_MaxVertex;
 		glm::vec3 m_MeanVertex;
 		std::vector<GLuint> m_Indices;
-		GLuint m_VaoID=0, m_VboID=0, m_EboID=0;				
-
+		GLuint m_VaoID=0, m_VboID=0, m_EboID=0;		
+		
 		void setup();
 		void calcMeshInfo();
 	};
@@ -49,10 +50,12 @@ namespace Face3D
 	{
 		public:
 			Model(const std::string& modelPath, const std::string& textureFront, const std::string& textureSide);
+			void rotate(GLfloat val){ m_RotationAngle = val; }
 			void render();
 
 		private:				
 			// meshes representing the model
+			
 			GLuint m_TextureFrontID = 0;
 			GLuint m_TextureSideID = 0;
 			GLuint m_SamplerID = 0;
@@ -62,6 +65,7 @@ namespace Face3D
 			GLuint m_TextureFrontSamplerLocation = 0;
 			GLuint m_TextureSideSamplerLocation = 0;
 			glm::mat4 m_MVPMatrix;
+			GLfloat m_RotationAngle = 0.0f;
 
 			// load mesh data from file
 			void load(const std::string& path);
