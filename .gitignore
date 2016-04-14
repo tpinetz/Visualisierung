@@ -273,3 +273,6 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# 3d libs (glm, ...)
+/lib
