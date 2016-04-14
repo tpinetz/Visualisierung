@@ -58,13 +58,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>.\src;c:\LIB\glew-1.12.0\include;c:\LIB\assimp--3.0.1270-sdk\include;c:\LIB\glfw-3.1.bin.WIN64\include;c:\LIB\glm;c:\LIB\freetype-2.5.5\include;c:\lib\openal-soft-1.15.1-bin\include;c:\lib\libsndfile-1.0.26pre5-w32\include;$(IncludePath)</IncludePath>
-    <LibraryPath>c:\LIB\glew-1.12.0\lib\Release\Win32;c:\LIB\glfw-3.1.bin.WIN32\lib-vc2013;c:\LIB\assimp--3.0.1270-sdk\lib\assimp_release-dll_win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\src;.\LIB\glew-1.12.0\include;.\LIB\assimp--3.0.1270-sdk\include;.\LIB\glfw-3.1.bin.WIN32\include;.\LIB\glm;$(IncludePath)</IncludePath>
+    <LibraryPath>.\LIB\glew-1.12.0\lib\Release\Win32;.\LIB\glfw-3.1.bin.WIN32\lib-vc2013;.\LIB\assimp--3.0.1270-sdk\lib\assimp_release-dll_win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>.\src;.\LIB\glew-1.12.0\include;.\LIB\assimp--3.0.1270-sdk\include;.\LIB\glfw-3.1.bin.WIN64\include;.\LIB\glm;.\lib\openal-soft-1.15.1-bin\include;.\lib\libsndfile-1.0.26pre5-w32\include;$(IncludePath)</IncludePath>
-    <LibraryPath>.\lib\openal-soft-1.15.1-bin\lib\Win32;.\LIB\glew-1.12.0\lib\Release\Win32;.\LIB\assimp--3.0.1270-sdk\lib\assimp_release-dll_win32;.\LIB\glfw-3.1.bin.WIN32\lib-vc2013;.\lib\libsndfile-1.0.26pre5-w32\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\src;.\LIB\glew-1.12.0\include;.\LIB\assimp--3.0.1270-sdk\include;.\LIB\glfw-3.1.bin.WIN32\include;.\LIB\glm;$(IncludePath)</IncludePath>
+    <LibraryPath>.\LIB\glew-1.12.0\lib\Release\Win32;.\LIB\glfw-3.1.bin.WIN32\lib-vc2013;.\LIB\assimp--3.0.1270-sdk\lib\assimp_release-dll_win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -96,7 +96,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libOpenAL32.dll.a;opengl32.lib;glfw3.lib;glew32s.lib;assimp.lib;libsndfile-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
