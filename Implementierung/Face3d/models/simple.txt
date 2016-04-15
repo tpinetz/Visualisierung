@@ -1,0 +1,6 @@
+information about special vertex positions
+==========================================
+
+left eye: -0.55, 0.78, 1.0
+left eye: -0.55, -0.78, 1.0
+mouth: -1.1, 0, -.37
