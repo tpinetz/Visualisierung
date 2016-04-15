@@ -12,10 +12,11 @@ namespace Face3D
 
 		// 2d position of components in front image
 		cv::Point2d frontLeftEye, frontRightEye, frontMouth;
+		cv::Rect frontSkinRegion;
 
 		// 2d position of components in side image
 		cv::Point2d sideEye, sideNoseTip;
-
+		cv::Rect sideSkinRegion;
 
 
 		// 3d position: 2d positions must be filled out and merge3d() must be called 

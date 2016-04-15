@@ -36,7 +36,6 @@ namespace Face3D
 		}
 
 
-#define GL_DEBUG
 #ifdef GL_DEBUG
 		GLint flags = 0;
 		glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
@@ -52,19 +51,17 @@ namespace Face3D
 #endif
 		
 
-
+		// enable depth test and back face culling
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
-		glCullFace(GL_FRONT);
-		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		glCullFace(GL_FRONT);		
 	}
 
 	void Viewer::run()
 	{
 
-		// TODO: init world
-		Model model("models/simple.obj", "ipc/front.jpg", "ipc/side.jpg");
-		//Model model("models/complex.obj");
+		// load model, front and side texture
+		Model model("models/simple.obj", "ipc/front.jpg", "ipc/side.jpg");		
 		
 		GLfloat rotationsVal = 0.0f;
 		const GLfloat rotationsValIncrease = 0.001f;
@@ -72,17 +69,16 @@ namespace Face3D
 		{
 			// clear window content
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
-			glClearColor(0, 0, 0, 0);
+			glClearColor(.5, .5, .5, 0);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			// draw
-			// TODO ...
 			model.render();
 
 			// Swap buffers
 			glfwSwapBuffers(m_pWindow);
 
-			// ESC
+			// key events: ESC, left, right
 			glfwPollEvents();
 			if (glfwGetKey(m_pWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			{

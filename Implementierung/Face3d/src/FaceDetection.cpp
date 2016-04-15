@@ -16,10 +16,13 @@ int main(int argc, char** argv)
 
 		// detect face geometry
 		Face3D::Detection detection(front, side);
-		Face3D::FaceGeometry faceGeometry = detection.detectFaceGeometry();
+		Face3D::Detection::DetectFaceResult detectFaceResult = detection.detectFace();
 
 		// save as file so that the second program can load the geometry to adjust the generic 3d model
-		faceGeometry.toFile("ipc/faceGeometry.txt");
+		detectFaceResult.faceGeometry.toFile("ipc/faceGeometry.txt");
+		cv::imwrite("ipc/front.jpg",detectFaceResult.textureFront);
+		cv::imwrite("ipc/side.jpg", detectFaceResult.textureSide);
+
 	}
 	catch (std::exception e)
 	{

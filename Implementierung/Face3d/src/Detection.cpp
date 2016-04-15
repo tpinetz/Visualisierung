@@ -17,24 +17,30 @@ namespace Face3D
 		m_Originals.resize(2);
 		
 		assert(front.size().width == front.size().height);
-		cv::resize(front, m_Originals[frontImgNr], cv::Size(320, 320));
+		cv::resize(front, m_Originals[frontImgNr], cv::Size(imgSize, imgSize));
 
 		assert(side.size().width == side.size().height);
-		cv::resize(side, m_Originals[sideImgNr], cv::Size(320, 320));		
+		cv::resize(side, m_Originals[sideImgNr], cv::Size(imgSize, imgSize));
 	}
 
 
 
 	//-------------------------------------------------------------------------
 	// execute all steps	
-	FaceGeometry Detection::detectFaceGeometry()
+	Detection::DetectFaceResult Detection::detectFace()
 	{
 		doPreprocessing();		
 		doFaceExtraction();
 		doFacialComponentsExtraction();
 		doMatchCoordinates();
+		createTextures();
 
-		return m_FaceGeometry;
+		DetectFaceResult res;
+		res.faceGeometry = m_FaceGeometry;
+		res.textureFront = m_Textures[frontImgNr];
+		res.textureSide = m_Textures[sideImgNr];
+
+		return res;
 	}
 
 
@@ -117,19 +123,19 @@ namespace Face3D
 
 			// indices of the potential face components
 			std::vector<size_t> potentialComponentIndices = findRegions(contours,hierarchy,RegionTypeInside); // indices of facial components
-			std::vector<size_t> potentialFaceIndices = findRegions(contours, hierarchy, RegionTypeOutside); // indices of face (skin) region
+			std::vector<size_t> potentialSkinIndices = findRegions(contours, hierarchy, RegionTypeOutside); // indices of face (skin) region
 
 			// extract information for those regions
 			std::vector<ContourInfo> potentialComponentContourInfo = extractContourInfo(contours, potentialComponentIndices); // facial components
-			std::vector<ContourInfo> potentialFaceContourInfo = extractContourInfo(contours, potentialFaceIndices); // face (skin) region			
+			std::vector<ContourInfo> potentialSkinContourInfo = extractContourInfo(contours, potentialSkinIndices); // face (skin) region			
 
 			if (frontImgNr==i)
 			{
-				doFacialComponentsExtractionFront(m_FaceGeometry, potentialComponentContourInfo, potentialFaceContourInfo);				
+				doFacialComponentsExtractionFront(m_FaceGeometry, potentialComponentContourInfo, potentialSkinContourInfo);
 			}
 			else if (sideImgNr==i)
 			{
-				doFacialComponentsExtractionSide(m_FaceGeometry, potentialComponentContourInfo, potentialFaceContourInfo);
+				doFacialComponentsExtractionSide(m_FaceGeometry, potentialComponentContourInfo, potentialSkinContourInfo);
 			}						
 		}
 
@@ -187,7 +193,16 @@ namespace Face3D
 		faceGeometry.frontLeftEye = cv::Point2d(leftEye.cogX, leftEye.cogY);
 		faceGeometry.frontRightEye = cv::Point2d(rightEye.cogX, rightEye.cogY);
 		faceGeometry.frontMouth = cv::Point2d(mouth.cogX, mouth.cogY);
+
+		faceGeometry.frontSkinRegion = cv::boundingRect(faceContourInfo[0].contour);
+
+		// create face mask
+		cv::Mat mask(imgSize,imgSize,CV_8U);
+		mask.setTo(0);
+		cv::drawContours(mask, std::vector<std::vector<cv::Point> > {faceContourInfo[0].contour}, 0, 255, -1);
+		m_FaceMask.push_back(mask);
 		
+		// show debug info
 		cv::Mat tmp=getCopyOfOriginal(frontImgNr);
 		cv::drawContours(tmp, std::vector<std::vector<cv::Point> > {leftEye.contour}, 0, cv::Scalar(255, 0, 0), -1);
 		cv::drawContours(tmp, std::vector<std::vector<cv::Point> > {rightEye.contour}, 0, cv::Scalar(0, 255, 0), -1);
@@ -207,8 +222,10 @@ namespace Face3D
 			throw std::exception("we need at least 1 region for classification as eye (side image)");
 		}
 
-		ContourInfo eye = componentContourInfo[0];
-		ContourInfo face = faceContourInfo[0];
+		const ContourInfo& eye = componentContourInfo[0];
+		const ContourInfo& face = faceContourInfo[0];
+
+		faceGeometry.sideSkinRegion = cv::boundingRect(face.contour);
 
 		faceGeometry.sideEye = cv::Point2d(eye.cogX, eye.cogY);
 		
@@ -220,9 +237,16 @@ namespace Face3D
 				faceGeometry.sideNoseTip = face.contour[i];
 			}
 		}
+
+
+		// create face mask
+		cv::Mat mask(imgSize, imgSize, CV_8U);
+		mask.setTo(0);
+		cv::drawContours(mask, std::vector<std::vector<cv::Point> > {face.contour}, 0, 255, -1);
+		m_FaceMask.push_back(mask);
 		
 
-
+		// show debug info
 		cv::Mat tmp = getCopyOfOriginal(sideImgNr);
 		cv::drawContours(tmp, std::vector<std::vector<cv::Point> > {eye.contour}, 0, cv::Scalar(255, 0, 0), -1);
 		dbgShow(tmp, "doFacialComponentsExtractionSide");
@@ -288,6 +312,36 @@ namespace Face3D
 	void Detection::doMatchCoordinates()
 	{
 		m_FaceGeometry.merge3d();
+	}
+
+
+	//-------------------------------------------------------------------------
+	void Detection::createTextures()
+	{						
+		// allocate images
+		cv::Mat tmp;
+		m_Textures.resize(2);
+		
+		// front
+		tmp.release();
+		m_Originals[frontImgNr].copyTo(tmp, m_FaceMask[frontImgNr]);
+		tmp(m_FaceGeometry.frontSkinRegion).copyTo(m_Textures[frontImgNr]);
+
+		// front
+		tmp.release();
+		m_Originals[sideImgNr].copyTo(tmp, m_FaceMask[sideImgNr]);
+		tmp(m_FaceGeometry.sideSkinRegion).copyTo(m_Textures[sideImgNr]);
+
+		// resize to OpenGL compatible size
+		const size_t texSize = 256;
+		cv::resize(m_Textures[sideImgNr], m_Textures[sideImgNr], cv::Size(texSize, texSize));
+		cv::resize(m_Textures[frontImgNr], m_Textures[frontImgNr], cv::Size(texSize, texSize));
+
+		
+
+		dbgShow(m_Textures[frontImgNr], "createTextures", frontImgNr);
+		dbgShow(m_Textures[sideImgNr], "createTextures", sideImgNr);
+		
 	}
 
 

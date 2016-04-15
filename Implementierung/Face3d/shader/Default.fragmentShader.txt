@@ -11,72 +11,58 @@ uniform sampler2D textureSideSampler;
 // constants
 #define M_PI 3.1415926535897932384626433832795
 
-vec4 lambertShading()
-{
-	// constants
-	vec3 lightSrc=vec3(1, 0, -1);
-	float ambient=0.2;
-	float lambert=1-ambient;
 
-
-	vec3 normal3d=vertexNormal.xyz;
-	
-	
-	float val=dot(normal3d,lightSrc)/(length(normal3d)*length(lightSrc));
-	val=clamp(val, 0.0, 1.0);
-	
-	return vec4(1.0, 1.0, 1.0, 1.0)*(ambient+lambert*val);
-}
-
-
+// how much of the front texture should be used?
 float frontFactor(float phi)
 {
-	float pi=M_PI;
-	float val=abs(phi-pi);
-	if(val<pi/2)
-	{
-		return 1.0-val/(pi/2);
-	}
+	float val=-cos(phi);
+	val=clamp(val, 0.0, 1.0);
 	
-	return 0;
+	return val;
 }
 
 
+// how much of the side texture should be used?
+float sideFactor(float phi)
+{
+	float val=sin(phi);
+	val=clamp(val, 0.0, 1.0);
+	
+	return val;
+}
+
+
+// cylinder mapping of the two textures onto face model
 vec4 textureShading()
 {
-	// phi=0 at the nose tip and then increases in CCW direction to 2pi
-	float phi=atan(modelPosition.z,modelPosition.x);	
-	if(phi<0)
-		phi=phi+2*M_PI;
-	
-	
-	float z=1.0-(modelPosition.y+2.1)/5.1; // TODO read value from image processing app!
-	
-	
-	// TODO: adjust textures in a away that they don't have to span the whole circle (2pi) - 1pi is enough, but therefore the face must span the whole texture -> image processing app
-	vec2 texCoordsFront=vec2(phi/(2*M_PI),z);
-	vec3 texColorFront = vec3(texture(textureFrontSampler, texCoordsFront));
-	
-	vec2 texCoordsSide1 = vec2((phi+M_PI/2.0)/(2*M_PI),z);
-	vec3 texColorSide1 = vec3(texture(textureSideSampler, texCoordsSide1));
-	
-	vec2 texCoordsSide2 = vec2(2*M_PI-(phi)/(2*M_PI),z);
-	vec3 texColorSide2 = vec3(texture(textureSideSampler, texCoordsSide2));
-	
-	
+	// phi coordinate of cylinder
+	// phi=0 at the back of the face and then increases in CCW direction to 2pi
+	float phi=atan(modelPosition.z, -modelPosition.x)+M_PI;	
 
-	// diffuse color from texture
 	
-	float ff=frontFactor(phi);
-	float sf=1.0-frontFactor(phi);
-	vec3 color=texColorFront*ff+(texColorSide1+texColorSide2)*sf;
-	if(color==vec3(0.0))
-		return vec4(0.1);
-	return vec4(color,1.0);
+	// z coordinate of cylinder 
+	float z=1.0-(modelPosition.y+2.0)/4.0; // TODO read value from image processing app!
+
+	
+	// get color from texture
+	vec2 texCoordsFront=vec2( (phi-(M_PI/2.0)) / M_PI, z);
+	vec3 texColorFront = vec3(texture(textureFrontSampler, texCoordsFront))*frontFactor(phi);
+	
+	vec2 texCoordsSide1=vec2( phi / M_PI, z);
+	vec3 texColorSide1 = vec3(texture(textureSideSampler, texCoordsSide1))*sideFactor(phi);
 		
+	vec2 texCoordsSide2=vec2( 1.0-((phi-M_PI) / M_PI), z);
+	vec3 texColorSide2 = vec3(texture(textureSideSampler, texCoordsSide2))*sideFactor(phi+M_PI);
+	
+	// rescale for smooth overlapping regions of front and side texture
+	float totalFactor=frontFactor(phi)+sideFactor(phi)+sideFactor(phi+M_PI);
+	
+	// final color
+	return vec4(texColorFront+texColorSide1+texColorSide2,1.0)/totalFactor;		
 }
 
 
+// main
 void main()
 {  	
 	gl_FragColor=textureShading();

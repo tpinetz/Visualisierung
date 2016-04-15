@@ -2,6 +2,10 @@
 #define MISHUNGERSTANDING_HELPERS_GL_COMMON
 
 
+// uncomment the following line to enable debug output of OpenGL
+#define GL_DEBUG
+
+
 // include common GL stuff
 #define GLEW_STATIC // tell GLEW that we link static 
 #include <GL/glew.h>

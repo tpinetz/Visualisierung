@@ -22,7 +22,13 @@ namespace Face3D
 		Detection(const cv::Mat& front, const cv::Mat& side);
 
 		// extract geomtry of face from images
-		FaceGeometry detectFaceGeometry();
+		struct DetectFaceResult
+		{
+			FaceGeometry faceGeometry;
+			cv::Mat textureFront;
+			cv::Mat textureSide;
+		};
+		DetectFaceResult detectFace();
 
 	private:
 		// functor such that STL can be used to sort contours according to area
@@ -58,16 +64,19 @@ namespace Face3D
 		std::vector<size_t> findRegions(const std::vector<std::vector<cv::Point> >& contours, const std::vector<cv::Vec4i>& hierarchy, RegionType regionType);
 		std::vector<ContourInfo> extractContourInfo(const std::vector<std::vector<cv::Point> >& contours, const std::vector<size_t> indices);
 		void doMatchCoordinates();
+		void createTextures();
 
 
 		// original images, stored in array to help generalize some of the algorithms (by just iterating over the elements)
 		const size_t frontImgNr = 0;
 		const size_t sideImgNr = 1;
-		const size_t minContourSize = 10;
+		const size_t imgSize = 320;
 		std::vector<cv::Mat> m_Originals;
 		std::vector<cv::Mat> m_Preprocessed;
 		std::vector<cv::Mat> m_FaceExtracted;
+		std::vector<cv::Mat> m_FaceMask;
 		FaceGeometry m_FaceGeometry;
+		std::vector<cv::Mat> m_Textures;
 
 
 		
