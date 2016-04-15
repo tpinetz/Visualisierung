@@ -123,7 +123,7 @@ namespace Face3D
 		{
 			// calc MVP matrix			
 			m_MVPMatrix = glm::rotate(glm::mat4(1.0f), m_RotationAngle, glm::vec3(0, 1, 0));
-			m_MVPMatrix = glm::scale(m_MVPMatrix, glm::vec3(0.25));			
+			m_MVPMatrix = glm::scale(m_MVPMatrix, glm::vec3(0.25,0.25,0.25));			
 			
 			// set MVP matrix
 			glUniformMatrix4fv(m_MVPMatrixLocation, 1, GL_FALSE, &m_MVPMatrix[0][0]);

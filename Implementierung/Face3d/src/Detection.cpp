@@ -1,5 +1,8 @@
 #include "Detection.hpp"
 #include "Common.hpp"
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 
 namespace Face3D
 {
@@ -143,15 +146,15 @@ namespace Face3D
 		// draw resulting 2d centroids
 		// 1. front
 		cv::Mat tmp = getCopyOfOriginal(frontImgNr);
-		cv::circle(tmp, cv::Point(m_FaceGeometry.frontLeftEye), 10, cv::Scalar(255, 0, 0), 2);
-		cv::circle(tmp, cv::Point(m_FaceGeometry.frontRightEye), 10, cv::Scalar(0, 255, 0), 2);
-		cv::circle(tmp, cv::Point(m_FaceGeometry.frontMouth), 10, cv::Scalar(0, 0, 255), 2);
+		cv::circle(tmp, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftEye), 10, cv::Scalar(255, 0, 0), 2);
+		cv::circle(tmp, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontRightEye), 10, cv::Scalar(0, 255, 0), 2);
+		cv::circle(tmp, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontMouth), 10, cv::Scalar(0, 0, 255), 2);
 		dbgShow(tmp,"doFacialComponentsExtraction",0);
 
 		// 2. side
 		tmp = getCopyOfOriginal(sideImgNr);
-		cv::circle(tmp, cv::Point(m_FaceGeometry.sideEye), 10, cv::Scalar(255, 0, 0), 2);
-		cv::circle(tmp, cv::Point(m_FaceGeometry.sideNoseTip), 10, cv::Scalar(255, 0, 255), 2);
+		cv::circle(tmp, m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideEye), 10, cv::Scalar(255, 0, 0), 2);
+		cv::circle(tmp, m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideNoseTip), 10, cv::Scalar(255, 0, 255), 2);
 		dbgShow(tmp,"doFacialComponentsExtraction",1);
 
 	}
@@ -190,9 +193,9 @@ namespace Face3D
 		ContourInfo leftEye = eyes[0].cogX < eyes[1].cogX ? eyes[0] : eyes[1];
 		ContourInfo rightEye = eyes[0].cogX > eyes[1].cogX ? eyes[0] : eyes[1];
 
-		faceGeometry.frontLeftEye = cv::Point2d(leftEye.cogX, leftEye.cogY);
-		faceGeometry.frontRightEye = cv::Point2d(rightEye.cogX, rightEye.cogY);
-		faceGeometry.frontMouth = cv::Point2d(mouth.cogX, mouth.cogY);
+		faceGeometry.setDetectedPoint(FaceGeometry::FrontLeftEye, cv::Point2d(leftEye.cogX, leftEye.cogY));
+		faceGeometry.setDetectedPoint(FaceGeometry::FrontRightEye, cv::Point2d(rightEye.cogX, rightEye.cogY));
+		faceGeometry.setDetectedPoint(FaceGeometry::FrontMouth, cv::Point2d(mouth.cogX, mouth.cogY));
 
 		faceGeometry.frontSkinRegion = cv::boundingRect(faceContourInfo[0].contour);
 
@@ -227,14 +230,14 @@ namespace Face3D
 
 		faceGeometry.sideSkinRegion = cv::boundingRect(face.contour);
 
-		faceGeometry.sideEye = cv::Point2d(eye.cogX, eye.cogY);
+		faceGeometry.setDetectedPoint(FaceGeometry::SideEye,cv::Point2d(eye.cogX, eye.cogY));
 		
-		faceGeometry.sideNoseTip = cv::Point2d(0,0);
+		faceGeometry.setDetectedPoint(FaceGeometry::SideNoseTip, cv::Point2d(0, 0));
 		for (size_t i = 0; i < face.contour.size(); ++i)
 		{
-			if (face.contour[i].x > faceGeometry.sideNoseTip.x)
+			if (face.contour[i].x > faceGeometry.getDetectedPoint(FaceGeometry::SideNoseTip).x)
 			{
-				faceGeometry.sideNoseTip = face.contour[i];
+				faceGeometry.setDetectedPoint(FaceGeometry::SideNoseTip, face.contour[i]);
 			}
 		}
 
@@ -318,31 +321,89 @@ namespace Face3D
 	//-------------------------------------------------------------------------
 	void Detection::createTextures()
 	{						
-		// allocate images
-		cv::Mat tmp;
+		// allocate images		
 		m_Textures.resize(2);
 		
-		// front
-		tmp.release();
-		m_Originals[frontImgNr].copyTo(tmp, m_FaceMask[frontImgNr]);
-		tmp(m_FaceGeometry.frontSkinRegion).copyTo(m_Textures[frontImgNr]);
+		// mask images	
+		m_Originals[frontImgNr].copyTo(m_Textures[frontImgNr], m_FaceMask[frontImgNr]);
+		m_Originals[sideImgNr].copyTo(m_Textures[sideImgNr], m_FaceMask[sideImgNr]);		
 
-		// front
-		tmp.release();
-		m_Originals[sideImgNr].copyTo(tmp, m_FaceMask[sideImgNr]);
-		tmp(m_FaceGeometry.sideSkinRegion).copyTo(m_Textures[sideImgNr]);
 
-		// resize to OpenGL compatible size
+		// front image: rotate so that eyes are on a horizontal line
+		cv::Vec2d vecEyes(m_FaceGeometry.getDetectedPoint(FaceGeometry::FrontRightEye) - m_FaceGeometry.getDetectedPoint(FaceGeometry::FrontLeftEye));
+		const double alpha=atan(vecEyes[1] / vecEyes[0])*180.0/M_PI;
+		cv::Point centerPoint(m_Textures[frontImgNr].cols / 2, m_Textures[frontImgNr].rows / 2);
+
+		// transform front image
+		cv::Mat rotMat = cv::getRotationMatrix2D(centerPoint, alpha, 1.0);
+		cv::warpAffine(m_Textures[frontImgNr], m_Textures[frontImgNr], rotMat, m_Textures[frontImgNr].size());
+		
+
+		// transform all front coordinates
+		m_FaceGeometry.transform(FaceGeometry::FrontLeftEye, rotMat);
+		m_FaceGeometry.transform(FaceGeometry::FrontRightEye, rotMat);
+		m_FaceGeometry.transform(FaceGeometry::FrontMouth, rotMat);
+		
+		dbgShow(m_Textures[frontImgNr], "createTextures: frontImage rotated");
+
+
+
+		// side image: align with front image
+		cv::Mat transMat = cv::Mat::zeros(2, 3, CV_64F);
+		transMat.at<double>(0, 0) = transMat.at<double>(1, 1) = 1.0;
+		transMat.at<double>(1, 2) = m_FaceGeometry.getDetectedPoint(FaceGeometry::FrontLeftEye).y - m_FaceGeometry.getDetectedPoint(FaceGeometry::SideEye).y;
+		
+		// transform side image
+		cv::warpAffine(m_Textures[sideImgNr], m_Textures[sideImgNr], transMat, m_Textures[frontImgNr].size());
+
+		// transform all side coordinates
+		m_FaceGeometry.transform(FaceGeometry::SideEye, transMat);
+		m_FaceGeometry.transform(FaceGeometry::SideNoseTip, transMat);
+
+		dbgShow(m_Textures[sideImgNr], "createTextures: sideImage translated");
+
+
+
+		// cut out regions of interest, but do it in a way such that the y coordinate (position of eyes) still aligns between front and side image
+		// find the contours (bounded binary regions)
+		cv::Rect frontBoundingBox = getBoundingBox(m_Textures[frontImgNr]);
+		cv::Rect sideBoundingBox = getBoundingBox(m_Textures[sideImgNr]);
+
+		// adjust y values of side bounding box
+		sideBoundingBox.y = frontBoundingBox.y;
+		sideBoundingBox.height = frontBoundingBox.height;
+
+
+		m_Textures[frontImgNr](frontBoundingBox).copyTo(m_Textures[frontImgNr]);
+		m_Textures[sideImgNr](sideBoundingBox).copyTo(m_Textures[sideImgNr]);
+	
+		// and now cut out the regions according to bounding box
+
+		// resize to OpenGL compatible texture size (2^n x 2^n)
 		const size_t texSize = 256;
 		cv::resize(m_Textures[sideImgNr], m_Textures[sideImgNr], cv::Size(texSize, texSize));
 		cv::resize(m_Textures[frontImgNr], m_Textures[frontImgNr], cv::Size(texSize, texSize));
 
-		
 
-		dbgShow(m_Textures[frontImgNr], "createTextures", frontImgNr);
-		dbgShow(m_Textures[sideImgNr], "createTextures", sideImgNr);
-		
+
+		dbgShow(m_Textures[frontImgNr], "createTextures: aligned and resized", frontImgNr);
+		dbgShow(m_Textures[sideImgNr], "createTextures: aligned and resized", sideImgNr);
+
 	}
 
+
+	cv::Rect Detection::getBoundingBox(const cv::Mat& color)
+	{
+		cv::Mat gray, bin;
+		cv::cvtColor(color, gray, CV_BGR2GRAY);
+		cv::threshold(gray, bin, 1, 255, cv::THRESH_BINARY);
+
+		std::vector<std::vector<cv::Point> > contours;
+		std::vector<cv::Vec4i> hierarchy;
+		cv::findContours(bin, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE);
+		cv::Rect boundingBox = cv::boundingRect(contours[0]);
+
+		return boundingBox;
+	}
 
 }

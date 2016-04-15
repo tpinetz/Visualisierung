@@ -52,12 +52,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\LIB\OpenCV\opencv\build\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\LIB\OpenCV\opencv\build\include;.\lib\glm;$(IncludePath)</IncludePath>
     <LibraryPath>C:\LIB\OpenCV\opencv\build\x86\vc12\staticlib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\LIB\OpenCV\opencv\build\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\LIB\OpenCV\opencv\build\include;.\lib\glm;$(IncludePath)</IncludePath>
     <LibraryPath>C:\LIB\OpenCV\opencv\build\x86\vc12\staticlib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

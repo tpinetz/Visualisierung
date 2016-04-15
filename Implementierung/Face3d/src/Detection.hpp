@@ -65,6 +65,7 @@ namespace Face3D
 		std::vector<ContourInfo> extractContourInfo(const std::vector<std::vector<cv::Point> >& contours, const std::vector<size_t> indices);
 		void doMatchCoordinates();
 		void createTextures();
+		cv::Rect getBoundingBox(const cv::Mat& color);
 
 
 		// original images, stored in array to help generalize some of the algorithms (by just iterating over the elements)
