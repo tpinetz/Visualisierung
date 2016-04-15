@@ -276,3 +276,6 @@ paket-files/
 
 # 3d libs (glm, ...)
 lib/
+
+# the directory for data exchange between detection and modelling process
+ipc/
