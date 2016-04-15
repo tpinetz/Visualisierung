@@ -1,3 +1,0 @@
-this is a folder for interprocess communication:
-1. the Detection process saves information here
-2. then, the modelling process reads information from here
