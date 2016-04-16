@@ -1,0 +1,12 @@
+var searchData=
+[
+  ['getboundingbox',['getBoundingBox',['../class_face3_d_1_1_detection.html#ac4cc64a1037a3e09f8e7b8016528bafd',1,'Face3D::Detection']]],
+  ['getcopyoforiginal',['getCopyOfOriginal',['../class_face3_d_1_1_detection.html#ad151547c47b89dc4673c51c43e22b6d3',1,'Face3D::Detection']]],
+  ['getdetectedpoint',['getDetectedPoint',['../class_face3_d_1_1_face_geometry.html#a9ce57cf061663a02267d9fee423dbc73',1,'Face3D::FaceGeometry']]],
+  ['getdetectedpointhomogeneous',['getDetectedPointHomogeneous',['../class_face3_d_1_1_face_geometry.html#a6aed421ae667cc1b67b4bf6a891ff634',1,'Face3D::FaceGeometry']]],
+  ['getdetectedpointint',['getDetectedPointInt',['../class_face3_d_1_1_face_geometry.html#a3c4e46361330951648193f24b8a5329d',1,'Face3D::FaceGeometry']]],
+  ['getdetectedregion',['getDetectedRegion',['../class_face3_d_1_1_face_geometry.html#a85251824e8909cca4d35461744ccc40f',1,'Face3D::FaceGeometry']]],
+  ['getprogram',['getProgram',['../class_face3_d_1_1_shader_loader.html#a4091dd965bb5ea248179037bf5ff78de',1,'Face3D::ShaderLoader']]],
+  ['getsamplerid',['getSamplerID',['../class_face3_d_1_1_texture.html#ac579a87306902c623255a446c26f14b9',1,'Face3D::Texture']]],
+  ['getsetting',['getSetting',['../class_face3_d_1_1_texture.html#a975cd5d43b1a8009df6498d81c539851',1,'Face3D::Texture']]]
+];

@@ -1,0 +1,169 @@
+\hypertarget{class_face3_d_1_1_shader_loader}{}\section{Face3D\+:\+:Shader\+Loader Class Reference}
+\label{class_face3_d_1_1_shader_loader}\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+
+
+{\ttfamily \#include $<$Shader\+Loader.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+G\+Luint \hyperlink{class_face3_d_1_1_shader_loader_a4091dd965bb5ea248179037bf5ff78de}{get\+Program} (const std\+::string \&shader\+Class\+Name)
+\item 
+G\+Luint \hyperlink{class_face3_d_1_1_shader_loader_adc8a9f009531395a7f3799282f37e4af}{load\+Shader} (const std\+::string \&shader\+Class\+Name, G\+Lenum shader\+Type)
+\item 
+void \hyperlink{class_face3_d_1_1_shader_loader_ac239e9bba960ea43d26af1e9c8acd891}{delete\+Shader} (const G\+Luint shader\+ID)
+\item 
+G\+Luint \hyperlink{class_face3_d_1_1_shader_loader_a1c86dcd82b5e7dde836854423749d281}{create\+Program} ()
+\item 
+void \hyperlink{class_face3_d_1_1_shader_loader_a968155ebb8821b63b391ae65479b53f4}{link\+Program} (const G\+Luint program\+ID)
+\item 
+void \hyperlink{class_face3_d_1_1_shader_loader_ab0b54e024b6fe4ca52e3cf2cc122fdea}{attach\+Shader} (const G\+Luint program\+ID, const G\+Luint shader\+ID)
+\item 
+void \hyperlink{class_face3_d_1_1_shader_loader_a01cc11dfddbe0afa70ec2ebd78c7dde2}{check\+Program} (const G\+Luint program\+ID)
+\item 
+void \hyperlink{class_face3_d_1_1_shader_loader_ad688d7d2ba116947d5ff286e4810c62f}{add\+To\+Cache} (const G\+Luint program\+ID, const std\+::string \&shader\+Program\+Name)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_face3_d_1_1_shader_loader}{Shader\+Loader} \& \hyperlink{class_face3_d_1_1_shader_loader_a903512f7a8cfd41c480f088e50fb1287}{Instance} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_face3_d_1_1_shader_loader_a8b3d631eb9b438a1783517ecd85fac1a}{Shader\+Loader} ()
+\item 
+G\+Luint \hyperlink{class_face3_d_1_1_shader_loader_a17657dee5510b9a3fc8660864799c878}{load\+Vertex\+And\+Fragment\+Shader} (const std\+::string \&shader\+Class\+Name)
+\item 
+std\+::string \hyperlink{class_face3_d_1_1_shader_loader_a6d0dd133c9e88e80e6665cc945e18d9f}{read\+In\+Shader\+Code} (const std\+::string \&path\+To\+Shader\+File)
+\item 
+void \hyperlink{class_face3_d_1_1_shader_loader_a945b73660a948c59ac4187c23a707f7b}{compile\+Shader} (G\+Luint shader\+ID, const std\+::string \&shader\+Code)
+\item 
+void \hyperlink{class_face3_d_1_1_shader_loader_a12fd88e002fc3b31b7b687bcea0684d8}{check\+Shader} (G\+Luint shader\+ID, G\+Lint result)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ std\+::string, G\+Luint $>$ \hyperlink{class_face3_d_1_1_shader_loader_a9a137962d55baa91ba83e90b08147164}{m\+\_\+\+Shader\+Program\+Map}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!Shader\+Loader@{Shader\+Loader}}
+\index{Shader\+Loader@{Shader\+Loader}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{Shader\+Loader()}{ShaderLoader()}}]{\setlength{\rightskip}{0pt plus 5cm}Face3\+D\+::\+Shader\+Loader\+::\+Shader\+Loader (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}\hypertarget{class_face3_d_1_1_shader_loader_a8b3d631eb9b438a1783517ecd85fac1a}{}\label{class_face3_d_1_1_shader_loader_a8b3d631eb9b438a1783517ecd85fac1a}
+
+
+\subsection{Member Function Documentation}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!add\+To\+Cache@{add\+To\+Cache}}
+\index{add\+To\+Cache@{add\+To\+Cache}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{add\+To\+Cache(const G\+Luint program\+I\+D, const std\+::string \&shader\+Program\+Name)}{addToCache(const GLuint programID, const std::string &shaderProgramName)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Shader\+Loader\+::add\+To\+Cache (
+\begin{DoxyParamCaption}
+\item[{const G\+Luint}]{program\+ID, }
+\item[{const std\+::string \&}]{shader\+Program\+Name}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_shader_loader_ad688d7d2ba116947d5ff286e4810c62f}{}\label{class_face3_d_1_1_shader_loader_ad688d7d2ba116947d5ff286e4810c62f}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!attach\+Shader@{attach\+Shader}}
+\index{attach\+Shader@{attach\+Shader}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{attach\+Shader(const G\+Luint program\+I\+D, const G\+Luint shader\+I\+D)}{attachShader(const GLuint programID, const GLuint shaderID)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Shader\+Loader\+::attach\+Shader (
+\begin{DoxyParamCaption}
+\item[{const G\+Luint}]{program\+ID, }
+\item[{const G\+Luint}]{shader\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_shader_loader_ab0b54e024b6fe4ca52e3cf2cc122fdea}{}\label{class_face3_d_1_1_shader_loader_ab0b54e024b6fe4ca52e3cf2cc122fdea}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!check\+Program@{check\+Program}}
+\index{check\+Program@{check\+Program}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{check\+Program(const G\+Luint program\+I\+D)}{checkProgram(const GLuint programID)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Shader\+Loader\+::check\+Program (
+\begin{DoxyParamCaption}
+\item[{const G\+Luint}]{program\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_shader_loader_a01cc11dfddbe0afa70ec2ebd78c7dde2}{}\label{class_face3_d_1_1_shader_loader_a01cc11dfddbe0afa70ec2ebd78c7dde2}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!check\+Shader@{check\+Shader}}
+\index{check\+Shader@{check\+Shader}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{check\+Shader(\+G\+Luint shader\+I\+D, G\+Lint result)}{checkShader(GLuint shaderID, GLint result)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Shader\+Loader\+::check\+Shader (
+\begin{DoxyParamCaption}
+\item[{G\+Luint}]{shader\+ID, }
+\item[{G\+Lint}]{result}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_shader_loader_a12fd88e002fc3b31b7b687bcea0684d8}{}\label{class_face3_d_1_1_shader_loader_a12fd88e002fc3b31b7b687bcea0684d8}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!compile\+Shader@{compile\+Shader}}
+\index{compile\+Shader@{compile\+Shader}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{compile\+Shader(\+G\+Luint shader\+I\+D, const std\+::string \&shader\+Code)}{compileShader(GLuint shaderID, const std::string &shaderCode)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Shader\+Loader\+::compile\+Shader (
+\begin{DoxyParamCaption}
+\item[{G\+Luint}]{shader\+ID, }
+\item[{const std\+::string \&}]{shader\+Code}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_shader_loader_a945b73660a948c59ac4187c23a707f7b}{}\label{class_face3_d_1_1_shader_loader_a945b73660a948c59ac4187c23a707f7b}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!create\+Program@{create\+Program}}
+\index{create\+Program@{create\+Program}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{create\+Program()}{createProgram()}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Shader\+Loader\+::create\+Program (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_shader_loader_a1c86dcd82b5e7dde836854423749d281}{}\label{class_face3_d_1_1_shader_loader_a1c86dcd82b5e7dde836854423749d281}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!delete\+Shader@{delete\+Shader}}
+\index{delete\+Shader@{delete\+Shader}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{delete\+Shader(const G\+Luint shader\+I\+D)}{deleteShader(const GLuint shaderID)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Shader\+Loader\+::delete\+Shader (
+\begin{DoxyParamCaption}
+\item[{const G\+Luint}]{shader\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_shader_loader_ac239e9bba960ea43d26af1e9c8acd891}{}\label{class_face3_d_1_1_shader_loader_ac239e9bba960ea43d26af1e9c8acd891}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!get\+Program@{get\+Program}}
+\index{get\+Program@{get\+Program}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{get\+Program(const std\+::string \&shader\+Class\+Name)}{getProgram(const std::string &shaderClassName)}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Shader\+Loader\+::get\+Program (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{shader\+Class\+Name}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_shader_loader_a4091dd965bb5ea248179037bf5ff78de}{}\label{class_face3_d_1_1_shader_loader_a4091dd965bb5ea248179037bf5ff78de}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!Instance@{Instance}}
+\index{Instance@{Instance}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{Instance()}{Instance()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shader\+Loader} \& Face3\+D\+::\+Shader\+Loader\+::\+Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_face3_d_1_1_shader_loader_a903512f7a8cfd41c480f088e50fb1287}{}\label{class_face3_d_1_1_shader_loader_a903512f7a8cfd41c480f088e50fb1287}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!link\+Program@{link\+Program}}
+\index{link\+Program@{link\+Program}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{link\+Program(const G\+Luint program\+I\+D)}{linkProgram(const GLuint programID)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Shader\+Loader\+::link\+Program (
+\begin{DoxyParamCaption}
+\item[{const G\+Luint}]{program\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_shader_loader_a968155ebb8821b63b391ae65479b53f4}{}\label{class_face3_d_1_1_shader_loader_a968155ebb8821b63b391ae65479b53f4}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!load\+Shader@{load\+Shader}}
+\index{load\+Shader@{load\+Shader}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{load\+Shader(const std\+::string \&shader\+Class\+Name, G\+Lenum shader\+Type)}{loadShader(const std::string &shaderClassName, GLenum shaderType)}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Shader\+Loader\+::load\+Shader (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{shader\+Class\+Name, }
+\item[{G\+Lenum}]{shader\+Type}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_shader_loader_adc8a9f009531395a7f3799282f37e4af}{}\label{class_face3_d_1_1_shader_loader_adc8a9f009531395a7f3799282f37e4af}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!load\+Vertex\+And\+Fragment\+Shader@{load\+Vertex\+And\+Fragment\+Shader}}
+\index{load\+Vertex\+And\+Fragment\+Shader@{load\+Vertex\+And\+Fragment\+Shader}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{load\+Vertex\+And\+Fragment\+Shader(const std\+::string \&shader\+Class\+Name)}{loadVertexAndFragmentShader(const std::string &shaderClassName)}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Shader\+Loader\+::load\+Vertex\+And\+Fragment\+Shader (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{shader\+Class\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_shader_loader_a17657dee5510b9a3fc8660864799c878}{}\label{class_face3_d_1_1_shader_loader_a17657dee5510b9a3fc8660864799c878}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!read\+In\+Shader\+Code@{read\+In\+Shader\+Code}}
+\index{read\+In\+Shader\+Code@{read\+In\+Shader\+Code}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{read\+In\+Shader\+Code(const std\+::string \&path\+To\+Shader\+File)}{readInShaderCode(const std::string &pathToShaderFile)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Face3\+D\+::\+Shader\+Loader\+::read\+In\+Shader\+Code (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{path\+To\+Shader\+File}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_shader_loader_a6d0dd133c9e88e80e6665cc945e18d9f}{}\label{class_face3_d_1_1_shader_loader_a6d0dd133c9e88e80e6665cc945e18d9f}
+
+
+\subsection{Member Data Documentation}
+\index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!m\+\_\+\+Shader\+Program\+Map@{m\+\_\+\+Shader\+Program\+Map}}
+\index{m\+\_\+\+Shader\+Program\+Map@{m\+\_\+\+Shader\+Program\+Map}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Shader\+Program\+Map}{m_ShaderProgramMap}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$std\+::string, G\+Luint$>$ Face3\+D\+::\+Shader\+Loader\+::m\+\_\+\+Shader\+Program\+Map\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_shader_loader_a9a137962d55baa91ba83e90b08147164}{}\label{class_face3_d_1_1_shader_loader_a9a137962d55baa91ba83e90b08147164}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/harald/\+Dokumente/\+Ausbildung/\+Master/\+Projekte\+C\+P\+P/\+Visualisierung2/\+Visualisierung/\+Implementierung/\+Face3d/src/\hyperlink{_shader_loader_8hpp}{Shader\+Loader.\+hpp}\item 
+E\+:/harald/\+Dokumente/\+Ausbildung/\+Master/\+Projekte\+C\+P\+P/\+Visualisierung2/\+Visualisierung/\+Implementierung/\+Face3d/src/\hyperlink{_shader_loader_8cpp}{Shader\+Loader.\+cpp}\end{DoxyCompactItemize}

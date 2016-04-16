@@ -7,6 +7,7 @@ namespace Face3D
 	//-------------------------------------------------------------------------
 	void FaceGeometry::merge3d()
 	{	/*
+		!!!TODO!!!
 		// very rough approximation of 3d points - just to get the  prototype running
 
 		// eyes
@@ -22,7 +23,7 @@ namespace Face3D
 	}
 
 
-	//-------------------------------------------------------------------------
+
 	void FaceGeometry::toFile(const std::string& fn)
 	{
 		std::ofstream f(fn.c_str());
@@ -35,7 +36,7 @@ namespace Face3D
 	}
 
 
-	//-------------------------------------------------------------------------
+	
 	void FaceGeometry::fromFile(const std::string& fn)
 	{
 		std::ifstream f(fn.c_str());
@@ -47,8 +48,8 @@ namespace Face3D
 	}
 
 
-	//-------------------------------------------------------------------------
-	cv::Point3d fileToPoint(std::ifstream& f)
+	
+	cv::Point3d FaceGeometry::fileToPoint(std::ifstream& f)
 	{
 		cv::Point3d p;
 
@@ -60,8 +61,8 @@ namespace Face3D
 	}
 
 
-	//-------------------------------------------------------------------------
-	void pointToFile(std::ofstream& f, const cv::Point3d& p)
+	
+	void FaceGeometry::pointToFile(std::ofstream& f, const cv::Point3d& p)
 	{
 		f << p.x << "\n";
 		f << p.y << "\n";
@@ -75,16 +76,21 @@ namespace Face3D
 		return cv::Point2d(m_DetectedPoints[detectedPoint].x, m_DetectedPoints[detectedPoint].y); 
 	}
 
+
+
 	cv::Point FaceGeometry::getDetectedPointInt(DetectedPoints detectedPoint) const
 	{
 		return cv::Point((cv::Point::value_type)m_DetectedPoints[detectedPoint].x, (cv::Point::value_type)m_DetectedPoints[detectedPoint].y);
 	}
 
 
+
 	cv::Point3d FaceGeometry::getDetectedPointHomogeneous(DetectedPoints detectedPoint) const
 	{
 		return m_DetectedPoints[detectedPoint]; 
 	}
+
+
 
 	void FaceGeometry::setDetectedPoint(DetectedPoints detectedPoint, const cv::Point2d& p)
 	{ 
@@ -93,12 +99,27 @@ namespace Face3D
 		m_DetectedPoints[detectedPoint].z = 1.0; 
 	}
 
+
+
 	void FaceGeometry::setDetectedPoint(DetectedPoints detectedPoint, const cv::Point3d& p)
 	{ 
 		m_DetectedPoints[detectedPoint].x = p.x; 
 		m_DetectedPoints[detectedPoint].y = p.y; 
 		m_DetectedPoints[detectedPoint].z = 1.0; 
 	}
+
+	
+	void FaceGeometry::setDetectedRegion(DetectedRegions detectedRegion, const cv::Rect r)
+	{
+		m_DetectedRegions[detectedRegion] = r;
+	}
+
+	
+	cv::Rect FaceGeometry::getDetectedRegion(DetectedRegions detectedRegion)
+	{
+		return m_DetectedRegions[detectedRegion];
+	}
+
 
 	void FaceGeometry::transform(DetectedPoints point, const cv::Mat& transform)
 	{
@@ -109,13 +130,12 @@ namespace Face3D
 			cv::Mat newrow=cv::Mat::zeros(1, 3, CV_64F);
 			newrow.at<double>(0,2) = 1;
 			transform3x3.push_back(newrow);
-		}
-		
-
+		}		
 
 		cv::Mat p(m_DetectedPoints[point],false);
 		cv::Mat res = transform3x3*p;
 		res.copyTo(cv::Mat(m_DetectedPoints[point],false));
 	}
+
 
 }

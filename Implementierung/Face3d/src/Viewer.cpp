@@ -61,10 +61,29 @@ namespace Face3D
 	{
 
 		// load model, front and side texture
-		Model model("models/simple.obj", "ipc/front.jpg", "ipc/side.jpg");		
+		Model::ModelInfo modelInfo;
+		// file path
+		modelInfo.modelPath = "models/simple.obj";
+		modelInfo.textureFront = "ipc/front.jpg";
+		modelInfo.textureSide = "ipc/side.jpg";
+		// coordinates of important vertices
+		modelInfo.leftEye = glm::vec3(-0.2, 0.78, 0.65);
+		modelInfo.rightEye = glm::vec3(-0.2, -0.78, 0.65);
+		modelInfo.mouth = glm::vec3(-0.9, 0, -.62);
+
+		// load model
+		Model model(modelInfo);
 		
+		// transformation for model viewing
 		GLfloat rotationsVal = 0.0f;
-		const GLfloat rotationsValIncrease = 0.001f;
+		GLfloat scaleVal = 0.2f;
+		const GLfloat rotValIncrease = 0.001f;
+		const GLfloat scaleValIncrease = 0.0001f;
+
+		// initial settings
+		model.rotate(rotationsVal);
+		model.scale(scaleVal);
+
 		while (!glfwWindowShouldClose(m_pWindow))
 		{
 			// clear window content
@@ -87,14 +106,31 @@ namespace Face3D
 
 			if (glfwGetKey(m_pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
 			{
-				rotationsVal += rotationsValIncrease;
+				rotationsVal += rotValIncrease;
 				model.rotate(rotationsVal);
 			}
 
 			if (glfwGetKey(m_pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
 			{
-				rotationsVal -= rotationsValIncrease;
+				rotationsVal -= rotValIncrease;
 				model.rotate(rotationsVal);
+			}
+
+			if (glfwGetKey(m_pWindow, GLFW_KEY_UP) == GLFW_PRESS)
+			{
+				scaleVal += scaleValIncrease;
+				model.scale(scaleVal);
+			}
+
+			if (glfwGetKey(m_pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
+			{
+				scaleVal -= scaleValIncrease;
+				if (scaleVal < 0.0)
+				{
+					scaleVal = 0.0;
+				}
+
+				model.scale(scaleVal);
 			}
 		}
 	}

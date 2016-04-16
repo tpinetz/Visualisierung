@@ -41,7 +41,7 @@ vec4 textureShading()
 
 	
 	// z coordinate of cylinder 
-	float z=1.0-(modelPosition.y+2.0)/4.0; // TODO read value from image processing app!
+	float z=1.0-(modelPosition.y+2.25)/4.0; // TODO read value from image processing app!
 
 	
 	// get color from texture

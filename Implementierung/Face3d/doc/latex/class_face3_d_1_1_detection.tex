@@ -1,0 +1,286 @@
+\hypertarget{class_face3_d_1_1_detection}{}\section{Face3D\+:\+:Detection Class Reference}
+\label{class_face3_d_1_1_detection}\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+
+
+{\ttfamily \#include $<$Detection.\+hpp$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_face3_d_1_1_detection_1_1_contour_info}{Contour\+Info}
+\item 
+struct \hyperlink{struct_face3_d_1_1_detection_1_1_detect_face_result}{Detect\+Face\+Result}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_face3_d_1_1_detection_ab51a4a8e01db10e473fa38db9d77fd18}{Detection} (const cv\+::\+Mat \&front, const cv\+::\+Mat \&side)
+\begin{DoxyCompactList}\small\item\em create a \hyperlink{class_face3_d_1_1_detection}{Detection} object \end{DoxyCompactList}\item 
+\hyperlink{struct_face3_d_1_1_detection_1_1_detect_face_result}{Detect\+Face\+Result} \hyperlink{class_face3_d_1_1_detection_ac00b0ed49bbcc9efeccf307309b1723a}{detect\+Face} ()
+\begin{DoxyCompactList}\small\item\em calculate the face geometry and the textures \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_face3_d_1_1_detection_a8db79da2a4506aa0e799e4ff098d7d62}{Region\+Type} \{ \hyperlink{class_face3_d_1_1_detection_a8db79da2a4506aa0e799e4ff098d7d62a7714301dcaabe0757b2a1de73d08bf82}{Region\+Type\+Inside}, 
+\hyperlink{class_face3_d_1_1_detection_a8db79da2a4506aa0e799e4ff098d7d62acdeffba67fe972b99a5a38bcde0061f3}{Region\+Type\+Outside}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+cv\+::\+Mat \hyperlink{class_face3_d_1_1_detection_ad151547c47b89dc4673c51c43e22b6d3}{get\+Copy\+Of\+Original} (int img\+Nr)
+\item 
+void \hyperlink{class_face3_d_1_1_detection_a0b4b0034dd25890ac492854d825c3ea1}{do\+Preprocessing} ()
+\item 
+void \hyperlink{class_face3_d_1_1_detection_a424c3fba1ee4b7d24a84edebca9ecf14}{do\+Face\+Extraction} ()
+\item 
+void \hyperlink{class_face3_d_1_1_detection_a2345b11759e84ca94409cb65cef557f3}{do\+Facial\+Components\+Extraction} ()
+\item 
+void \hyperlink{class_face3_d_1_1_detection_aeca140a4cb5eb2d035afabd66b90b42c}{do\+Facial\+Components\+Extraction\+Front} (\hyperlink{class_face3_d_1_1_face_geometry}{Face\+Geometry} \&face\+Geometry, const std\+::vector$<$ \hyperlink{struct_face3_d_1_1_detection_1_1_contour_info}{Contour\+Info} $>$ \&component\+Contour\+Info, const std\+::vector$<$ \hyperlink{struct_face3_d_1_1_detection_1_1_contour_info}{Contour\+Info} $>$ \&face\+Contour\+Info)
+\item 
+void \hyperlink{class_face3_d_1_1_detection_ae630778f107162e95580608fcb87aedc}{do\+Facial\+Components\+Extraction\+Side} (\hyperlink{class_face3_d_1_1_face_geometry}{Face\+Geometry} \&face\+Geometry, const std\+::vector$<$ \hyperlink{struct_face3_d_1_1_detection_1_1_contour_info}{Contour\+Info} $>$ \&component\+Contour\+Info, const std\+::vector$<$ \hyperlink{struct_face3_d_1_1_detection_1_1_contour_info}{Contour\+Info} $>$ \&face\+Contour\+Info)
+\item 
+std\+::vector$<$ size\+\_\+t $>$ \hyperlink{class_face3_d_1_1_detection_a2685b94451caa0572d6d209c936160b4}{find\+Regions} (const std\+::vector$<$ std\+::vector$<$ cv\+::\+Point $>$ $>$ \&contours, const std\+::vector$<$ cv\+::\+Vec4i $>$ \&hierarchy, \hyperlink{class_face3_d_1_1_detection_a8db79da2a4506aa0e799e4ff098d7d62}{Region\+Type} region\+Type)
+\item 
+std\+::vector$<$ \hyperlink{struct_face3_d_1_1_detection_1_1_contour_info}{Contour\+Info} $>$ \hyperlink{class_face3_d_1_1_detection_ae9ca9a340a1f81db0fa240045da86017}{extract\+Contour\+Info} (const std\+::vector$<$ std\+::vector$<$ cv\+::\+Point $>$ $>$ \&contours, const std\+::vector$<$ size\+\_\+t $>$ indices)
+\item 
+void \hyperlink{class_face3_d_1_1_detection_a0cf36050ade66d18074b6fa78ee7c7ca}{do\+Match\+Coordinates} ()
+\item 
+void \hyperlink{class_face3_d_1_1_detection_a7a6c141eb4ecee4385a84b541275f1df}{create\+Textures} ()
+\item 
+cv\+::\+Rect \hyperlink{class_face3_d_1_1_detection_ac4cc64a1037a3e09f8e7b8016528bafd}{get\+Bounding\+Box} (const cv\+::\+Mat \&color)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const size\+\_\+t \hyperlink{class_face3_d_1_1_detection_a1c1137f1d9972fd213a04f93084a0d5c}{front\+Img\+Nr} = 0
+\begin{DoxyCompactList}\small\item\em index of the front image when both images are stored in an array \end{DoxyCompactList}\item 
+const size\+\_\+t \hyperlink{class_face3_d_1_1_detection_a7a2e671e0ba9133f1fd8e877bc5a89f9}{side\+Img\+Nr} = 1
+\begin{DoxyCompactList}\small\item\em index of the side image when both images are stored in an array \end{DoxyCompactList}\item 
+const size\+\_\+t \hyperlink{class_face3_d_1_1_detection_a7d9ef90ae57f59f0e73edec0dffd9bd7}{img\+Size} = 320
+\begin{DoxyCompactList}\small\item\em size of the images we are working with. 320x320 seems good as its fast but has still enough details \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Mat $>$ \hyperlink{class_face3_d_1_1_detection_a237f409f79b8417f906732dc522322a8}{m\+\_\+\+Originals}
+\begin{DoxyCompactList}\small\item\em original images (scaled down) \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Mat $>$ \hyperlink{class_face3_d_1_1_detection_a022bcdfdcfab58bcd2bb4f448d583b3c}{m\+\_\+\+Preprocessed}
+\begin{DoxyCompactList}\small\item\em preprocessed images (smooth) \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Mat $>$ \hyperlink{class_face3_d_1_1_detection_a835e20dfe0fc3c9cee63168c4467dd82}{m\+\_\+\+Face\+Extracted}
+\begin{DoxyCompactList}\small\item\em binary image with skin as foreground \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Mat $>$ \hyperlink{class_face3_d_1_1_detection_a4dff33b175f5b2aff949db62e4c95b88}{m\+\_\+\+Face\+Mask}
+\begin{DoxyCompactList}\small\item\em mask of the face regions. foreground regions which are not the face are already removed \end{DoxyCompactList}\item 
+\hyperlink{class_face3_d_1_1_face_geometry}{Face\+Geometry} \hyperlink{class_face3_d_1_1_detection_a4eed1e18b8465d43d75102bf10ce8575}{m\+\_\+\+Face\+Geometry}
+\begin{DoxyCompactList}\small\item\em the geometry of the face, i.\+e. the coordinates of the facial components \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Mat $>$ \hyperlink{class_face3_d_1_1_detection_a5dbd240320bc7a4c1661b63e23bee777}{m\+\_\+\+Textures}
+\begin{DoxyCompactList}\small\item\em the textures, already in a format that can be used in Open\+GL \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+class which detects the facial components and calculates the face geometry 
+
+\subsection{Member Enumeration Documentation}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!Region\+Type@{Region\+Type}}
+\index{Region\+Type@{Region\+Type}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{Region\+Type}{RegionType}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Face3\+D\+::\+Detection\+::\+Region\+Type}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a8db79da2a4506aa0e799e4ff098d7d62}{}\label{class_face3_d_1_1_detection_a8db79da2a4506aa0e799e4ff098d7d62}
+type of binary region to be looked for\+: an inner or an outer region \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Region\+Type\+Inside@{Region\+Type\+Inside}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!Region\+Type\+Inside@{Region\+Type\+Inside}}\item[{\em 
+Region\+Type\+Inside\hypertarget{class_face3_d_1_1_detection_a8db79da2a4506aa0e799e4ff098d7d62a7714301dcaabe0757b2a1de73d08bf82}{}\label{class_face3_d_1_1_detection_a8db79da2a4506aa0e799e4ff098d7d62a7714301dcaabe0757b2a1de73d08bf82}
+}]\index{Region\+Type\+Outside@{Region\+Type\+Outside}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!Region\+Type\+Outside@{Region\+Type\+Outside}}\item[{\em 
+Region\+Type\+Outside\hypertarget{class_face3_d_1_1_detection_a8db79da2a4506aa0e799e4ff098d7d62acdeffba67fe972b99a5a38bcde0061f3}{}\label{class_face3_d_1_1_detection_a8db79da2a4506aa0e799e4ff098d7d62acdeffba67fe972b99a5a38bcde0061f3}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!Detection@{Detection}}
+\index{Detection@{Detection}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{Detection(const cv\+::\+Mat \&front, const cv\+::\+Mat \&side)}{Detection(const cv::Mat &front, const cv::Mat &side)}}]{\setlength{\rightskip}{0pt plus 5cm}Face3\+D\+::\+Detection\+::\+Detection (
+\begin{DoxyParamCaption}
+\item[{const cv\+::\+Mat \&}]{front, }
+\item[{const cv\+::\+Mat \&}]{side}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_detection_ab51a4a8e01db10e473fa38db9d77fd18}{}\label{class_face3_d_1_1_detection_ab51a4a8e01db10e473fa38db9d77fd18}
+
+
+create a \hyperlink{class_face3_d_1_1_detection}{Detection} object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em front} & image of the face from the front \\
+\hline
+{\em side} & image of the face from the side \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!create\+Textures@{create\+Textures}}
+\index{create\+Textures@{create\+Textures}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{create\+Textures()}{createTextures()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Detection\+::create\+Textures (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a7a6c141eb4ecee4385a84b541275f1df}{}\label{class_face3_d_1_1_detection_a7a6c141eb4ecee4385a84b541275f1df}
+create the textures from the two images and align them \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!detect\+Face@{detect\+Face}}
+\index{detect\+Face@{detect\+Face}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{detect\+Face()}{detectFace()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Detection\+::\+Detect\+Face\+Result} Face3\+D\+::\+Detection\+::detect\+Face (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_detection_ac00b0ed49bbcc9efeccf307309b1723a}{}\label{class_face3_d_1_1_detection_ac00b0ed49bbcc9efeccf307309b1723a}
+
+
+calculate the face geometry and the textures 
+
+\begin{DoxyReturn}{Returns}
+a \hyperlink{struct_face3_d_1_1_detection_1_1_detect_face_result}{Detect\+Face\+Result} object which holds the face geometry and the textures 
+\end{DoxyReturn}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!do\+Face\+Extraction@{do\+Face\+Extraction}}
+\index{do\+Face\+Extraction@{do\+Face\+Extraction}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{do\+Face\+Extraction()}{doFaceExtraction()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Detection\+::do\+Face\+Extraction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a424c3fba1ee4b7d24a84edebca9ecf14}{}\label{class_face3_d_1_1_detection_a424c3fba1ee4b7d24a84edebca9ecf14}
+extracts face (skin) region \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!do\+Facial\+Components\+Extraction@{do\+Facial\+Components\+Extraction}}
+\index{do\+Facial\+Components\+Extraction@{do\+Facial\+Components\+Extraction}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{do\+Facial\+Components\+Extraction()}{doFacialComponentsExtraction()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Detection\+::do\+Facial\+Components\+Extraction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a2345b11759e84ca94409cb65cef557f3}{}\label{class_face3_d_1_1_detection_a2345b11759e84ca94409cb65cef557f3}
+extract facial components (eyes, nose, ...) \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!do\+Facial\+Components\+Extraction\+Front@{do\+Facial\+Components\+Extraction\+Front}}
+\index{do\+Facial\+Components\+Extraction\+Front@{do\+Facial\+Components\+Extraction\+Front}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{do\+Facial\+Components\+Extraction\+Front(\+Face\+Geometry \&face\+Geometry, const std\+::vector$<$ Contour\+Info $>$ \&component\+Contour\+Info, const std\+::vector$<$ Contour\+Info $>$ \&face\+Contour\+Info)}{doFacialComponentsExtractionFront(FaceGeometry &faceGeometry, const std::vector< ContourInfo > &componentContourInfo, const std::vector< ContourInfo > &faceContourInfo)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Detection\+::do\+Facial\+Components\+Extraction\+Front (
+\begin{DoxyParamCaption}
+\item[{{\bf Face\+Geometry} \&}]{face\+Geometry, }
+\item[{const std\+::vector$<$ {\bf Contour\+Info} $>$ \&}]{component\+Contour\+Info, }
+\item[{const std\+::vector$<$ {\bf Contour\+Info} $>$ \&}]{face\+Contour\+Info}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_aeca140a4cb5eb2d035afabd66b90b42c}{}\label{class_face3_d_1_1_detection_aeca140a4cb5eb2d035afabd66b90b42c}
+extract facial components in front image \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!do\+Facial\+Components\+Extraction\+Side@{do\+Facial\+Components\+Extraction\+Side}}
+\index{do\+Facial\+Components\+Extraction\+Side@{do\+Facial\+Components\+Extraction\+Side}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{do\+Facial\+Components\+Extraction\+Side(\+Face\+Geometry \&face\+Geometry, const std\+::vector$<$ Contour\+Info $>$ \&component\+Contour\+Info, const std\+::vector$<$ Contour\+Info $>$ \&face\+Contour\+Info)}{doFacialComponentsExtractionSide(FaceGeometry &faceGeometry, const std::vector< ContourInfo > &componentContourInfo, const std::vector< ContourInfo > &faceContourInfo)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Detection\+::do\+Facial\+Components\+Extraction\+Side (
+\begin{DoxyParamCaption}
+\item[{{\bf Face\+Geometry} \&}]{face\+Geometry, }
+\item[{const std\+::vector$<$ {\bf Contour\+Info} $>$ \&}]{component\+Contour\+Info, }
+\item[{const std\+::vector$<$ {\bf Contour\+Info} $>$ \&}]{face\+Contour\+Info}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_ae630778f107162e95580608fcb87aedc}{}\label{class_face3_d_1_1_detection_ae630778f107162e95580608fcb87aedc}
+extract facial components in side image \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!do\+Match\+Coordinates@{do\+Match\+Coordinates}}
+\index{do\+Match\+Coordinates@{do\+Match\+Coordinates}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{do\+Match\+Coordinates()}{doMatchCoordinates()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Detection\+::do\+Match\+Coordinates (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a0cf36050ade66d18074b6fa78ee7c7ca}{}\label{class_face3_d_1_1_detection_a0cf36050ade66d18074b6fa78ee7c7ca}
+match the 2d coordinates of the facial components in the two images to get the 3d information \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!do\+Preprocessing@{do\+Preprocessing}}
+\index{do\+Preprocessing@{do\+Preprocessing}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{do\+Preprocessing()}{doPreprocessing()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Detection\+::do\+Preprocessing (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a0b4b0034dd25890ac492854d825c3ea1}{}\label{class_face3_d_1_1_detection_a0b4b0034dd25890ac492854d825c3ea1}
+preprocessing\+: smooth image \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!extract\+Contour\+Info@{extract\+Contour\+Info}}
+\index{extract\+Contour\+Info@{extract\+Contour\+Info}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{extract\+Contour\+Info(const std\+::vector$<$ std\+::vector$<$ cv\+::\+Point $>$ $>$ \&contours, const std\+::vector$<$ size\+\_\+t $>$ indices)}{extractContourInfo(const std::vector< std::vector< cv::Point > > &contours, const std::vector< size_t > indices)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ {\bf Detection\+::\+Contour\+Info} $>$ Face3\+D\+::\+Detection\+::extract\+Contour\+Info (
+\begin{DoxyParamCaption}
+\item[{const std\+::vector$<$ std\+::vector$<$ cv\+::\+Point $>$ $>$ \&}]{contours, }
+\item[{const std\+::vector$<$ size\+\_\+t $>$}]{indices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_ae9ca9a340a1f81db0fa240045da86017}{}\label{class_face3_d_1_1_detection_ae9ca9a340a1f81db0fa240045da86017}
+calculate informations about the contours, e.\+g. the area \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!find\+Regions@{find\+Regions}}
+\index{find\+Regions@{find\+Regions}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{find\+Regions(const std\+::vector$<$ std\+::vector$<$ cv\+::\+Point $>$ $>$ \&contours, const std\+::vector$<$ cv\+::\+Vec4i $>$ \&hierarchy, Region\+Type region\+Type)}{findRegions(const std::vector< std::vector< cv::Point > > &contours, const std::vector< cv::Vec4i > &hierarchy, RegionType regionType)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ size\+\_\+t $>$ Face3\+D\+::\+Detection\+::find\+Regions (
+\begin{DoxyParamCaption}
+\item[{const std\+::vector$<$ std\+::vector$<$ cv\+::\+Point $>$ $>$ \&}]{contours, }
+\item[{const std\+::vector$<$ cv\+::\+Vec4i $>$ \&}]{hierarchy, }
+\item[{{\bf Region\+Type}}]{region\+Type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a2685b94451caa0572d6d209c936160b4}{}\label{class_face3_d_1_1_detection_a2685b94451caa0572d6d209c936160b4}
+fget list of regions with specified type \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!get\+Bounding\+Box@{get\+Bounding\+Box}}
+\index{get\+Bounding\+Box@{get\+Bounding\+Box}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{get\+Bounding\+Box(const cv\+::\+Mat \&color)}{getBoundingBox(const cv::Mat &color)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Rect Face3\+D\+::\+Detection\+::get\+Bounding\+Box (
+\begin{DoxyParamCaption}
+\item[{const cv\+::\+Mat \&}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_ac4cc64a1037a3e09f8e7b8016528bafd}{}\label{class_face3_d_1_1_detection_ac4cc64a1037a3e09f8e7b8016528bafd}
+get the bounding box of the color image. background must be black, everything else will be regared as foreground. \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!get\+Copy\+Of\+Original@{get\+Copy\+Of\+Original}}
+\index{get\+Copy\+Of\+Original@{get\+Copy\+Of\+Original}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{get\+Copy\+Of\+Original(int img\+Nr)}{getCopyOfOriginal(int imgNr)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat Face3\+D\+::\+Detection\+::get\+Copy\+Of\+Original (
+\begin{DoxyParamCaption}
+\item[{int}]{img\+Nr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_ad151547c47b89dc4673c51c43e22b6d3}{}\label{class_face3_d_1_1_detection_ad151547c47b89dc4673c51c43e22b6d3}
+helper function to get original image to draw on for debug output 
+
+\subsection{Member Data Documentation}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!front\+Img\+Nr@{front\+Img\+Nr}}
+\index{front\+Img\+Nr@{front\+Img\+Nr}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{front\+Img\+Nr}{frontImgNr}}]{\setlength{\rightskip}{0pt plus 5cm}const size\+\_\+t Face3\+D\+::\+Detection\+::front\+Img\+Nr = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a1c1137f1d9972fd213a04f93084a0d5c}{}\label{class_face3_d_1_1_detection_a1c1137f1d9972fd213a04f93084a0d5c}
+
+
+index of the front image when both images are stored in an array 
+
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!img\+Size@{img\+Size}}
+\index{img\+Size@{img\+Size}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{img\+Size}{imgSize}}]{\setlength{\rightskip}{0pt plus 5cm}const size\+\_\+t Face3\+D\+::\+Detection\+::img\+Size = 320\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a7d9ef90ae57f59f0e73edec0dffd9bd7}{}\label{class_face3_d_1_1_detection_a7d9ef90ae57f59f0e73edec0dffd9bd7}
+
+
+size of the images we are working with. 320x320 seems good as its fast but has still enough details 
+
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Face\+Extracted@{m\+\_\+\+Face\+Extracted}}
+\index{m\+\_\+\+Face\+Extracted@{m\+\_\+\+Face\+Extracted}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Face\+Extracted}{m_FaceExtracted}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$cv\+::\+Mat$>$ Face3\+D\+::\+Detection\+::m\+\_\+\+Face\+Extracted\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a835e20dfe0fc3c9cee63168c4467dd82}{}\label{class_face3_d_1_1_detection_a835e20dfe0fc3c9cee63168c4467dd82}
+
+
+binary image with skin as foreground 
+
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Face\+Geometry@{m\+\_\+\+Face\+Geometry}}
+\index{m\+\_\+\+Face\+Geometry@{m\+\_\+\+Face\+Geometry}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Face\+Geometry}{m_FaceGeometry}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Face\+Geometry} Face3\+D\+::\+Detection\+::m\+\_\+\+Face\+Geometry\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a4eed1e18b8465d43d75102bf10ce8575}{}\label{class_face3_d_1_1_detection_a4eed1e18b8465d43d75102bf10ce8575}
+
+
+the geometry of the face, i.\+e. the coordinates of the facial components 
+
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Face\+Mask@{m\+\_\+\+Face\+Mask}}
+\index{m\+\_\+\+Face\+Mask@{m\+\_\+\+Face\+Mask}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Face\+Mask}{m_FaceMask}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$cv\+::\+Mat$>$ Face3\+D\+::\+Detection\+::m\+\_\+\+Face\+Mask\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a4dff33b175f5b2aff949db62e4c95b88}{}\label{class_face3_d_1_1_detection_a4dff33b175f5b2aff949db62e4c95b88}
+
+
+mask of the face regions. foreground regions which are not the face are already removed 
+
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Originals@{m\+\_\+\+Originals}}
+\index{m\+\_\+\+Originals@{m\+\_\+\+Originals}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Originals}{m_Originals}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$cv\+::\+Mat$>$ Face3\+D\+::\+Detection\+::m\+\_\+\+Originals\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a237f409f79b8417f906732dc522322a8}{}\label{class_face3_d_1_1_detection_a237f409f79b8417f906732dc522322a8}
+
+
+original images (scaled down) 
+
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Preprocessed@{m\+\_\+\+Preprocessed}}
+\index{m\+\_\+\+Preprocessed@{m\+\_\+\+Preprocessed}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Preprocessed}{m_Preprocessed}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$cv\+::\+Mat$>$ Face3\+D\+::\+Detection\+::m\+\_\+\+Preprocessed\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a022bcdfdcfab58bcd2bb4f448d583b3c}{}\label{class_face3_d_1_1_detection_a022bcdfdcfab58bcd2bb4f448d583b3c}
+
+
+preprocessed images (smooth) 
+
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Textures@{m\+\_\+\+Textures}}
+\index{m\+\_\+\+Textures@{m\+\_\+\+Textures}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Textures}{m_Textures}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$cv\+::\+Mat$>$ Face3\+D\+::\+Detection\+::m\+\_\+\+Textures\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a5dbd240320bc7a4c1661b63e23bee777}{}\label{class_face3_d_1_1_detection_a5dbd240320bc7a4c1661b63e23bee777}
+
+
+the textures, already in a format that can be used in Open\+GL 
+
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!side\+Img\+Nr@{side\+Img\+Nr}}
+\index{side\+Img\+Nr@{side\+Img\+Nr}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{side\+Img\+Nr}{sideImgNr}}]{\setlength{\rightskip}{0pt plus 5cm}const size\+\_\+t Face3\+D\+::\+Detection\+::side\+Img\+Nr = 1\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a7a2e671e0ba9133f1fd8e877bc5a89f9}{}\label{class_face3_d_1_1_detection_a7a2e671e0ba9133f1fd8e877bc5a89f9}
+
+
+index of the side image when both images are stored in an array 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/harald/\+Dokumente/\+Ausbildung/\+Master/\+Projekte\+C\+P\+P/\+Visualisierung2/\+Visualisierung/\+Implementierung/\+Face3d/src/\hyperlink{_detection_8hpp}{Detection.\+hpp}\item 
+E\+:/harald/\+Dokumente/\+Ausbildung/\+Master/\+Projekte\+C\+P\+P/\+Visualisierung2/\+Visualisierung/\+Implementierung/\+Face3d/src/\hyperlink{_detection_8cpp}{Detection.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,130 @@
+\hypertarget{class_face3_d_1_1_texture}{}\section{Face3D\+:\+:Texture Class Reference}
+\label{class_face3_d_1_1_texture}\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}
+
+
+{\ttfamily \#include $<$Texture.\+hpp$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573}{Texture\+Setting} \{ \hyperlink{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573a14d9ede2b469d8bdeb6104a7e3e3297f}{Texture\+Linear}, 
+\hyperlink{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573a97cc8a0412885c34a8f6a0245fad6734}{Texture\+Nearest}, 
+\hyperlink{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573a3e3b46677c939a73b353a823c5606e27}{Texture\+M\+I\+P\+Nearest}, 
+\hyperlink{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573a9d4b4ece6a682bd39df531f0ddc28988}{Texture\+M\+I\+P\+Linear}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+G\+Luint \hyperlink{class_face3_d_1_1_texture_a297188d7d9549841d4351d8d0017aadf}{Texture\+::load\+From\+Image} (const std\+::string \&file\+Name)
+\item 
+G\+Luint \hyperlink{class_face3_d_1_1_texture_ac579a87306902c623255a446c26f14b9}{get\+Sampler\+ID} ()
+\item 
+\hyperlink{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573}{Texture\+Setting} \hyperlink{class_face3_d_1_1_texture_a975cd5d43b1a8009df6498d81c539851}{get\+Setting} () const 
+\item 
+void \hyperlink{class_face3_d_1_1_texture_aa7f450d79daebff981fb5a7dc3c9a85e}{change\+Texture\+Settings} (\hyperlink{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573}{Texture\+Setting} setting)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_face3_d_1_1_texture}{Texture} \& \hyperlink{class_face3_d_1_1_texture_a1e8b06b1ae91ab8256b36dad8d6ec389}{Instance} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_face3_d_1_1_texture_af22c3684f7cef6023862f61cab25bb98}{Texture} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ std\+::string, G\+Luint $>$ \hyperlink{class_face3_d_1_1_texture_a12f88846d60462abc4898b0a9cc54bf9}{m\+\_\+\+Texture\+Cache}
+\item 
+G\+Luint \hyperlink{class_face3_d_1_1_texture_a4d9b0c399e52a64c72f096ffb768e6e7}{sampler\+ID} = 0
+\item 
+\hyperlink{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573}{Texture\+Setting} \hyperlink{class_face3_d_1_1_texture_ab3ef103303845ee062b3c2d0618d6c32}{m\+\_\+\+Curr\+Setting}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!Texture\+Setting@{Texture\+Setting}}
+\index{Texture\+Setting@{Texture\+Setting}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}
+\subsubsection[{\texorpdfstring{Texture\+Setting}{TextureSetting}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Face3\+D\+::\+Texture\+::\+Texture\+Setting}}\hypertarget{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573}{}\label{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Texture\+Linear@{Texture\+Linear}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!Texture\+Linear@{Texture\+Linear}}\item[{\em 
+Texture\+Linear\hypertarget{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573a14d9ede2b469d8bdeb6104a7e3e3297f}{}\label{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573a14d9ede2b469d8bdeb6104a7e3e3297f}
+}]\index{Texture\+Nearest@{Texture\+Nearest}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!Texture\+Nearest@{Texture\+Nearest}}\item[{\em 
+Texture\+Nearest\hypertarget{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573a97cc8a0412885c34a8f6a0245fad6734}{}\label{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573a97cc8a0412885c34a8f6a0245fad6734}
+}]\index{Texture\+M\+I\+P\+Nearest@{Texture\+M\+I\+P\+Nearest}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!Texture\+M\+I\+P\+Nearest@{Texture\+M\+I\+P\+Nearest}}\item[{\em 
+Texture\+M\+I\+P\+Nearest\hypertarget{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573a3e3b46677c939a73b353a823c5606e27}{}\label{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573a3e3b46677c939a73b353a823c5606e27}
+}]\index{Texture\+M\+I\+P\+Linear@{Texture\+M\+I\+P\+Linear}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!Texture\+M\+I\+P\+Linear@{Texture\+M\+I\+P\+Linear}}\item[{\em 
+Texture\+M\+I\+P\+Linear\hypertarget{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573a9d4b4ece6a682bd39df531f0ddc28988}{}\label{class_face3_d_1_1_texture_aa2d0d0213ac74b112ce13cf5511a0573a9d4b4ece6a682bd39df531f0ddc28988}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!Texture@{Texture}}
+\index{Texture@{Texture}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}
+\subsubsection[{\texorpdfstring{Texture()}{Texture()}}]{\setlength{\rightskip}{0pt plus 5cm}Face3\+D\+::\+Texture\+::\+Texture (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_texture_af22c3684f7cef6023862f61cab25bb98}{}\label{class_face3_d_1_1_texture_af22c3684f7cef6023862f61cab25bb98}
+
+
+\subsection{Member Function Documentation}
+\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!change\+Texture\+Settings@{change\+Texture\+Settings}}
+\index{change\+Texture\+Settings@{change\+Texture\+Settings}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}
+\subsubsection[{\texorpdfstring{change\+Texture\+Settings(\+Texture\+Setting setting)}{changeTextureSettings(TextureSetting setting)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Texture\+::change\+Texture\+Settings (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture\+Setting}}]{setting}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_texture_aa7f450d79daebff981fb5a7dc3c9a85e}{}\label{class_face3_d_1_1_texture_aa7f450d79daebff981fb5a7dc3c9a85e}
+\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!get\+Sampler\+ID@{get\+Sampler\+ID}}
+\index{get\+Sampler\+ID@{get\+Sampler\+ID}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}
+\subsubsection[{\texorpdfstring{get\+Sampler\+I\+D()}{getSamplerID()}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Texture\+::get\+Sampler\+ID (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_texture_ac579a87306902c623255a446c26f14b9}{}\label{class_face3_d_1_1_texture_ac579a87306902c623255a446c26f14b9}
+\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!get\+Setting@{get\+Setting}}
+\index{get\+Setting@{get\+Setting}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}
+\subsubsection[{\texorpdfstring{get\+Setting() const }{getSetting() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture\+Setting} Face3\+D\+::\+Texture\+::get\+Setting (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_face3_d_1_1_texture_a975cd5d43b1a8009df6498d81c539851}{}\label{class_face3_d_1_1_texture_a975cd5d43b1a8009df6498d81c539851}
+\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!Instance@{Instance}}
+\index{Instance@{Instance}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}
+\subsubsection[{\texorpdfstring{Instance()}{Instance()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} \& Face3\+D\+::\+Texture\+::\+Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_face3_d_1_1_texture_a1e8b06b1ae91ab8256b36dad8d6ec389}{}\label{class_face3_d_1_1_texture_a1e8b06b1ae91ab8256b36dad8d6ec389}
+\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!Texture\+::load\+From\+Image@{Texture\+::load\+From\+Image}}
+\index{Texture\+::load\+From\+Image@{Texture\+::load\+From\+Image}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}
+\subsubsection[{\texorpdfstring{Texture\+::load\+From\+Image(const std\+::string \&file\+Name)}{Texture::loadFromImage(const std::string &fileName)}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Texture\+::\+Texture\+::load\+From\+Image (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{file\+Name}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_texture_a297188d7d9549841d4351d8d0017aadf}{}\label{class_face3_d_1_1_texture_a297188d7d9549841d4351d8d0017aadf}
+
+
+\subsection{Member Data Documentation}
+\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!m\+\_\+\+Curr\+Setting@{m\+\_\+\+Curr\+Setting}}
+\index{m\+\_\+\+Curr\+Setting@{m\+\_\+\+Curr\+Setting}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Curr\+Setting}{m_CurrSetting}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture\+Setting} Face3\+D\+::\+Texture\+::m\+\_\+\+Curr\+Setting\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_texture_ab3ef103303845ee062b3c2d0618d6c32}{}\label{class_face3_d_1_1_texture_ab3ef103303845ee062b3c2d0618d6c32}
+\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!m\+\_\+\+Texture\+Cache@{m\+\_\+\+Texture\+Cache}}
+\index{m\+\_\+\+Texture\+Cache@{m\+\_\+\+Texture\+Cache}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Texture\+Cache}{m_TextureCache}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$std\+::string, G\+Luint$>$ Face3\+D\+::\+Texture\+::m\+\_\+\+Texture\+Cache\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_texture_a12f88846d60462abc4898b0a9cc54bf9}{}\label{class_face3_d_1_1_texture_a12f88846d60462abc4898b0a9cc54bf9}
+\index{Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}!sampler\+ID@{sampler\+ID}}
+\index{sampler\+ID@{sampler\+ID}!Face3\+D\+::\+Texture@{Face3\+D\+::\+Texture}}
+\subsubsection[{\texorpdfstring{sampler\+ID}{samplerID}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Texture\+::sampler\+ID = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_texture_a4d9b0c399e52a64c72f096ffb768e6e7}{}\label{class_face3_d_1_1_texture_a4d9b0c399e52a64c72f096ffb768e6e7}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/harald/\+Dokumente/\+Ausbildung/\+Master/\+Projekte\+C\+P\+P/\+Visualisierung2/\+Visualisierung/\+Implementierung/\+Face3d/src/\hyperlink{_texture_8hpp}{Texture.\+hpp}\item 
+E\+:/harald/\+Dokumente/\+Ausbildung/\+Master/\+Projekte\+C\+P\+P/\+Visualisierung2/\+Visualisierung/\+Implementierung/\+Face3d/src/\hyperlink{_texture_8cpp}{Texture.\+cpp}\end{DoxyCompactItemize}

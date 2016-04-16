@@ -1,0 +1,9 @@
+digraph "Face3D::Texture::changeTextureSettings"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Face3D::Texture::changeTexture\lSettings",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Face3D::Texture::getSetting",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_face3_d_1_1_texture.html#a975cd5d43b1a8009df6498d81c539851"];
+}

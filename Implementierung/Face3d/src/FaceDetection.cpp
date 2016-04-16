@@ -4,10 +4,9 @@
 #include "Detection.hpp"
 #include "FaceGeometry.hpp"
 
-
+/** main function, reading from input directory, writing to ipc directory */
 int main(int argc, char** argv)
 {
-
 	try
 	{
 		// read front and side image

@@ -8,8 +8,6 @@ namespace Face3D
 {
 
 
-	//-------------------------------------------------------------------------
-	// CTOR: save original images at a specific size (currently at 320x320)
 	Detection::Detection(const cv::Mat& front, const cv::Mat& side)
 	{		
 		/*
@@ -28,8 +26,6 @@ namespace Face3D
 
 
 
-	//-------------------------------------------------------------------------
-	// execute all steps	
 	Detection::DetectFaceResult Detection::detectFace()
 	{
 		doPreprocessing();		
@@ -48,8 +44,6 @@ namespace Face3D
 
 
 
-	//-------------------------------------------------------------------------
-	// preprocess image: smoothing, ...)
 	void Detection::doPreprocessing()
 	{
 		m_Preprocessed.resize(2);
@@ -61,9 +55,6 @@ namespace Face3D
 	}
 
 
-
-	//-------------------------------------------------------------------------
-	// extract binary regions representing the face and its components (nose, eyes, ...)
 	void Detection::doFaceExtraction()
 	{
 		for (size_t i = 0; i < m_Preprocessed.size(); ++i)
@@ -106,8 +97,6 @@ namespace Face3D
 
 
 
-	//-------------------------------------------------------------------------
-	// extract facial components from the binary regions
 	void Detection::doFacialComponentsExtraction()
 	{
 		/*
@@ -160,9 +149,6 @@ namespace Face3D
 	}
 
 
-
-	//-------------------------------------------------------------------------
-	// extract facial components (front image) from the binary regions
 	void Detection::doFacialComponentsExtractionFront(FaceGeometry& faceGeometry, const std::vector<ContourInfo>& componentContourInfo, const std::vector<ContourInfo>& faceContourInfo)
 	{
 		// we need at least 3 elements (left & right eye, mouth)
@@ -197,7 +183,7 @@ namespace Face3D
 		faceGeometry.setDetectedPoint(FaceGeometry::FrontRightEye, cv::Point2d(rightEye.cogX, rightEye.cogY));
 		faceGeometry.setDetectedPoint(FaceGeometry::FrontMouth, cv::Point2d(mouth.cogX, mouth.cogY));
 
-		faceGeometry.frontSkinRegion = cv::boundingRect(faceContourInfo[0].contour);
+		faceGeometry.setDetectedRegion(FaceGeometry::FrontFacialRegion, cv::boundingRect(faceContourInfo[0].contour));
 
 		// create face mask
 		cv::Mat mask(imgSize,imgSize,CV_8U);
@@ -214,9 +200,6 @@ namespace Face3D
 	}
 
 
-
-	//-------------------------------------------------------------------------
-	// extract facial components (side image) from the binary regions
 	void Detection::doFacialComponentsExtractionSide(FaceGeometry& faceGeometry, const std::vector<ContourInfo>& componentContourInfo, const std::vector<ContourInfo>& faceContourInfo)
 	{
 		// we need at least 3 elements (left & right eye, mouth)
@@ -228,7 +211,7 @@ namespace Face3D
 		const ContourInfo& eye = componentContourInfo[0];
 		const ContourInfo& face = faceContourInfo[0];
 
-		faceGeometry.sideSkinRegion = cv::boundingRect(face.contour);
+		faceGeometry.setDetectedRegion(FaceGeometry::SideFacialRegion, cv::boundingRect(face.contour));
 
 		faceGeometry.setDetectedPoint(FaceGeometry::SideEye,cv::Point2d(eye.cogX, eye.cogY));
 		
@@ -257,7 +240,7 @@ namespace Face3D
 
 
 
-	//-------------------------------------------------------------------------
+
 	std::vector<size_t> Detection::findRegions(const std::vector<std::vector<cv::Point> >& contours, const std::vector<cv::Vec4i>& hierarchy, RegionType regionType)
 	{
 		/*
@@ -286,7 +269,6 @@ namespace Face3D
 
 
 
-	//-------------------------------------------------------------------------
 	std::vector<Detection::ContourInfo> Detection::extractContourInfo(const std::vector<std::vector<cv::Point> >& contours, const std::vector<size_t> indices)
 	{
 		std::vector<ContourInfo> contourInfos;
@@ -311,14 +293,14 @@ namespace Face3D
 	}
 
 
-	//-------------------------------------------------------------------------
+
 	void Detection::doMatchCoordinates()
 	{
 		m_FaceGeometry.merge3d();
 	}
 
+	
 
-	//-------------------------------------------------------------------------
 	void Detection::createTextures()
 	{						
 		// allocate images		
@@ -363,7 +345,6 @@ namespace Face3D
 		dbgShow(m_Textures[sideImgNr], "createTextures: sideImage translated");
 
 
-
 		// cut out regions of interest, but do it in a way such that the y coordinate (position of eyes) still aligns between front and side image
 		// find the contours (bounded binary regions)
 		cv::Rect frontBoundingBox = getBoundingBox(m_Textures[frontImgNr]);
@@ -392,6 +373,7 @@ namespace Face3D
 	}
 
 
+
 	cv::Rect Detection::getBoundingBox(const cv::Mat& color)
 	{
 		cv::Mat gray, bin;
@@ -405,5 +387,7 @@ namespace Face3D
 
 		return boundingBox;
 	}
+
+
 
 }

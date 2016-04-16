@@ -8,11 +8,12 @@
 namespace Face3D
 {
 	// CTOR
-	Model::Model(const std::string& modelPath, const std::string& textureFront, const std::string& textureSide)
+	Model::Model(const ModelInfo& modelInfo)
+	:m_ModelInfo(modelInfo)
 	{
-		load(modelPath);
-		m_TextureFrontID = Texture::Instance().loadFromImage(textureFront);
-		m_TextureSideID = Texture::Instance().loadFromImage(textureSide);
+		load(modelInfo.modelPath);
+		m_TextureFrontID = Texture::Instance().loadFromImage(modelInfo.textureFront);
+		m_TextureSideID = Texture::Instance().loadFromImage(modelInfo.textureSide);
 	}
 
 
@@ -58,7 +59,6 @@ namespace Face3D
 	{
 		std::vector<Vertex> vertices;
 		std::vector<GLuint> indices;
-		//std::vector<Textures::Texture> textures;
 
 		for (GLuint a = 0; a < mesh->mNumVertices; a++)
 		{
@@ -77,23 +77,7 @@ namespace Face3D
 			vector.y = mesh->mNormals[a].y;
 			vector.z = mesh->mNormals[a].z;
 			vector.w = 0.0f;
-			vertex.normal = vector;
-
-			// Texture coordinates
-			// Check if we actually have texture coordinates for the current mesh
-			if (mesh->mTextureCoords[0])
-			{
-				glm::vec2 vector;
-				// A vertex can contain up to 8 different texture coordinates. We thus make the assumption that we won't 
-				// use models where a vertex can have multiple texture coordinates so we always take the first set (0).
-				vector.x = mesh->mTextureCoords[0][a].x;
-				vector.y = mesh->mTextureCoords[0][a].y;
-				vertex.textureCoordinates = vector;
-			}
-			else
-			{
-				vertex.textureCoordinates = glm::vec2(0.0f, 0.0f);
-			}
+			vertex.normal = vector;			
 
 			vertices.push_back(vertex);
 		}
@@ -114,31 +98,31 @@ namespace Face3D
 
 	void Model::render()
 	{
+		assert(!m_pMeshes->empty());
+
 		// enable shader
 		glUseProgram(m_ShaderID);
 		glUniform1i(m_TextureFrontSamplerLocation, 0);
 		glUniform1i(m_TextureSideSamplerLocation, 1);
-
-		for (GLuint a = 0; a < m_pMeshes->size(); a++)
-		{
-			// calc MVP matrix			
-			m_MVPMatrix = glm::rotate(glm::mat4(1.0f), m_RotationAngle, glm::vec3(0, 1, 0));
-			m_MVPMatrix = glm::scale(m_MVPMatrix, glm::vec3(0.25,0.25,0.25));			
+		
+		// calc MVP matrix			
+		m_MVPMatrix = glm::rotate(glm::mat4(1.0f), m_RotationAngle, glm::vec3(0, 1, 0));
+		m_MVPMatrix = glm::scale(m_MVPMatrix, glm::vec3(m_ScaleVal));
 			
-			// set MVP matrix
-			glUniformMatrix4fv(m_MVPMatrixLocation, 1, GL_FALSE, &m_MVPMatrix[0][0]);
+		// set MVP matrix
+		glUniformMatrix4fv(m_MVPMatrixLocation, 1, GL_FALSE, &m_MVPMatrix[0][0]);
 
-			// activate texture unit
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, m_TextureFrontID);
+		// activate texture unit
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, m_TextureFrontID);
 
-			glActiveTexture(GL_TEXTURE1);
-			glBindTexture(GL_TEXTURE_2D, m_TextureSideID);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, m_TextureSideID);
 
 
-			// render mesh
-			(*m_pMeshes)[a].render();
-		}
+		// render mesh
+		(*m_pMeshes)[0].render();
+		
 
 		// disable shader
 		glUseProgram(0);
@@ -176,9 +160,6 @@ namespace Face3D
 		// 1 = normals
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
-		// 2 = texture coordinates
-		glEnableVertexAttribArray(2);
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, textureCoordinates));
 
 		// Last but not least, unbind VAO		
 		glBindVertexArray(0);

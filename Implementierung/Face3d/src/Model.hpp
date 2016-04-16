@@ -21,17 +21,14 @@ namespace Face3D
 	{
 		glm::vec4 position;
 		glm::vec4 normal;
-		glm::vec2 textureCoordinates;
 	};
 
 	// triangle mesh
 	class Mesh
 	{
 	public:
-		Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices);
-		
-		void render();
-		//glm::vec3 getCenter() const { return m_Center; }
+		Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices);		
+		void render();		
 
 	private:
 		std::vector<Vertex> m_Vertices;
@@ -49,12 +46,24 @@ namespace Face3D
 	class Model
 	{
 		public:
-			Model(const std::string& modelPath, const std::string& textureFront, const std::string& textureSide);
+			struct ModelInfo
+			{
+				std::string modelPath;
+				std::string textureFront;
+				std::string textureSide;
+
+				glm::vec3 leftEye;
+				glm::vec3 rightEye;
+				glm::vec3 mouth;
+			};
+
+			Model(const ModelInfo& modelInfo);
 			void rotate(GLfloat val){ m_RotationAngle = val; }
+			void scale(GLfloat val){ m_ScaleVal = val; }
 			void render();
 
 		private:				
-			// meshes representing the model
+			ModelInfo m_ModelInfo;
 			
 			GLuint m_TextureFrontID = 0;
 			GLuint m_TextureSideID = 0;
@@ -66,6 +75,7 @@ namespace Face3D
 			GLuint m_TextureSideSamplerLocation = 0;
 			glm::mat4 m_MVPMatrix;
 			GLfloat m_RotationAngle = 0.0f;
+			GLfloat m_ScaleVal = 1.0f;
 
 			// load mesh data from file
 			void load(const std::string& path);
