@@ -1,6 +1,7 @@
 var namespace_face3_d =
 [
     [ "Detection", "class_face3_d_1_1_detection.html", "class_face3_d_1_1_detection" ],
+    [ "FaceCoordinates3d", "class_face3_d_1_1_face_coordinates3d.html", "class_face3_d_1_1_face_coordinates3d" ],
     [ "FaceGeometry", "class_face3_d_1_1_face_geometry.html", "class_face3_d_1_1_face_geometry" ],
     [ "Mesh", "class_face3_d_1_1_mesh.html", "class_face3_d_1_1_mesh" ],
     [ "Model", "class_face3_d_1_1_model.html", "class_face3_d_1_1_model" ],

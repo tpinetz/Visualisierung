@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\FaceCoordinates3d.cpp" />
     <ClCompile Include="src\FaceModelling.cpp" />
     <ClCompile Include="src\GLDebug.cpp" />
     <ClCompile Include="src\Model.cpp" />
@@ -19,6 +20,7 @@
     <ClCompile Include="src\Viewer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\FaceCoordinates3d.hpp" />
     <ClInclude Include="src\GLHeader.hpp" />
     <ClInclude Include="src\Model.hpp" />
     <ClInclude Include="src\ShaderLoader.hpp" />

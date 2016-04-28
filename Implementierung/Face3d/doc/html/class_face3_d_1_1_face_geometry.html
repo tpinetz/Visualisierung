@@ -158,13 +158,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a653c167dc85c8eb861fa8fba73ecfd72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ff82baf7bb2a3f2ddc883a34e9ca945"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_face_geometry.html#a7ff82baf7bb2a3f2ddc883a34e9ca945">toFile</a> (const std::string &amp;fn)</td></tr>
 <tr class="separator:a7ff82baf7bb2a3f2ddc883a34e9ca945"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab16fe4e14fa421e2d067a7bacee8c844"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_face_geometry.html#ab16fe4e14fa421e2d067a7bacee8c844">fromFile</a> (const std::string &amp;fn)</td></tr>
-<tr class="separator:ab16fe4e14fa421e2d067a7bacee8c844"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a3cf141b264a03ac4c80d39596528afb7"><td class="memItemLeft" align="right" valign="top">cv::Point3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_face_geometry.html#a3cf141b264a03ac4c80d39596528afb7">fileToPoint</a> (std::ifstream &amp;f)</td></tr>
-<tr class="separator:a3cf141b264a03ac4c80d39596528afb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfb84290b1363a7f37c785640464bc42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_face_geometry.html#adfb84290b1363a7f37c785640464bc42">pointToFile</a> (std::ofstream &amp;f, const cv::Point3d &amp;p)</td></tr>
 <tr class="separator:adfb84290b1363a7f37c785640464bc42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -192,7 +188,9 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:aec3c5ac2a67745348df5aa68651bf616"><td class="mdescLeft">&#160;</td><td class="mdescRight">region of the skin in the front image  <a href="#aec3c5ac2a67745348df5aa68651bf616">More...</a><br /></td></tr>
 <tr class="separator:aec3c5ac2a67745348df5aa68651bf616"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>class which calculates the 2d points of the facial components and merges them into 3d coordinates </p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="aab597f00966010882927a4974649bf11"></a>
 <div class="memitem">
 <div class="memproto">
@@ -242,48 +240,6 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a3cf141b264a03ac4c80d39596528afb7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">cv::Point3d Face3D::FaceGeometry::fileToPoint </td>
-          <td>(</td>
-          <td class="paramtype">std::ifstream &amp;&#160;</td>
-          <td class="paramname"><em>f</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>load a single point from a file </p>
-
-</div>
-</div>
-<a class="anchor" id="ab16fe4e14fa421e2d067a7bacee8c844"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Face3D::FaceGeometry::fromFile </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>fn</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>ipc - deserialize current object state to file </p>
-
-</div>
-</div>
 <a class="anchor" id="a9ce57cf061663a02267d9fee423dbc73"></a>
 <div class="memitem">
 <div class="memproto">

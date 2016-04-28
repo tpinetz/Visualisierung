@@ -13,8 +13,6 @@ var class_face3_d_1_1_face_geometry =
       [ "SideFacialRegion", "class_face3_d_1_1_face_geometry.html#a6db32685a7f429d507b8e31f7c42fe77a2e8f6c6895172ac83574e641b90de35a", null ],
       [ "InvalidRegion", "class_face3_d_1_1_face_geometry.html#a6db32685a7f429d507b8e31f7c42fe77ac1c1cfae295c068738737d0bdbd3cb78", null ]
     ] ],
-    [ "fileToPoint", "class_face3_d_1_1_face_geometry.html#a3cf141b264a03ac4c80d39596528afb7", null ],
-    [ "fromFile", "class_face3_d_1_1_face_geometry.html#ab16fe4e14fa421e2d067a7bacee8c844", null ],
     [ "getDetectedPoint", "class_face3_d_1_1_face_geometry.html#a9ce57cf061663a02267d9fee423dbc73", null ],
     [ "getDetectedPointHomogeneous", "class_face3_d_1_1_face_geometry.html#a6aed421ae667cc1b67b4bf6a891ff634", null ],
     [ "getDetectedPointInt", "class_face3_d_1_1_face_geometry.html#a3c4e46361330951648193f24b8a5329d", null ],

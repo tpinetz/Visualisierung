@@ -7,6 +7,10 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
       [ "DetectFaceResult", "struct_face3_d_1_1_detection_1_1_detect_face_result.html", "struct_face3_d_1_1_detection_1_1_detect_face_result" ],
       [ "ContourInfo", "struct_face3_d_1_1_detection_1_1_contour_info.html", "struct_face3_d_1_1_detection_1_1_contour_info" ]
     ] ],
+    [ "FaceCoordinates3d.cpp", "_face_coordinates3d_8cpp.html", null ],
+    [ "FaceCoordinates3d.hpp", "_face_coordinates3d_8hpp.html", [
+      [ "FaceCoordinates3d", "class_face3_d_1_1_face_coordinates3d.html", "class_face3_d_1_1_face_coordinates3d" ]
+    ] ],
     [ "FaceDetection.cpp", "_face_detection_8cpp.html", "_face_detection_8cpp" ],
     [ "FaceGeometry.cpp", "_face_geometry_8cpp.html", null ],
     [ "FaceGeometry.hpp", "_face_geometry_8hpp.html", [

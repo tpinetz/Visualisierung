@@ -44,13 +44,9 @@ void \hyperlink{class_face3_d_1_1_face_geometry_a876baec2ea039287ec5d45784d9b024
 void \hyperlink{class_face3_d_1_1_face_geometry_a653c167dc85c8eb861fa8fba73ecfd72}{merge3d} ()
 \item 
 void \hyperlink{class_face3_d_1_1_face_geometry_a7ff82baf7bb2a3f2ddc883a34e9ca945}{to\+File} (const std\+::string \&fn)
-\item 
-void \hyperlink{class_face3_d_1_1_face_geometry_ab16fe4e14fa421e2d067a7bacee8c844}{from\+File} (const std\+::string \&fn)
 \end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
-\item 
-cv\+::\+Point3d \hyperlink{class_face3_d_1_1_face_geometry_a3cf141b264a03ac4c80d39596528afb7}{file\+To\+Point} (std\+::ifstream \&f)
 \item 
 void \hyperlink{class_face3_d_1_1_face_geometry_adfb84290b1363a7f37c785640464bc42}{point\+To\+File} (std\+::ofstream \&f, const cv\+::\+Point3d \&p)
 \end{DoxyCompactItemize}
@@ -74,6 +70,9 @@ cv\+::\+Rect \hyperlink{class_face3_d_1_1_face_geometry_a50fd03eb7de07088b36d3e4
 cv\+::\+Rect \hyperlink{class_face3_d_1_1_face_geometry_aec3c5ac2a67745348df5aa68651bf616}{front\+Skin\+Region}
 \begin{DoxyCompactList}\small\item\em region of the skin in the front image \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+class which calculates the 2d points of the facial components and merges them into 3d coordinates 
 
 \subsection{Member Enumeration Documentation}
 \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Detected\+Points@{Detected\+Points}}
@@ -113,21 +112,7 @@ Invalid\+Region\hypertarget{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b
 
 
 \subsection{Member Function Documentation}
-\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!file\+To\+Point@{file\+To\+Point}}
-\index{file\+To\+Point@{file\+To\+Point}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
-\subsubsection[{\texorpdfstring{file\+To\+Point(std\+::ifstream \&f)}{fileToPoint(std::ifstream &f)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Point3d Face3\+D\+::\+Face\+Geometry\+::file\+To\+Point (
-\begin{DoxyParamCaption}
-\item[{std\+::ifstream \&}]{f}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_face_geometry_a3cf141b264a03ac4c80d39596528afb7}{}\label{class_face3_d_1_1_face_geometry_a3cf141b264a03ac4c80d39596528afb7}
-load a single point from a file \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!from\+File@{from\+File}}
-\index{from\+File@{from\+File}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
-\subsubsection[{\texorpdfstring{from\+File(const std\+::string \&fn)}{fromFile(const std::string &fn)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Face\+Geometry\+::from\+File (
-\begin{DoxyParamCaption}
-\item[{const std\+::string \&}]{fn}
-\end{DoxyParamCaption}
-)}\hypertarget{class_face3_d_1_1_face_geometry_ab16fe4e14fa421e2d067a7bacee8c844}{}\label{class_face3_d_1_1_face_geometry_ab16fe4e14fa421e2d067a7bacee8c844}
-ipc -\/ deserialize current object state to file \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!get\+Detected\+Point@{get\+Detected\+Point}}
+\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!get\+Detected\+Point@{get\+Detected\+Point}}
 \index{get\+Detected\+Point@{get\+Detected\+Point}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
 \subsubsection[{\texorpdfstring{get\+Detected\+Point(\+Detected\+Points detected\+Point) const }{getDetectedPoint(DetectedPoints detectedPoint) const }}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Point2d Face3\+D\+::\+Face\+Geometry\+::get\+Detected\+Point (
 \begin{DoxyParamCaption}

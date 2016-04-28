@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['texturesetting',['TextureSetting',['../class_face3_d_1_1_texture.html#aa2d0d0213ac74b112ce13cf5511a0573',1,'Face3D::Texture']]]
+  ['regiontype',['RegionType',['../class_face3_d_1_1_detection.html#a8db79da2a4506aa0e799e4ff098d7d62',1,'Face3D::Detection']]]
 ];

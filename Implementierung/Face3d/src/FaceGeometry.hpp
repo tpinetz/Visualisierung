@@ -4,6 +4,7 @@
 
 namespace Face3D
 {
+	/** class which calculates the 2d points of the facial components and merges them into 3d coordinates */
 	class FaceGeometry
 	{
 	public:
@@ -43,8 +44,6 @@ namespace Face3D
 		/** ipc - serialize current object state to file */
 		void toFile(const std::string& fn);
 
-		/** ipc - deserialize current object state to file */
-		void fromFile(const std::string& fn);
 		
 
 	private:
@@ -54,9 +53,6 @@ namespace Face3D
 		cv::Rect sideSkinRegion; ///< region of the skin in the side image
 		cv::Rect frontSkinRegion; ///< region of the skin in the front image
 
-
-		/** load a single point from a file */
-		cv::Point3d fileToPoint(std::ifstream& f);
 
 		/** save a single point to a file */
 		void pointToFile(std::ofstream& f, const cv::Point3d& p);

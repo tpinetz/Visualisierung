@@ -1,0 +1,92 @@
+\hypertarget{class_face3_d_1_1_face_coordinates3d}{}\section{Face3D\+:\+:Face\+Coordinates3d Class Reference}
+\label{class_face3_d_1_1_face_coordinates3d}\index{Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}}
+
+
+{\ttfamily \#include $<$Face\+Coordinates3d.\+hpp$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2}{Facial\+Points3d} \{ \\*
+\hyperlink{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2ae46fc9712285f861bf9db6cdca3b6f9d}{Left\+Eye}, 
+\hyperlink{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a92625dad6ca65ec8758fe9cf1652997b}{Right\+Eye}, 
+\hyperlink{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a39e45eff70c506fc33d410cc68ccb22b}{Mouth}, 
+\hyperlink{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a36a8ea194a9ac6523814f63beb63ae8a}{Nose}, 
+\\*
+\hyperlink{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a7a89277f3a276a2c9c008860d4e73e99}{Invalid\+Point}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec3 \hyperlink{class_face3_d_1_1_face_coordinates3d_aac912dcbb5db9d5ea1d6ca754afa5a39}{get\+Point} (\hyperlink{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2}{Facial\+Points3d} type) const 
+\item 
+void \hyperlink{class_face3_d_1_1_face_coordinates3d_a1c44e33ec6cd6c54c119d2a2ec4b49e7}{from\+File} (const std\+::string \&fn)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec3 \hyperlink{class_face3_d_1_1_face_coordinates3d_adbc5a5615a2a469b98d995157445e4f7}{file\+To\+Point} (std\+::ifstream \&f)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec3 \hyperlink{class_face3_d_1_1_face_coordinates3d_aa4646a4766c4c5a8ce010ec05f49ffab}{m\+\_\+\+Points} \mbox{[}\hyperlink{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a7a89277f3a276a2c9c008860d4e73e99}{Invalid\+Point}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\index{Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}!Facial\+Points3d@{Facial\+Points3d}}
+\index{Facial\+Points3d@{Facial\+Points3d}!Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}}
+\subsubsection[{\texorpdfstring{Facial\+Points3d}{FacialPoints3d}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Face3\+D\+::\+Face\+Coordinates3d\+::\+Facial\+Points3d}}\hypertarget{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2}{}\label{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2}
+the points which we\textquotesingle{}ve extracted so far \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Left\+Eye@{Left\+Eye}!Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}}\index{Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}!Left\+Eye@{Left\+Eye}}\item[{\em 
+Left\+Eye\hypertarget{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2ae46fc9712285f861bf9db6cdca3b6f9d}{}\label{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2ae46fc9712285f861bf9db6cdca3b6f9d}
+}]\index{Right\+Eye@{Right\+Eye}!Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}}\index{Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}!Right\+Eye@{Right\+Eye}}\item[{\em 
+Right\+Eye\hypertarget{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a92625dad6ca65ec8758fe9cf1652997b}{}\label{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a92625dad6ca65ec8758fe9cf1652997b}
+}]\index{Mouth@{Mouth}!Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}}\index{Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}!Mouth@{Mouth}}\item[{\em 
+Mouth\hypertarget{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a39e45eff70c506fc33d410cc68ccb22b}{}\label{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a39e45eff70c506fc33d410cc68ccb22b}
+}]\index{Nose@{Nose}!Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}}\index{Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}!Nose@{Nose}}\item[{\em 
+Nose\hypertarget{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a36a8ea194a9ac6523814f63beb63ae8a}{}\label{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a36a8ea194a9ac6523814f63beb63ae8a}
+}]\index{Invalid\+Point@{Invalid\+Point}!Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}}\index{Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}!Invalid\+Point@{Invalid\+Point}}\item[{\em 
+Invalid\+Point\hypertarget{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a7a89277f3a276a2c9c008860d4e73e99}{}\label{class_face3_d_1_1_face_coordinates3d_a8bedd28eb0ab2749aa98a888921ea2b2a7a89277f3a276a2c9c008860d4e73e99}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\index{Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}!file\+To\+Point@{file\+To\+Point}}
+\index{file\+To\+Point@{file\+To\+Point}!Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}}
+\subsubsection[{\texorpdfstring{file\+To\+Point(std\+::ifstream \&f)}{fileToPoint(std::ifstream &f)}}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Face\+Coordinates3d\+::file\+To\+Point (
+\begin{DoxyParamCaption}
+\item[{std\+::ifstream \&}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_face_coordinates3d_adbc5a5615a2a469b98d995157445e4f7}{}\label{class_face3_d_1_1_face_coordinates3d_adbc5a5615a2a469b98d995157445e4f7}
+load a single point from a file \index{Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}!from\+File@{from\+File}}
+\index{from\+File@{from\+File}!Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}}
+\subsubsection[{\texorpdfstring{from\+File(const std\+::string \&fn)}{fromFile(const std::string &fn)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Face\+Coordinates3d\+::from\+File (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{fn}
+\end{DoxyParamCaption}
+)}\hypertarget{class_face3_d_1_1_face_coordinates3d_a1c44e33ec6cd6c54c119d2a2ec4b49e7}{}\label{class_face3_d_1_1_face_coordinates3d_a1c44e33ec6cd6c54c119d2a2ec4b49e7}
+ipc -\/ deserialize data \index{Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}!get\+Point@{get\+Point}}
+\index{get\+Point@{get\+Point}!Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}}
+\subsubsection[{\texorpdfstring{get\+Point(\+Facial\+Points3d type) const }{getPoint(FacialPoints3d type) const }}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Face\+Coordinates3d\+::get\+Point (
+\begin{DoxyParamCaption}
+\item[{{\bf Facial\+Points3d}}]{type}
+\end{DoxyParamCaption}
+) const}\hypertarget{class_face3_d_1_1_face_coordinates3d_aac912dcbb5db9d5ea1d6ca754afa5a39}{}\label{class_face3_d_1_1_face_coordinates3d_aac912dcbb5db9d5ea1d6ca754afa5a39}
+specify the point (e.\+g. nose) and get 3d coordinates of it 
+
+\subsection{Member Data Documentation}
+\index{Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}!m\+\_\+\+Points@{m\+\_\+\+Points}}
+\index{m\+\_\+\+Points@{m\+\_\+\+Points}!Face3\+D\+::\+Face\+Coordinates3d@{Face3\+D\+::\+Face\+Coordinates3d}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Points}{m_Points}}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Face\+Coordinates3d\+::m\+\_\+\+Points\mbox{[}{\bf Invalid\+Point}\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_face_coordinates3d_aa4646a4766c4c5a8ce010ec05f49ffab}{}\label{class_face3_d_1_1_face_coordinates3d_aa4646a4766c4c5a8ce010ec05f49ffab}
+3d coordinates of facial point (e.\+g. nose) 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/harald/\+Dokumente/\+Ausbildung/\+Master/\+Projekte\+C\+P\+P/\+Visualisierung2/\+Visualisierung/\+Implementierung/\+Face3d/src/\hyperlink{_face_coordinates3d_8hpp}{Face\+Coordinates3d.\+hpp}\item 
+E\+:/harald/\+Dokumente/\+Ausbildung/\+Master/\+Projekte\+C\+P\+P/\+Visualisierung2/\+Visualisierung/\+Implementierung/\+Face3d/src/\hyperlink{_face_coordinates3d_8cpp}{Face\+Coordinates3d.\+cpp}\end{DoxyCompactItemize}

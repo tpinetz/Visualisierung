@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['texturelinear',['TextureLinear',['../class_face3_d_1_1_texture.html#aa2d0d0213ac74b112ce13cf5511a0573a14d9ede2b469d8bdeb6104a7e3e3297f',1,'Face3D::Texture']]],
-  ['texturemiplinear',['TextureMIPLinear',['../class_face3_d_1_1_texture.html#aa2d0d0213ac74b112ce13cf5511a0573a9d4b4ece6a682bd39df531f0ddc28988',1,'Face3D::Texture']]],
-  ['texturemipnearest',['TextureMIPNearest',['../class_face3_d_1_1_texture.html#aa2d0d0213ac74b112ce13cf5511a0573a3e3b46677c939a73b353a823c5606e27',1,'Face3D::Texture']]],
-  ['texturenearest',['TextureNearest',['../class_face3_d_1_1_texture.html#aa2d0d0213ac74b112ce13cf5511a0573a97cc8a0412885c34a8f6a0245fad6734',1,'Face3D::Texture']]]
+  ['nose',['Nose',['../class_face3_d_1_1_face_coordinates3d.html#a8bedd28eb0ab2749aa98a888921ea2b2a36a8ea194a9ac6523814f63beb63ae8a',1,'Face3D::FaceCoordinates3d']]]
 ];

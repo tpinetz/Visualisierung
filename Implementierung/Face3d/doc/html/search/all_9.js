@@ -16,6 +16,7 @@ var searchData=
   ['m_5fmvpmatrixlocation',['m_MVPMatrixLocation',['../class_face3_d_1_1_model.html#af342a14a7054f45b1077e7eea5dc892b',1,'Face3D::Model']]],
   ['m_5foriginals',['m_Originals',['../class_face3_d_1_1_detection.html#a237f409f79b8417f906732dc522322a8',1,'Face3D::Detection']]],
   ['m_5fpmeshes',['m_pMeshes',['../class_face3_d_1_1_model.html#a8e66abbba8d896017fe33c247036f133',1,'Face3D::Model']]],
+  ['m_5fpoints',['m_Points',['../class_face3_d_1_1_face_coordinates3d.html#aa4646a4766c4c5a8ce010ec05f49ffab',1,'Face3D::FaceCoordinates3d']]],
   ['m_5fpreprocessed',['m_Preprocessed',['../class_face3_d_1_1_detection.html#a022bcdfdcfab58bcd2bb4f448d583b3c',1,'Face3D::Detection']]],
   ['m_5fpwindow',['m_pWindow',['../class_face3_d_1_1_viewer.html#aa0a9660c0c04a81a2ea3bfdffae5d301',1,'Face3D::Viewer']]],
   ['m_5frotationangle',['m_RotationAngle',['../class_face3_d_1_1_model.html#a5097ce51273431b3684239a51af9fa72',1,'Face3D::Model']]],
@@ -38,11 +39,11 @@ var searchData=
   ['merge3d',['merge3d',['../class_face3_d_1_1_face_geometry.html#a653c167dc85c8eb861fa8fba73ecfd72',1,'Face3D::FaceGeometry']]],
   ['mesh',['Mesh',['../class_face3_d_1_1_mesh.html#a4f47ad97eb9ae1e999b9d8a4d4fbf9be',1,'Face3D::Mesh']]],
   ['mesh',['Mesh',['../class_face3_d_1_1_mesh.html',1,'Face3D']]],
-  ['model',['Model',['../class_face3_d_1_1_model.html#ae6cd2c6069f0c1f0898ea45356f31250',1,'Face3D::Model']]],
   ['model',['Model',['../class_face3_d_1_1_model.html',1,'Face3D']]],
+  ['model',['Model',['../class_face3_d_1_1_model.html#ae6cd2c6069f0c1f0898ea45356f31250',1,'Face3D::Model']]],
   ['model_2ecpp',['Model.cpp',['../_model_8cpp.html',1,'']]],
   ['model_2ehpp',['Model.hpp',['../_model_8hpp.html',1,'']]],
   ['modelinfo',['ModelInfo',['../struct_face3_d_1_1_model_1_1_model_info.html',1,'Face3D::Model']]],
   ['modelpath',['modelPath',['../struct_face3_d_1_1_model_1_1_model_info.html#a7f6cacf9ae39c86e2007f87dacff16e3',1,'Face3D::Model::ModelInfo']]],
-  ['mouth',['mouth',['../class_face3_d_1_1_face_geometry.html#a1c36fe81650a276b523d8dc17b30038e',1,'Face3D::FaceGeometry::mouth()'],['../struct_face3_d_1_1_model_1_1_model_info.html#ae0837733aacbb7d04ce34b2f240abf4f',1,'Face3D::Model::ModelInfo::mouth()']]]
+  ['mouth',['mouth',['../class_face3_d_1_1_face_geometry.html#a1c36fe81650a276b523d8dc17b30038e',1,'Face3D::FaceGeometry::mouth()'],['../struct_face3_d_1_1_model_1_1_model_info.html#ae0837733aacbb7d04ce34b2f240abf4f',1,'Face3D::Model::ModelInfo::mouth()'],['../class_face3_d_1_1_face_coordinates3d.html#a8bedd28eb0ab2749aa98a888921ea2b2a39e45eff70c506fc33d410cc68ccb22b',1,'Face3D::FaceCoordinates3d::Mouth()']]]
 ];
