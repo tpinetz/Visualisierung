@@ -77,15 +77,19 @@ namespace Face3D
 		// transformation for model viewing
 		GLfloat rotationsVal = 0.0f;
 		GLfloat scaleVal = 0.2f;
-		const GLfloat rotValIncrease = 0.001f;
-		const GLfloat scaleValIncrease = 0.0001f;
+		const GLfloat rotValIncrease = 0.5f;
+		const GLfloat scaleValIncrease = 0.05f;
 
 		// initial settings
 		model.rotate(rotationsVal);
 		model.scale(scaleVal);
+		GLfloat oldTime = glfwGetTime();
 
 		while (!glfwWindowShouldClose(m_pWindow))
 		{
+			GLfloat newTime = glfwGetTime();
+			GLfloat deltaTime =  newTime - oldTime;
+			oldTime = newTime;
 			// clear window content
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 			glClearColor(.5, .5, .5, 0);
@@ -106,25 +110,25 @@ namespace Face3D
 
 			if (glfwGetKey(m_pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
 			{
-				rotationsVal += rotValIncrease;
+				rotationsVal += rotValIncrease * deltaTime;
 				model.rotate(rotationsVal);
 			}
 
 			if (glfwGetKey(m_pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
 			{
-				rotationsVal -= rotValIncrease;
+				rotationsVal -= rotValIncrease * deltaTime;
 				model.rotate(rotationsVal);
 			}
 
 			if (glfwGetKey(m_pWindow, GLFW_KEY_UP) == GLFW_PRESS)
 			{
-				scaleVal += scaleValIncrease;
+				scaleVal += scaleValIncrease * deltaTime;
 				model.scale(scaleVal);
 			}
 
 			if (glfwGetKey(m_pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
 			{
-				scaleVal -= scaleValIncrease;
+				scaleVal -= scaleValIncrease * deltaTime;
 				if (scaleVal < 0.0)
 				{
 					scaleVal = 0.0;
