@@ -92,8 +92,14 @@ namespace Face3D
 			}
 		}
 
+		glm::vec3 positionInModel = glm::vec3(0.0f, 0.0f, 0.0f);
 
-		return Mesh(vertices, indices);
+		if (std::string(mesh->mName.C_Str()).compare(0, m_EyeName.size(), m_EyeName)) {
+			positionInModel = this->m_ModelInfo.leftEye;
+		}
+
+
+		return Mesh(vertices, indices, positionInModel);
 	}
 
 	void Model::render()
@@ -122,20 +128,32 @@ namespace Face3D
 
 		// render mesh
 		(*m_pMeshes)[0].render();
+		(*m_pMeshes)[1].render();
 		
 
 		// disable shader
 		glUseProgram(0);
 	}
 
-	Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices)
+	Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices, glm::vec3 positionInModel)
 	:m_Vertices(vertices)
 	, m_Indices(indices)
+	, m_positionInModel(positionInModel)
 	{	
 		setup();
 		calcMeshInfo();
+		moveVertices();
 	}
 
+	void Mesh::moveVertices() {
+		glm::vec3 adjustmentFactor = this->m_MeanVertex - this->m_positionInModel;
+
+		for (auto vertex : m_Vertices) {
+			vertex.position.x +=  adjustmentFactor.x;
+			vertex.position.y +=  adjustmentFactor.y;
+			vertex.position.z +=  adjustmentFactor.z;
+		}
+	}
 
 	void Mesh::setup()
 	{

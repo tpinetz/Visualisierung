@@ -63,7 +63,7 @@ namespace Face3D
 		// load model, front and side texture
 		Model::ModelInfo modelInfo;
 		// file path
-		modelInfo.modelPath = "models/simple.obj";
+		modelInfo.modelPath = "models/simpleE.obj";
 		modelInfo.textureFront = "ipc/front.jpg";
 		modelInfo.textureSide = "ipc/side.jpg";
 		// coordinates of important vertices
