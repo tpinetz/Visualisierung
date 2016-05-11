@@ -27,7 +27,7 @@ namespace Face3D
 	class Mesh
 	{
 	public:
-		Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices);		
+		Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices, glm::vec3 positionInModel);
 		void render();		
 
 	private:
@@ -36,10 +36,12 @@ namespace Face3D
 		glm::vec3 m_MaxVertex;
 		glm::vec3 m_MeanVertex;
 		std::vector<GLuint> m_Indices;
-		GLuint m_VaoID=0, m_VboID=0, m_EboID=0;		
+		GLuint m_VaoID=0, m_VboID=0, m_EboID=0;	
+		glm::vec3 m_positionInModel;
 		
 		void setup();
 		void calcMeshInfo();
+		void moveVertices();
 	};
 
 	// model of an object containing meshes and vertices
@@ -76,10 +78,14 @@ namespace Face3D
 			glm::mat4 m_MVPMatrix;
 			GLfloat m_RotationAngle = 0.0f;
 			GLfloat m_ScaleVal = 1.0f;
+			std::string m_LEyeName = "EyeL";
+			std::string m_REyeName = "EyeR";
+			std::string m_MouthName = "Mouth";
+			std::string m_NoseName = "Nose";
 
 			// load mesh data from file
 			void load(const std::string& path);
 			void processNode(aiNode *node, const aiScene *scene);
-			Mesh processMesh(aiMesh *mesh, const aiScene *scene);
+			Mesh processMesh(aiMesh *mesh, const aiScene *scene, std::string name);
 		};	
 }

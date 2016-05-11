@@ -46,7 +46,7 @@ namespace Face3D
 		for (GLuint a = 0; a < node->mNumMeshes; a++)
 		{
 			aiMesh *currentMesh = scene->mMeshes[node->mMeshes[a]];
-			m_pMeshes->push_back(processMesh(currentMesh, scene));
+			m_pMeshes->push_back(processMesh(currentMesh, scene, std::string(node->mName.C_Str())));
 		}
 		// Do the same for all child-nodes
 		for (GLuint a = 0; a < node->mNumChildren; a++)
@@ -55,7 +55,7 @@ namespace Face3D
 		}
 	}
 
-	Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
+	Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene, std::string name)
 	{
 		std::vector<Vertex> vertices;
 		std::vector<GLuint> indices;
@@ -94,8 +94,15 @@ namespace Face3D
 
 		glm::vec3 positionInModel = glm::vec3(0.0f, 0.0f, 0.0f);
 
-		if (std::string(mesh->mName.C_Str()).compare(0, m_EyeName.size(), m_EyeName)) {
+
+		if (name.compare(0, m_LEyeName.size(), m_LEyeName) == 0) {
 			positionInModel = this->m_ModelInfo.leftEye;
+		}
+		else if (name.compare(0, m_REyeName.size(), m_REyeName) == 0) {
+			positionInModel = this->m_ModelInfo.rightEye;
+		}
+		else if (name.compare(0, m_MouthName.size(), m_MouthName) == 0) {
+			positionInModel = this->m_ModelInfo.mouth;
 		}
 
 
@@ -129,6 +136,9 @@ namespace Face3D
 		// render mesh
 		(*m_pMeshes)[0].render();
 		(*m_pMeshes)[1].render();
+		(*m_pMeshes)[2].render();
+		(*m_pMeshes)[3].render();
+		(*m_pMeshes)[4].render();
 		
 
 		// disable shader
