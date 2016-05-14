@@ -15,9 +15,12 @@ namespace Face3D
 
 		// nose
 		nose = cv::Point3d((m_DetectedPoints[FrontRightEye].x + m_DetectedPoints[FrontLeftEye].x) / 2.0, m_DetectedPoints[SideNoseTip].y, m_DetectedPoints[SideNoseTip].x); // TODO: alignment needed between front and side image!
-
+	
 		// mouth
 		mouth = cv::Point3d(m_DetectedPoints[FrontMouth].x, m_DetectedPoints[FrontMouth].y, (m_DetectedPoints[SideEye].x + m_DetectedPoints[SideNoseTip].x) / 2); // another very rough approximation!		
+
+		// chin
+		chin = cv::Point3d((m_DetectedPoints[FrontRightEye].x + m_DetectedPoints[FrontLeftEye].x) / 2.0, m_DetectedPoints[SideChin].y, m_DetectedPoints[SideChin].x); // TODO: alignment needed between front and side image!
 	}
 
 
@@ -26,11 +29,12 @@ namespace Face3D
 	{
 		std::ofstream f(fn.c_str());
 
-		// order (must be the same in both programs!): leftEye, rightEye, nose, mouth
+		// order (must be the same in both programs!): leftEye, rightEye, nose, mouth, chin
 		pointToFile(f, leftEye);
 		pointToFile(f, rightEye);
 		pointToFile(f, nose);
 		pointToFile(f, mouth);
+		pointToFile(f, chin);
 	}
 
 

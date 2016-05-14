@@ -13,7 +13,7 @@ namespace Face3D
 	*/
 	inline void dbgShow(const cv::Mat img, const std::string& msg="", int id=0)
 	{
-#ifndef _DEBUG
+#ifdef NDEBUG
 		return;
 #else
 		static int ctr = 0;

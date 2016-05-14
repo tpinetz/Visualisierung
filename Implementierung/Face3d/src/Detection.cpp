@@ -2,6 +2,7 @@
 #include "Common.hpp"
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <ctime>
 
 
 namespace Face3D
@@ -28,8 +29,8 @@ namespace Face3D
 
 	Detection::DetectFaceResult Detection::detectFace()
 	{
-		doPreprocessing();		
-		doFaceExtraction();
+		doPreprocessing();	
+		doFaceExtractionGUI();
 		doFacialComponentsExtraction();
 		doMatchCoordinates();
 		createTextures();
@@ -38,6 +39,9 @@ namespace Face3D
 		res.faceGeometry = m_FaceGeometry;
 		res.textureFront = m_Textures[frontImgNr];
 		res.textureSide = m_Textures[sideImgNr];
+
+		// show results in gui
+		showResultsGUI();
 
 		return res;
 	}
@@ -57,6 +61,9 @@ namespace Face3D
 
 	void Detection::doFaceExtraction()
 	{
+		// clear previous result because this function could be called multiple times from the gui
+		m_FaceExtracted.clear();
+
 		for (size_t i = 0; i < m_Preprocessed.size(); ++i)
 		{
 			// to YCrCb colorspace
@@ -69,8 +76,8 @@ namespace Face3D
 
 			// threshold cr and cb color channel
 			cv::Mat crThres, cbThres;
-			cv::inRange(channels[1], cv::Scalar(143), cv::Scalar(173), crThres);
-			cv::inRange(channels[2], cv::Scalar(77), cv::Scalar(125), cbThres);		 // REMARK: tweaked the values a bit to get better results
+			cv::inRange(channels[1], cv::Scalar(143 + m_OffsetCR), cv::Scalar(173 + m_OffsetCR), crThres);
+			cv::inRange(channels[2], cv::Scalar(77 + m_OffsetCB), cv::Scalar(125 + m_OffsetCB), cbThres);		 // REMARK: tweaked the values a bit to get better results
 
 			// combine result with bitwise and
 			cv::Mat combinedThres;
@@ -91,7 +98,7 @@ namespace Face3D
 			// add to result
 			m_FaceExtracted.push_back(combinedThres);
 
-			dbgShow(m_FaceExtracted[i], "doFaceExtraction",i);
+			// dbgShow(m_FaceExtracted[i], "doFaceExtraction",i); this is already shown in the gui
 		}
 	}
 
@@ -134,17 +141,21 @@ namespace Face3D
 
 		// draw resulting 2d centroids
 		// 1. front
-		cv::Mat tmp = getCopyOfOriginal(frontImgNr);
-		cv::circle(tmp, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftEye), 10, cv::Scalar(255, 0, 0), 2);
-		cv::circle(tmp, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontRightEye), 10, cv::Scalar(0, 255, 0), 2);
-		cv::circle(tmp, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontMouth), 10, cv::Scalar(0, 0, 255), 2);
-		dbgShow(tmp,"doFacialComponentsExtraction",0);
+		cv::Mat tmp1 = getCopyOfOriginal(frontImgNr);
+		cv::circle(tmp1, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftEye), 10, cv::Scalar(255, 0, 0), 2);
+		cv::circle(tmp1, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontRightEye), 10, cv::Scalar(0, 255, 0), 2);
+		cv::circle(tmp1, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontMouth), 10, cv::Scalar(0, 0, 255), 2);
+		dbgShow(tmp1,"doFacialComponentsExtraction",0);
 
 		// 2. side
-		tmp = getCopyOfOriginal(sideImgNr);
-		cv::circle(tmp, m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideEye), 10, cv::Scalar(255, 0, 0), 2);
-		cv::circle(tmp, m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideNoseTip), 10, cv::Scalar(255, 0, 255), 2);
-		dbgShow(tmp,"doFacialComponentsExtraction",1);
+		cv::Mat tmp2 = getCopyOfOriginal(sideImgNr);
+		cv::circle(tmp2, m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideEye), 10, cv::Scalar(255, 0, 0), 2);
+		cv::circle(tmp2, m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideNoseTip), 10, cv::Scalar(255, 0, 255), 2);
+		cv::circle(tmp2, m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideChin), 10, cv::Scalar(255, 255, 0), 2);
+		dbgShow(tmp2,"doFacialComponentsExtraction",1);
+
+		// put into result image for gui
+		m_FacialPointsGUI = combineVertically(tmp1,tmp2);
 
 	}
 
@@ -175,6 +186,13 @@ namespace Face3D
 			}
 		}
 
+		// we need at least 3 elements (left & right eye, mouth)
+		if (eyes.size()!=2)
+		{
+			throw std::exception("couldn't identify both eyes");
+		}
+
+
 		// left / right eye
 		ContourInfo leftEye = eyes[0].cogX < eyes[1].cogX ? eyes[0] : eyes[1];
 		ContourInfo rightEye = eyes[0].cogX > eyes[1].cogX ? eyes[0] : eyes[1];
@@ -200,6 +218,22 @@ namespace Face3D
 	}
 
 
+	bool isConvave(const cv::Point& a, const cv::Point& b, const cv::Point& c)
+	{
+		// calc two 2d-vectors 
+		int v1x = b.x - a.x;
+		int v1y = b.y - a.y;
+
+		int v2x = c.x - a.x;
+		int v2y = c.y - a.y;
+
+		// det(v1,v2) determines if this is a convex or concave part of the polygon
+		int det = v1x*v2y - v1y*v2x;
+
+		return det < 0;
+	}
+
+
 	void Detection::doFacialComponentsExtractionSide(FaceGeometry& faceGeometry, const std::vector<ContourInfo>& componentContourInfo, const std::vector<ContourInfo>& faceContourInfo)
 	{
 		// we need at least 3 elements (left & right eye, mouth)
@@ -212,17 +246,66 @@ namespace Face3D
 		const ContourInfo& face = faceContourInfo[0];
 
 		faceGeometry.setDetectedRegion(FaceGeometry::SideFacialRegion, cv::boundingRect(face.contour));
-
 		faceGeometry.setDetectedPoint(FaceGeometry::SideEye,cv::Point2d(eye.cogX, eye.cogY));
 		
+						
+		// find bounding polygon with at least 5 vertices
+		std::vector<cv::Point> polygonPoints;
+		double precission = 50.0;
+		while (polygonPoints.size() < 5)
+		{				
+			cv::approxPolyDP(face.contour, polygonPoints, precission, true);
+			precission = precission / 2;
+		}
+			
+		
+
+		// nose tip is rightmost point (of this polygon)		
+		size_t noseIdx = 0;
 		faceGeometry.setDetectedPoint(FaceGeometry::SideNoseTip, cv::Point2d(0, 0));
-		for (size_t i = 0; i < face.contour.size(); ++i)
+		for (size_t i = 0; i < polygonPoints.size(); ++i)
 		{
-			if (face.contour[i].x > faceGeometry.getDetectedPoint(FaceGeometry::SideNoseTip).x)
+			if (polygonPoints[i].x > faceGeometry.getDetectedPoint(FaceGeometry::SideNoseTip).x)
 			{
-				faceGeometry.setDetectedPoint(FaceGeometry::SideNoseTip, face.contour[i]);
+				faceGeometry.setDetectedPoint(FaceGeometry::SideNoseTip, polygonPoints[i]);
+				noseIdx = i;
 			}
 		}
+
+
+
+
+
+		// find chin: which direction must be searched for in the polygon?
+		bool incIdx = false;
+		const size_t numPolygonPoints = polygonPoints.size();
+		if (polygonPoints[(noseIdx + 1) % numPolygonPoints].y > faceGeometry.getDetectedPoint(FaceGeometry::SideNoseTip).y)
+		{
+			incIdx = true;
+		}
+
+		// search for the following pattern: find a convex and a neighboured concave polygon part under the nose
+		faceGeometry.setDetectedPoint(FaceGeometry::SideChin, cv::Point2d(0, 0));
+		for (size_t i = noseIdx, j = 0; j<numPolygonPoints; incIdx ? ++i : --i, ++j)
+		{
+			// don't check the nose itself
+			if (j==0)
+			{
+				continue;
+			}
+				
+			// get prev, curr and next point
+			cv::Point prevprev = polygonPoints[(incIdx ? (i - 2) : (i + 2)) % numPolygonPoints];
+			cv::Point prev = polygonPoints[(incIdx ? (i - 1) : (i + 1)) % numPolygonPoints];
+			cv::Point curr = polygonPoints[i % numPolygonPoints];
+			cv::Point next = polygonPoints[(incIdx ? (i + 1) : (i - 1)) % numPolygonPoints];
+
+			if (isConvave(prev, curr, next) && !isConvave(prevprev, prev, curr))
+			{
+				faceGeometry.setDetectedPoint(FaceGeometry::SideChin, prev);
+				break;
+			}
+		}				
 
 
 		// create face mask
@@ -236,6 +319,18 @@ namespace Face3D
 		cv::Mat tmp = getCopyOfOriginal(sideImgNr);
 		cv::drawContours(tmp, std::vector<std::vector<cv::Point> > {eye.contour}, 0, cv::Scalar(255, 0, 0), -1);
 		dbgShow(tmp, "doFacialComponentsExtractionSide");
+
+		// and the polygon
+		cv::Mat tmpChin = cv::Mat::zeros(imgSize, imgSize, CV_8UC3);
+		cv::drawContours(tmpChin, std::vector<std::vector<cv::Point> > {face.contour}, 0, cv::Scalar(100, 100, 100), -1);
+		cv::RNG rng(0);
+		for (size_t i = 0; i < numPolygonPoints; ++i)
+		{
+			std::cout << "Point: " << polygonPoints[i] << "\n";
+			cv::line(tmpChin, polygonPoints[i], polygonPoints[(i + 1) % numPolygonPoints], cv::Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255)), 5);
+		}
+
+		dbgShow(tmpChin, "doFacialComponentsExtractionSide");
 	}
 
 
@@ -370,6 +465,8 @@ namespace Face3D
 		dbgShow(m_Textures[frontImgNr], "createTextures: aligned and resized", frontImgNr);
 		dbgShow(m_Textures[sideImgNr], "createTextures: aligned and resized", sideImgNr);
 
+		m_TexturesGUI = combineVertically(m_Textures[frontImgNr], m_Textures[sideImgNr]);
+
 	}
 
 
@@ -389,5 +486,66 @@ namespace Face3D
 	}
 
 
+
+	cv::Mat Detection::combineVertically(const cv::Mat& a, const cv::Mat& b) const
+	{
+		assert(a.size()==b.size() && a.type()==b.type());
+
+		cv::Mat canvas(a.rows * 2, a.cols, a.type());
+
+		a.copyTo(canvas(cv::Rect(0, 0, a.cols, a.rows)));
+		b.copyTo(canvas(cv::Rect(0, a.rows, a.cols, a.cols)));
+	
+		return canvas;
+	}
+
+
+	void onColorThresholdsTrackbar(int val, void* ptr)
+	{
+		Detection* detection = static_cast<Detection*>(ptr);
+		detection->m_OffsetCR = val - 10;
+		detection->m_OffsetCB = val - 10;
+		detection->doFaceExtraction();
+
+		cv::imshow("Select color threshold", detection->combineVertically(detection->m_FaceExtracted[detection->frontImgNr], detection->m_FaceExtracted[detection->sideImgNr]));
+
+	}
+
+	void Detection::doFaceExtractionGUI()
+	{	
+		// call it one time with default values
+		doFaceExtraction();
+
+		// show gui
+		cv::namedWindow("Select color threshold");
+		cv::createTrackbar("Threshold", "Select color threshold", &m_ColorThresValue, 20, onColorThresholdsTrackbar,this);
+		cv::imshow("Select color threshold", combineVertically(m_FaceExtracted[frontImgNr],m_FaceExtracted[sideImgNr]));
+		
+		// show until any key			
+		cv::waitKey();
+		cv::destroyWindow("Select color threshold");
+	}
+
+
+	void Detection::showResultsGUI()
+	{
+		// 1. facial points
+		// show gui
+		cv::namedWindow("Resulting facial components");
+		cv::imshow("Resulting facial components", m_FacialPointsGUI);
+
+		// show until any key			
+		cv::waitKey();
+		cv::destroyWindow("Resulting facial components");
+
+		// 2. textures
+		// show gui
+		cv::namedWindow("Resulting textures");
+		cv::imshow("Resulting textures", m_TexturesGUI);
+
+		// show until any key			
+		cv::waitKey();
+		cv::destroyWindow("Resulting textures");
+	}
 
 }

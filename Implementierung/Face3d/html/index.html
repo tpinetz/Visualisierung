@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<title>Face3d</title>
 <body>
 
 <h1>Face3d</h1>
@@ -11,22 +12,36 @@
 <h1>Part 1: Face detection</h1>
 
 <h2>Input images</h2>
+<p>We're taking two orthogonal images: one from front, the other from the right (as seen from the photographed person)</p>
 <img src="inputFront.jpg" width="320" height="320"> 
 <img src="inputSide.jpg" width="320" height="320"> 
 
 
 
 <h2>Preprocessing</h2>
-<p>...</p>
+<p>A Gaussian blur is applied to remove noise in the input images. This yields a better segmentation.</p>
 
 <h2>Skin color threshold</h2>
-<img src="thresFront.png"> 
-<img src="thresSide.png"> 
+<p>Skin segmentation is done in the YCrCb color space. 
+The threshold values from the original paper work very well, but we provide a slider in the user interface to adjust this threshold if needed.
+</p>
+<img src="thres.png"> 
 
+
+
+<h2>Fitted Polygon to find nose and chin</h2>
+<p>A polygon with at least 5 vertices is fit around the face contour.
+The nose is the rightmost point of this polygon.
+The chin can be found by starting at the nose and then going down, searching for a transition from a convex to a concave part of the polygon (this can easily be checked by the sign of the determinant of two vectors).
+</p>
+
+<img src="polygon.png"> 
 
 
 
 <h2>Potential facial components</h2>
+<p>The three biggest inner regions are used as potential face components.</p>
+
 <img src="potentialComponentsFront.png"> 
 <img src="potentialComponentsSide.png"> 
 
@@ -34,19 +49,23 @@
 
 
 <h2>Classified facial components</h2>
+<p>Classification of potential face components is done by using a set of geometric rules (e.g. that eyes are above nose).
+</p>
 <img src="detectedComponentsFront.png"> 
 <img src="detectedComponentsSide.png"> 
 
 
 
 
-<h2>Face region</h2>
+<h2>Segmented face region</h2>
+<p>A binary mask is used to segment the face.</p>
 <img src="faceRegionFront.png"> 
 <img src="faceRegionSide.png"> 
 
 
 
 <h2>Generating OpenGL textures</h2>
+<p>Aligning and resizing the segmented face images to get the textures.</p>
 <img src="textureFront.png" width="320" height="320"> 
 <img src="textureSide.png" width="320" height="320"> 
 

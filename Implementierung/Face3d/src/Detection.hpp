@@ -15,10 +15,15 @@ According to the paper, the following steps have to be executed:
 
 namespace Face3D
 {
+
+	void onColorThresholdsTrackbar(int, void*);
+	bool isConvave(const cv::Point& a, const cv::Point& b, const cv::Point& c);
+
 	/** class which detects the facial components and calculates the face geometry */
 	class Detection
 	{
-	public:
+	public:		
+
 		/** \brief  create a Detection object
 		* \param front image of the face from the front
 		* \param side image of the face from the side
@@ -95,8 +100,15 @@ namespace Face3D
 		/** get the bounding box of the color image. background must be black, everything else will be regared as foreground. */
 		cv::Rect getBoundingBox(const cv::Mat& color);
 
+		/** gui interaction*/
+		int m_ColorThresValue = 10;
+		int m_OffsetCB=0, m_OffsetCR=0;
+		void doFaceExtractionGUI();
+		void showResultsGUI();
+		cv::Mat combineVertically(const cv::Mat& a, const cv::Mat& b) const;
 
-		// original images, stored in array to help generalize some of the algorithms (by just iterating over the elements)
+
+		/** images (originals and processed) */
 		const size_t frontImgNr = 0; ///< index of the front image when both images are stored in an array
 		const size_t sideImgNr = 1; ///< index of the side image when both images are stored in an array
 		const size_t imgSize = 320; ///< size of the images we are working with. 320x320 seems good as its fast but has still enough details
@@ -106,7 +118,12 @@ namespace Face3D
 		std::vector<cv::Mat> m_FaceMask; ///< mask of the face regions. foreground regions which are not the face are already removed
 		FaceGeometry m_FaceGeometry; ///< the geometry of the face, i.e. the coordinates of the facial components
 		std::vector<cv::Mat> m_Textures; ///< the textures, already in a format that can be used in OpenGL
+		
+		/** resulting images to show in the gui */
+		cv::Mat m_FacialPointsGUI;
+		cv::Mat m_TexturesGUI;
 
 
+		friend void onColorThresholdsTrackbar(int, void*);
 	};
 }

@@ -18,6 +18,7 @@ namespace Face3D
 		m_Points[RightEye] = fileToPoint(f);
 		m_Points[Nose] = fileToPoint(f);
 		m_Points[Mouth] = fileToPoint(f);
+		m_Points[Chin] = fileToPoint(f);
 	}
 
 

@@ -3,6 +3,18 @@
 #include "Common.hpp"
 #include "Detection.hpp"
 #include "FaceGeometry.hpp"
+#include <Windows.h>
+
+/** show error message to user */
+void showErrorMsg(const std::string& txt)
+{
+	std::cout << "Error: " << txt << "\n";
+
+	// on win32: show message box
+#ifdef _WIN32
+	MessageBoxA(0, txt.c_str(), "Face3d: error message", MB_OK);
+#endif
+}
 
 /** main function, reading from input directory, writing to ipc directory */
 int main(int argc, char** argv)
@@ -24,12 +36,12 @@ int main(int argc, char** argv)
 
 	}
 	catch (std::exception e)
-	{
-		std::cout<<"Exception: "<<e.what()<<"\n";
+	{	
+		showErrorMsg(e.what());
 	}
 	catch (...)
 	{
-		std::cout << "Exception\n";
+		showErrorMsg("unknown error");		
 	}
 	
 

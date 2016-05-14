@@ -3,6 +3,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "Texture.hpp"
+#include "FaceCoordinates3d.hpp"
+
 
 // Implementation follows: http://www.learnopengl.com/#!Model-Loading/Model
 namespace Face3D
@@ -57,6 +59,10 @@ namespace Face3D
 
 	Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene, std::string name)
 	{
+
+		FaceCoordinates3d faceCoords; // <--- HIER SIND DIE 3D KOORDINATEN DRINNEN AUS DEN BILDERN, Zugriff auf linkes Auge z.B.: faceCoords.getPoint(FaceCoordinates3d::LeftEye)
+		faceCoords.fromFile("ipc/faceGeometry.txt");
+		
 		std::vector<Vertex> vertices;
 		std::vector<GLuint> indices;
 
