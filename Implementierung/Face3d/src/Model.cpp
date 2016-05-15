@@ -161,19 +161,20 @@ namespace Face3D
 	:m_Vertices(vertices)
 	, m_Indices(indices)
 	, m_positionInModel(positionInModel)
-	{	
-		setup();
+	{			
 		calcMeshInfo();
 		moveVertices();
+		setup();
 	}
 
 	void Mesh::moveVertices() {
 		glm::vec3 adjustmentFactor = this->m_MeanVertex - this->m_positionInModel;
 
-		for (auto vertex : m_Vertices) {
-			vertex.position.x +=  adjustmentFactor.x;
-			vertex.position.y +=  adjustmentFactor.y;
-			vertex.position.z +=  adjustmentFactor.z;
+		for (size_t i = 0; i < m_Vertices.size();++i)
+		{
+			m_Vertices[i].position.x += adjustmentFactor.x;
+			m_Vertices[i].position.y += adjustmentFactor.y;
+			m_Vertices[i].position.z += adjustmentFactor.z;
 		}
 	}
 
