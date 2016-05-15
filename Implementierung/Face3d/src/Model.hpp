@@ -82,6 +82,7 @@ namespace Face3D
 			std::string m_REyeName = "EyeR";
 			std::string m_MouthName = "Mouth";
 			std::string m_NoseName = "Nose";
+			std::string m_ChinName = "Chin";
 
 			// load mesh data from file
 			void load(const std::string& path);

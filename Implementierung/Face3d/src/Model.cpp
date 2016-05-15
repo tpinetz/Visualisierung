@@ -102,13 +102,19 @@ namespace Face3D
 
 
 		if (name.compare(0, m_LEyeName.size(), m_LEyeName) == 0) {
-			positionInModel = this->m_ModelInfo.leftEye;
+			positionInModel = faceCoords.getPoint(FaceCoordinates3d::LeftEye);
 		}
 		else if (name.compare(0, m_REyeName.size(), m_REyeName) == 0) {
-			positionInModel = this->m_ModelInfo.rightEye;
+			positionInModel = faceCoords.getPoint(FaceCoordinates3d::RightEye);
 		}
 		else if (name.compare(0, m_MouthName.size(), m_MouthName) == 0) {
-			positionInModel = this->m_ModelInfo.mouth;
+			positionInModel = faceCoords.getPoint(FaceCoordinates3d::Mouth);
+		}
+		else if (name.compare(0, m_NoseName.size(), m_NoseName) == 0) {
+			positionInModel = faceCoords.getPoint(FaceCoordinates3d::Nose);
+		}
+		else if (name.compare(0, m_ChinName.size(), m_ChinName) == 0) {
+			positionInModel = faceCoords.getPoint(FaceCoordinates3d::Chin);
 		}
 
 
