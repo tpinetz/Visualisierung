@@ -60,8 +60,23 @@ namespace Face3D
 	Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene, std::string name)
 	{
 
-		FaceCoordinates3d faceCoords; // <--- HIER SIND DIE 3D KOORDINATEN DRINNEN AUS DEN BILDERN, Zugriff auf linkes Auge z.B.: faceCoords.getPoint(FaceCoordinates3d::LeftEye)
+		FaceCoordinates3d faceCoords; 
 		faceCoords.fromFile("ipc/faceGeometry.txt");
+
+		// dimension according to detection
+		const glm::vec3 detectedFaceDimensions=faceCoords.getPoint(FaceCoordinates3d::FaceDimensions);
+
+		// dimensions according to generic model 
+		const glm::vec3& modelDimensions = m_ModelInfo.modelDimension;
+
+		// change mesh: global changes to mesh	
+		// calc resizing factors
+		GLdouble fx = detectedFaceDimensions.x / modelDimensions.x;
+		GLdouble fy = detectedFaceDimensions.y / modelDimensions.y;
+		GLdouble fz = detectedFaceDimensions.z / modelDimensions.z;
+
+		
+
 		
 		std::vector<Vertex> vertices;
 		std::vector<GLuint> indices;
@@ -72,9 +87,9 @@ namespace Face3D
 			glm::vec4 vector;
 
 			// Position
-			vector.x = mesh->mVertices[a].x;
-			vector.y = mesh->mVertices[a].y;
-			vector.z = mesh->mVertices[a].z;
+			vector.x = mesh->mVertices[a].x*fx;
+			vector.y = mesh->mVertices[a].y*fy;
+			vector.z = mesh->mVertices[a].z*fz;
 			vector.w = 1.0f;
 			vertex.position = vector;
 
@@ -146,11 +161,10 @@ namespace Face3D
 
 
 		// render mesh
-		(*m_pMeshes)[0].render();
-		(*m_pMeshes)[1].render();
-		(*m_pMeshes)[2].render();
-		(*m_pMeshes)[3].render();
-		(*m_pMeshes)[4].render();
+		for (size_t i = 0; i < (*m_pMeshes).size(); ++i)
+		{
+			(*m_pMeshes)[i].render();
+		}	
 		
 
 		// disable shader

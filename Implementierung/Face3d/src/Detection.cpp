@@ -118,7 +118,12 @@ namespace Face3D
 			// find the contours (bounded binary regions)
 			std::vector<std::vector<cv::Point> > contours;
 			std::vector<cv::Vec4i> hierarchy;
-			cv::findContours(m_FaceExtracted[i], contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+
+			// copy original as findContours changes image
+			cv::Mat tmp; 
+			m_FaceExtracted[i].copyTo(tmp);
+
+			cv::findContours(tmp, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
 
 			// indices of the potential face components
 			std::vector<size_t> potentialComponentIndices = findRegions(contours,hierarchy,RegionTypeInside); // indices of facial components
@@ -139,12 +144,16 @@ namespace Face3D
 		}
 
 
+
+
 		// draw resulting 2d centroids
 		// 1. front
 		cv::Mat tmp1 = getCopyOfOriginal(frontImgNr);
 		cv::circle(tmp1, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftEye), 10, cv::Scalar(255, 0, 0), 2);
 		cv::circle(tmp1, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontRightEye), 10, cv::Scalar(0, 255, 0), 2);
 		cv::circle(tmp1, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontMouth), 10, cv::Scalar(0, 0, 255), 2);
+		cv::circle(tmp1, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftCheek), 10, cv::Scalar(255, 255, 255), 2);
+		cv::circle(tmp1, m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontRightCheek), 10, cv::Scalar(255, 255, 255), 2);
 		dbgShow(tmp1,"doFacialComponentsExtraction",0);
 
 		// 2. side
@@ -152,6 +161,7 @@ namespace Face3D
 		cv::circle(tmp2, m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideEye), 10, cv::Scalar(255, 0, 0), 2);
 		cv::circle(tmp2, m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideNoseTip), 10, cv::Scalar(255, 0, 255), 2);
 		cv::circle(tmp2, m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideChin), 10, cv::Scalar(255, 255, 0), 2);
+		cv::circle(tmp2, m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideBack), 10, cv::Scalar(255, 255, 255), 2);
 		dbgShow(tmp2,"doFacialComponentsExtraction",1);
 
 		// put into result image for gui
@@ -169,8 +179,6 @@ namespace Face3D
 		}
 		
 		std::vector<ContourInfo> biggestThree(componentContourInfo.begin(), componentContourInfo.begin() + 3);
-
-
 
 		ContourInfo mouth;
 		std::vector<ContourInfo> eyes;
@@ -199,15 +207,46 @@ namespace Face3D
 
 		faceGeometry.setDetectedPoint(FaceGeometry::FrontLeftEye, cv::Point2d(leftEye.cogX, leftEye.cogY));
 		faceGeometry.setDetectedPoint(FaceGeometry::FrontRightEye, cv::Point2d(rightEye.cogX, rightEye.cogY));
-		faceGeometry.setDetectedPoint(FaceGeometry::FrontMouth, cv::Point2d(mouth.cogX, mouth.cogY));
+		faceGeometry.setDetectedPoint(FaceGeometry::FrontMouth, cv::Point2d(mouth.cogX, mouth.cogY));		
 
-		faceGeometry.setDetectedRegion(FaceGeometry::FrontFacialRegion, cv::boundingRect(faceContourInfo[0].contour));
+
+
+		// find sides of face (xmin, xmax)
+		const cv::Point eyePos = faceGeometry.getDetectedPoint(FaceGeometry::FrontLeftEye);
+		cv::Point leftCheek, rightCheek;
+
+		// left
+		for (int x = 0; x<m_FaceExtracted[sideImgNr].cols; ++x)
+		{
+			if (m_FaceExtracted[frontImgNr].at<unsigned char>(cv::Point(x, eyePos.y)) != 0)
+			{
+				leftCheek.x = x;
+				leftCheek.y = eyePos.y;
+				break;
+			}
+		}
+
+		// right 
+		for (int x = m_FaceExtracted[sideImgNr].cols-1; x>=0; --x)
+		{
+			if (m_FaceExtracted[frontImgNr].at<unsigned char>(cv::Point(x, eyePos.y)) != 0)
+			{
+				rightCheek.x = x;
+				rightCheek.y = eyePos.y;
+				break;
+			}
+		}
+
+		faceGeometry.setDetectedPoint(FaceGeometry::FrontLeftCheek, leftCheek);
+		faceGeometry.setDetectedPoint(FaceGeometry::FrontRightCheek, rightCheek);
+		
 
 		// create face mask
 		cv::Mat mask(imgSize,imgSize,CV_8U);
 		mask.setTo(0);
 		cv::drawContours(mask, std::vector<std::vector<cv::Point> > {faceContourInfo[0].contour}, 0, 255, -1);
-		m_FaceMask.push_back(mask);
+		m_FaceMask.push_back(mask);		
+
 		
 		// show debug info
 		cv::Mat tmp=getCopyOfOriginal(frontImgNr);
@@ -218,7 +257,7 @@ namespace Face3D
 	}
 
 
-	bool isConvave(const cv::Point& a, const cv::Point& b, const cv::Point& c)
+	bool isConcave(const cv::Point& a, const cv::Point& b, const cv::Point& c)
 	{
 		// calc two 2d-vectors 
 		int v1x = b.x - a.x;
@@ -244,9 +283,8 @@ namespace Face3D
 
 		const ContourInfo& eye = componentContourInfo[0];
 		const ContourInfo& face = faceContourInfo[0];
-
-		faceGeometry.setDetectedRegion(FaceGeometry::SideFacialRegion, cv::boundingRect(face.contour));
-		faceGeometry.setDetectedPoint(FaceGeometry::SideEye,cv::Point2d(eye.cogX, eye.cogY));
+		
+		faceGeometry.setDetectedPoint(FaceGeometry::SideEye, cv::Point2d(eye.cogX, eye.cogY));
 		
 						
 		// find bounding polygon with at least 5 vertices
@@ -273,9 +311,6 @@ namespace Face3D
 		}
 
 
-
-
-
 		// find chin: which direction must be searched for in the polygon?
 		bool incIdx = false;
 		const size_t numPolygonPoints = polygonPoints.size();
@@ -300,12 +335,27 @@ namespace Face3D
 			cv::Point curr = polygonPoints[i % numPolygonPoints];
 			cv::Point next = polygonPoints[(incIdx ? (i + 1) : (i - 1)) % numPolygonPoints];
 
-			if (isConvave(prev, curr, next) && !isConvave(prevprev, prev, curr))
+			if (isConcave(prev, curr, next) && !isConcave(prevprev, prev, curr))
 			{
 				faceGeometry.setDetectedPoint(FaceGeometry::SideChin, prev);
 				break;
 			}
-		}				
+		}					
+
+
+		// find back side of head
+		const cv::Point chinPoint = faceGeometry.getDetectedPoint(FaceGeometry::SideChin);
+		cv::Point backPoint;
+		for (int x = 0; x<m_FaceExtracted[sideImgNr].cols; ++x)
+		{			
+			if (m_FaceExtracted[sideImgNr].at<unsigned char>(cv::Point(x, chinPoint.y))!=0)
+			{
+				backPoint.x = x;
+				backPoint.y = chinPoint.y;
+				break;
+			}
+		}
+		faceGeometry.setDetectedPoint(FaceGeometry::SideBack, backPoint);
 
 
 		// create face mask
@@ -436,8 +486,9 @@ namespace Face3D
 		// transform all side coordinates
 		m_FaceGeometry.transform(FaceGeometry::SideEye, transMat);
 		m_FaceGeometry.transform(FaceGeometry::SideNoseTip, transMat);
+		m_FaceGeometry.transform(FaceGeometry::SideChin, transMat);
 
-		dbgShow(m_Textures[sideImgNr], "createTextures: sideImage translated");
+		dbgShow(m_Textures[sideImgNr], "createTextures: sideImage translated");		
 
 
 		// cut out regions of interest, but do it in a way such that the y coordinate (position of eyes) still aligns between front and side image

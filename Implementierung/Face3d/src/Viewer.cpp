@@ -63,20 +63,23 @@ namespace Face3D
 		// load model, front and side texture
 		Model::ModelInfo modelInfo;
 		// file path
-		modelInfo.modelPath = "models/simple.obj";
+		modelInfo.modelPath = "models/simpleSingleMesh.obj";
 		modelInfo.textureFront = "ipc/front.jpg";
 		modelInfo.textureSide = "ipc/side.jpg";
+		modelInfo.modelDimension = glm::vec3(3.4, 2.0, 2.7); 
 		// coordinates of important vertices
+		/*
 		modelInfo.leftEye = glm::vec3(-0.2, 0.78, 0.65);
 		modelInfo.rightEye = glm::vec3(-0.2, -0.78, 0.65);
 		modelInfo.mouth = glm::vec3(-0.9, 0, -.62);
+		*/
 
 		// load model
 		Model model(modelInfo);
 		
 		// transformation for model viewing
 		GLfloat rotationsVal = 0.0f;
-		GLfloat scaleVal = 0.2f;
+		GLfloat scaleVal = 0.002f;
 		const GLfloat rotValIncrease = 0.5f;
 		const GLfloat scaleValIncrease = 0.05f;
 

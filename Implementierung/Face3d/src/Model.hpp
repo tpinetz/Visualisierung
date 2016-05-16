@@ -54,9 +54,7 @@ namespace Face3D
 				std::string textureFront;
 				std::string textureSide;
 
-				glm::vec3 leftEye;
-				glm::vec3 rightEye;
-				glm::vec3 mouth;
+				glm::vec3 modelDimension;
 			};
 
 			Model(const ModelInfo& modelInfo);

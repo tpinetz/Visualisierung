@@ -17,7 +17,7 @@ namespace Face3D
 {
 
 	void onColorThresholdsTrackbar(int, void*);
-	bool isConvave(const cv::Point& a, const cv::Point& b, const cv::Point& c);
+	bool isConcave(const cv::Point& a, const cv::Point& b, const cv::Point& c);
 
 	/** class which detects the facial components and calculates the face geometry */
 	class Detection

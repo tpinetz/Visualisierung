@@ -21,6 +21,11 @@ namespace Face3D
 
 		// chin
 		chin = cv::Point3d((m_DetectedPoints[FrontRightEye].x + m_DetectedPoints[FrontLeftEye].x) / 2.0, m_DetectedPoints[SideChin].y, m_DetectedPoints[SideChin].x); // TODO: alignment needed between front and side image!
+
+		// face dimension is meassured between: left/right cheek (x), eye/chin (y), chin/backside (z)
+		faceDimensions.x = m_DetectedPoints[FrontRightCheek].x - m_DetectedPoints[FrontLeftCheek].x;
+		faceDimensions.y = m_DetectedPoints[SideChin].y - m_DetectedPoints[SideEye].y;
+		faceDimensions.z = m_DetectedPoints[SideChin].x - m_DetectedPoints[SideBack].x;
 	}
 
 
@@ -35,6 +40,7 @@ namespace Face3D
 		pointToFile(f, nose);
 		pointToFile(f, mouth);
 		pointToFile(f, chin);
+		pointToFile(f, faceDimensions);
 	}
 
 
@@ -83,18 +89,6 @@ namespace Face3D
 		m_DetectedPoints[detectedPoint].x = p.x; 
 		m_DetectedPoints[detectedPoint].y = p.y; 
 		m_DetectedPoints[detectedPoint].z = 1.0; 
-	}
-
-	
-	void FaceGeometry::setDetectedRegion(DetectedRegions detectedRegion, const cv::Rect r)
-	{
-		m_DetectedRegions[detectedRegion] = r;
-	}
-
-	
-	cv::Rect FaceGeometry::getDetectedRegion(DetectedRegions detectedRegion)
-	{
-		return m_DetectedRegions[detectedRegion];
 	}
 
 

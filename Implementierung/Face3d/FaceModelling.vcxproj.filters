@@ -24,7 +24,9 @@
     <ClCompile Include="src\Texture.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\FaceCoordinates3d.cpp" />
+    <ClCompile Include="src\FaceCoordinates3d.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GLHeader.hpp">
@@ -45,6 +47,8 @@
     <ClInclude Include="src\Texture.hpp">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaceCoordinates3d.hpp" />
+    <ClInclude Include="src\FaceCoordinates3d.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
