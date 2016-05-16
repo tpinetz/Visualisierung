@@ -9,7 +9,8 @@ uniform sampler2D textureFrontSampler;
 uniform sampler2D textureSideSampler;
 uniform float chinVerticalPos;
 uniform float eyeVerticalPos;
-
+uniform float LEyeVerticalTexPos;
+uniform float REyeVerticalTexPos;
 
 // constants
 #define M_PI 3.1415926535897932384626433832795
@@ -45,8 +46,9 @@ vec4 textureShading()
 	
 	// vertical coordinate of cylinder 
 	//float vertical=1.0-(modelPosition.y+2.25)/4.0; // TODO read value from image processing app!
-	float vertical=1.0-(modelPosition.y-chinVerticalPos)/(eyeVerticalPos-chinVerticalPos);
-
+	float vertical=(modelPosition.y-chinVerticalPos)/(eyeVerticalPos-chinVerticalPos);
+	vertical = (vertical + LEyeVerticalTexPos) / (1 + 2 * LEyeVerticalTexPos);
+	vertical = 1.0 - vertical;
 	
 	// get color from texture
 	vec2 texCoordsFront=vec2( (phi-(M_PI/2.0)) / M_PI, vertical);
@@ -77,7 +79,7 @@ vec4 textureShading()
 // main
 void main()
 {  	
-	gl_FragColor=textureShading();
+	gl_FragColor= textureShading();
 }
 
 

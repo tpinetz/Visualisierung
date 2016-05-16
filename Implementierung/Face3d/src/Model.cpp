@@ -29,6 +29,8 @@ namespace Face3D
 		m_TextureSideSamplerLocation = glGetUniformLocation(m_ShaderID, "textureSideSampler");			
 		m_ChinVerticalPosLocation = glGetUniformLocation(m_ShaderID, "chinVerticalPos");
 		m_EyeVerticalPosLocation = glGetUniformLocation(m_ShaderID, "eyeVerticalPos");
+		m_LEyeTexVerticalPosLocation = glGetUniformLocation(m_ShaderID, "LEyeVerticalTexPos");
+		m_REyeTexVerticalPosLocation = glGetUniformLocation(m_ShaderID, "REyeVerticalTexPos");
 
 		// Create an instance of the importer class
 		Assimp::Importer importer;
@@ -231,6 +233,8 @@ namespace Face3D
 		GLdouble eyeYPos = m_ModelInfo.leftEye.y * m_fy;
 		glUniform1f(m_ChinVerticalPosLocation, chinYPos);
 		glUniform1f(m_EyeVerticalPosLocation, eyeYPos);
+		glUniform1f(m_LEyeTexVerticalPosLocation, m_FaceCoords.getPoint(FaceCoordinates3d::TextureLeftEye).y);
+		glUniform1f(m_REyeTexVerticalPosLocation, m_FaceCoords.getPoint(FaceCoordinates3d::TextureRightEye).y);
 		
 		// calc MVP matrix			
 		m_MVPMatrix = glm::rotate(glm::mat4(1.0f), m_RotationAngle, glm::vec3(0, 1, 0));

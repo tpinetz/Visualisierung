@@ -125,8 +125,11 @@ namespace Face3D
 		// transformation for model viewing
 		GLfloat rotationsVal = 0.0f;
 		GLfloat scaleVal = 0.002f;
-		const GLfloat rotValIncrease = 0.5f;
-		const GLfloat scaleValIncrease = 0.05f;
+		const GLfloat rotValIncrease = 2.5f;
+
+
+
+		const GLfloat scaleValIncrease = 0.005f;
 
 		// initial settings
 		model.rotate(rotationsVal);
