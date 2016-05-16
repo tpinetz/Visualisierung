@@ -57,18 +57,11 @@ namespace Face3D
 		{
 			processNode(node->mChildren[a], scene);
 		}
-	}
+	}	
 
 
-	// is val around x, that means in [x-eps, x+eps]
-	bool isInsideEpsBall(double a, double b)
+	void Model::calcScalingFactors()
 	{
-		return std::abs(a - b) < 0.0001;
-	}
-
-	Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene, std::string name)
-	{
-		
 		// dimension according to detection
 		const glm::vec3 detectedFaceDimensions = m_FaceCoords.getPoint(FaceCoordinates3d::FaceDimensions);
 
@@ -78,8 +71,80 @@ namespace Face3D
 		// change mesh: global changes to mesh	
 		// calc resizing factors
 		m_fx = detectedFaceDimensions.x / modelDimensions.x;
-		m_fy = detectedFaceDimensions.y / modelDimensions.y;
+		m_fy = -detectedFaceDimensions.y / modelDimensions.y; // we have to invert this coordinate, such that image and model coordinate system look into same direction
 		m_fz = detectedFaceDimensions.z / modelDimensions.z;
+	}
+
+
+	glm::vec3 Model::moveGenericVertex(const glm::vec3& genericVertex)
+	{
+		glm::vec3 res = glm::vec3(genericVertex.x*m_fx, genericVertex.y*m_fy, genericVertex.z*m_fz);;
+
+		
+		// move mouth
+		for (size_t i = 0; i < m_ModelInfo.allMouthVertices.size(); ++i)
+		{
+			if (isInsideEpsBall(genericVertex, m_ModelInfo.allMouthVertices[i]))
+			{
+
+				// position of mouth, relative to chin: calc this both in the model and in the image
+
+				// 1. model
+				glm::vec3 mouthInModel = m_ModelInfo.mouth - m_ModelInfo.chin;
+				mouthInModel = glm::vec3(mouthInModel.x*m_fx, mouthInModel.y*m_fy, mouthInModel.z*m_fz);
+
+				// 2. image
+				glm::vec3 mouthInImage = m_FaceCoords.getPoint(FaceCoordinates3d::Mouth) - m_FaceCoords.getPoint(FaceCoordinates3d::Chin);
+
+				// difference beween them
+				glm::vec3 diffVec = mouthInImage - mouthInModel;
+
+				// for the mouth, we're just interested in the vertical position
+				diffVec.x = 0;
+				diffVec.z = 0;
+
+				res = res + diffVec;
+			}		
+		}
+
+		// move nose
+		for (size_t i = 0; i < m_ModelInfo.allNoseVertices.size(); ++i)
+		{
+			if (isInsideEpsBall(genericVertex, m_ModelInfo.allNoseVertices[i]))
+			{
+
+				// position of nose, relative to chin: calc this both in the model and in the image
+
+				// 1. model
+				glm::vec3 noseInModel = m_ModelInfo.nose - m_ModelInfo.chin;
+				noseInModel = glm::vec3(noseInModel.x*m_fx, noseInModel.y*m_fy, noseInModel.z*m_fz);
+
+				// 2. image
+				glm::vec3 noseInImage = m_FaceCoords.getPoint(FaceCoordinates3d::Nose) - m_FaceCoords.getPoint(FaceCoordinates3d::Chin);
+
+				// difference beween them
+				glm::vec3 diffVec = noseInImage - noseInModel;
+
+				// for the nose, we're just interested in the vertical position
+				diffVec.x = 0;
+				diffVec.z = 0;
+
+				res = res + diffVec;
+			}
+		}
+
+		
+				
+		return res;
+	}
+
+
+	Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene, std::string name)
+	{		
+		calcScalingFactors();
+
+		// calc positions of important vertices in resized model
+		glm::vec4 posLeftEye = glm::vec4(m_ModelInfo.leftEye,1.0f)*m_fx;
 
 				
 		std::vector<Vertex> vertices;
@@ -88,32 +153,16 @@ namespace Face3D
 		for (GLuint a = 0; a < mesh->mNumVertices; a++)
 		{
 			Vertex vertex;
-			glm::vec4 vector;
-
+			
 			// Position
-			vector.x = mesh->mVertices[a].x*m_fx;
-			vector.y = mesh->mVertices[a].y*m_fy;
-			vector.z = mesh->mVertices[a].z*m_fz;
-			vector.w = 1.0f;
+			glm::vec3 originalPos(mesh->mVertices[a].x, mesh->mVertices[a].y, mesh->mVertices[a].z);
+			vertex.position = glm::vec4(moveGenericVertex(originalPos), 1.0f);
 
+			// Normal		
+			vertex.normal = glm::vec4(mesh->mNormals[a].x, mesh->mNormals[a].y, mesh->mNormals[a].z,1.0f);
+			
 
-			// HIER WEITERMACHEN: verschieben an richtige Position
-			if (isInsideEpsBall(mesh->mVertices[a].x, m_ModelInfo.mouth.x) && isInsideEpsBall(mesh->mVertices[a].y, m_ModelInfo.mouth.y) && isInsideEpsBall(mesh->mVertices[a].z, m_ModelInfo.mouth.z))
-			{		
-				vector = glm::vec4(m_FaceCoords.getPoint(FaceCoordinates3d::Mouth),1.0);
-			}
-
-			vertex.position = vector;
-
-
-
-			// Normal
-			vector.x = mesh->mNormals[a].x;
-			vector.y = mesh->mNormals[a].y;
-			vector.z = mesh->mNormals[a].z;
-			vector.w = 0.0f;
-			vertex.normal = vector;			
-
+			// save new vertex
 			vertices.push_back(vertex);
 		}
 
@@ -127,27 +176,9 @@ namespace Face3D
 			}
 		}
 
-		glm::vec3 positionInModel = glm::vec3(0.0f, 0.0f, 0.0f);
 
 
-		if (name.compare(0, m_LEyeName.size(), m_LEyeName) == 0) {
-			positionInModel = m_FaceCoords.getPoint(FaceCoordinates3d::LeftEye);
-		}
-		else if (name.compare(0, m_REyeName.size(), m_REyeName) == 0) {
-			positionInModel = m_FaceCoords.getPoint(FaceCoordinates3d::RightEye);
-		}
-		else if (name.compare(0, m_MouthName.size(), m_MouthName) == 0) {
-			positionInModel = m_FaceCoords.getPoint(FaceCoordinates3d::Mouth);
-		}
-		else if (name.compare(0, m_NoseName.size(), m_NoseName) == 0) {
-			positionInModel = m_FaceCoords.getPoint(FaceCoordinates3d::Nose);
-		}
-		else if (name.compare(0, m_ChinName.size(), m_ChinName) == 0) {
-			positionInModel = m_FaceCoords.getPoint(FaceCoordinates3d::Chin);
-		}
-
-
-		return Mesh(vertices, indices, positionInModel);
+		return Mesh(vertices, indices);
 	}
 
 	void Model::render()
@@ -165,7 +196,7 @@ namespace Face3D
 		
 		// calc MVP matrix			
 		m_MVPMatrix = glm::rotate(glm::mat4(1.0f), m_RotationAngle, glm::vec3(0, 1, 0));
-		m_MVPMatrix = glm::scale(m_MVPMatrix, glm::vec3(m_ScaleVal));
+		m_MVPMatrix = glm::scale(m_MVPMatrix, glm::vec3(m_ScaleVal, -m_ScaleVal, m_ScaleVal)); // flip back y coordinate!
 			
 		// set MVP matrix
 		glUniformMatrix4fv(m_MVPMatrixLocation, 1, GL_FALSE, &m_MVPMatrix[0][0]);
@@ -183,32 +214,20 @@ namespace Face3D
 		{
 			(*m_pMeshes)[i].render();
 		}	
-		
+
 
 		// disable shader
 		glUseProgram(0);
 	}
 
-	Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices, glm::vec3 positionInModel)
+
+	Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices)
 	:m_Vertices(vertices)
-	, m_Indices(indices)
-	, m_positionInModel(positionInModel)
+	,m_Indices(indices)
 	{			
-		calcMeshInfo();
-		moveVertices();
 		setup();
 	}
 
-	void Mesh::moveVertices() {
-		glm::vec3 adjustmentFactor = this->m_MeanVertex - this->m_positionInModel;
-
-		for (size_t i = 0; i < m_Vertices.size();++i)
-		{
-			m_Vertices[i].position.x += adjustmentFactor.x;
-			m_Vertices[i].position.y += adjustmentFactor.y;
-			m_Vertices[i].position.z += adjustmentFactor.z;
-		}
-	}
 
 	void Mesh::setup()
 	{
@@ -237,51 +256,6 @@ namespace Face3D
 		// Last but not least, unbind VAO		
 		glBindVertexArray(0);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	}
-
-	void Mesh::calcMeshInfo()
-	{
-		assert(m_Vertices.size()>0);
-
-		glm::vec4 meanVec;
-		for (size_t i = 0; i < m_Vertices.size(); ++i)
-		{
-			glm::vec4 currPos = m_Vertices[i].position;
-
-
-			if (m_MinVertex.x > currPos.x)
-			{
-				m_MinVertex.x = currPos.x;
-			}
-			if (m_MinVertex.y > currPos.y)
-			{
-				m_MinVertex.y = currPos.y;
-			}
-			if (m_MinVertex.z > currPos.z)
-			{
-				m_MinVertex.z = currPos.z;
-			}
-
-
-			if (m_MaxVertex.x < currPos.x)
-			{
-				m_MaxVertex.x = currPos.x;
-			}
-			if (m_MaxVertex.y < currPos.y)
-			{
-				m_MaxVertex.y = currPos.y;
-			}
-			if (m_MaxVertex.z < currPos.z)
-			{
-				m_MaxVertex.z = currPos.z;
-			}
-
-
-			meanVec+=m_Vertices[i].position;
-		}
-		
-		meanVec /= m_Vertices.size();		
-		m_MeanVertex = glm::vec3(meanVec);
 	}
 
 	void Mesh::render()

@@ -1,6 +1,5 @@
 #include "Viewer.hpp"
 #include <exception>
-#include "Model.hpp"
 #include "GLDebug.hpp"
 #include <iostream>
 
@@ -27,7 +26,7 @@ namespace Face3D
 		}
 
 		glfwMakeContextCurrent(m_pWindow);
-		glfwSetInputMode(m_pWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		glfwSetInputMode(m_pWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
 		// setup glew
 		if (glewInit() != GLEW_OK)
@@ -53,9 +52,60 @@ namespace Face3D
 
 		// enable depth test and back face culling
 		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_CULL_FACE);
-		glCullFace(GL_FRONT);		
+		//glEnable(GL_CULL_FACE);
+		//glCullFace(GL_FRONT);		
+
+		//#define DEBUG_DRAW_LINES
+#ifdef DEBUG_DRAW_LINES
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+#endif
 	}
+
+
+	// load coordinates of important vertices in generic model (this should be loaded from a file, e.g. CSV or XML)
+	void Viewer::loadModelCoordinates(Model::ModelInfo& modelInfo)
+	{
+		// dimensions of the model
+		modelInfo.modelDimension = glm::vec3(3.4, 2.0, 2.7);		
+
+		// -- center vertices of components --
+		modelInfo.leftEye = glm::vec3(-0.2, 0.65, 0.78);
+		modelInfo.rightEye = glm::vec3(-0.2, -0.65, 0.78);
+		modelInfo.mouth = glm::vec3(-0.9, -0.62, 0);
+		modelInfo.nose = glm::vec3(-1.368, 0.0249, 0);
+		modelInfo.chin = glm::vec3(-0.87, -1.36, 0);
+
+		// -- all vertices of components --
+
+		// mouth
+		modelInfo.allMouthVertices =
+		{
+			// middle line
+			glm::vec3(-0.9, -0.62, 0), glm::vec3(-0.919, -0.627, 0.21), glm::vec3(-0.919, -0.627, -0.21), glm::vec3(-0.66, -0.731, 0.506), glm::vec3(-0.66, -0.731, -0.506),
+
+			// upper line
+			glm::vec3(-1, -0.495, 0), glm::vec3(-1.02, -0.44, 0.2), glm::vec3(-1.02, -0.44, -0.2),
+
+			// lower middle line
+			glm::vec3(-0.998, -0.772, 0), glm::vec3(-0.998, -0.772, 0.186), glm::vec3(-0.998, -0.772, -0.186),
+
+			// lower line
+			glm::vec3(-0.842, -0.951, 0.169), glm::vec3(-0.842, -0.951, -0.169), glm::vec3(-0.842, -0.951, 0)
+		};
+
+		// nose
+		modelInfo.allNoseVertices =
+		{
+			glm::vec3(-1.368, 0.0249, 0), glm::vec3(-1.265, 0.0248, 0.177), glm::vec3(-1.265, 0.0248, -0.177)
+		};
+
+		// left eye
+		modelInfo.allLeftEyeVertices = { glm::vec3(-0.2, 0.65, 0.78) };
+
+		// right eye
+		modelInfo.allLeftEyeVertices = { glm::vec3(-0.2, -0.65, 0.78) };
+	}
+
 
 	void Viewer::run()
 	{
@@ -66,14 +116,8 @@ namespace Face3D
 		modelInfo.modelPath = "models/simpleSingleMesh.obj";
 		modelInfo.textureFront = "ipc/front.jpg";
 		modelInfo.textureSide = "ipc/side.jpg";
-		modelInfo.modelDimension = glm::vec3(3.4, 2.0, 2.7); 
-		// coordinates of important vertices
 		
-		modelInfo.leftEye = glm::vec3(-0.2, 0.65, 0.78);
-		modelInfo.rightEye = glm::vec3(-0.2, -0.65, 0.78);
-		modelInfo.mouth = glm::vec3(-0.9, -0.62, 0);
-		modelInfo.chin = glm::vec3(-0.87, -1.36, 0);
-		
+		loadModelCoordinates(modelInfo);
 
 		// load model
 		Model model(modelInfo);

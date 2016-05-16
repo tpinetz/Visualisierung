@@ -17,6 +17,14 @@
 
 namespace Face3D
 {
+	// is val around x, that means in [x-eps, x+eps]
+	template<class T>
+	bool isInsideEpsBall(const T& a, const T& b)
+	{
+		return glm::distance(a, b) < 0.01;
+	}
+
+
 	// single vertex
 	struct Vertex
 	{
@@ -28,21 +36,15 @@ namespace Face3D
 	class Mesh
 	{
 	public:
-		Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices, glm::vec3 positionInModel);
+		Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices);
 		void render();		
 
 	private:
 		std::vector<Vertex> m_Vertices;
-		glm::vec3 m_MinVertex;
-		glm::vec3 m_MaxVertex;
-		glm::vec3 m_MeanVertex;
 		std::vector<GLuint> m_Indices;
 		GLuint m_VaoID=0, m_VboID=0, m_EboID=0;	
-		glm::vec3 m_positionInModel;
 		
 		void setup();
-		void calcMeshInfo();
-		void moveVertices();
 	};
 
 	// model of an object containing meshes and vertices
@@ -56,7 +58,13 @@ namespace Face3D
 				std::string textureSide;
 
 				glm::vec3 modelDimension;
-				glm::vec3 leftEye, rightEye, mouth, chin;
+				 
+				// center of face components, needed as reference points when moving around the other vertices
+				glm::vec3 leftEye, rightEye, mouth, nose, chin;
+
+				// specify all vertices of a component which should be moved around
+				std::vector<glm::vec3> allMouthVertices, allNoseVertices, allLeftEyeVertices, allRightEyeVertices;
+
 			};
 
 			Model(const ModelInfo& modelInfo);
@@ -81,16 +89,17 @@ namespace Face3D
 			glm::mat4 m_MVPMatrix;
 			GLfloat m_RotationAngle = 0.0f;
 			GLfloat m_ScaleVal = 1.0f;
-			std::string m_LEyeName = "EyeL";
-			std::string m_REyeName = "EyeR";
-			std::string m_MouthName = "Mouth";
-			std::string m_NoseName = "Nose";
-			std::string m_ChinName = "Chin";
-			GLdouble m_fx=0, m_fy=0, m_fz=0;
+			GLfloat m_fx=0, m_fy=0, m_fz=0;
 
 			// load mesh data from file
 			void load(const std::string& path);
 			void processNode(aiNode *node, const aiScene *scene);
 			Mesh processMesh(aiMesh *mesh, const aiScene *scene, std::string name);
+
+			/** calculate the scaling factors to resize the generic face such that it looks like the face on the images */
+			void calcScalingFactors();
+
+			/**  move a vrtex of the generic model to its final position according to the face detection */
+			glm::vec3 moveGenericVertex(const glm::vec3& genericVertex);
 		};	
 }
