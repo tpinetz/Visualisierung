@@ -17,6 +17,7 @@ namespace Face3D
 {
 
 	void onColorThresholdsTrackbar(int, void*);
+	void onTextureAdjustmentTrackbar(int val, void* ptr);
 	bool isConcave(const cv::Point& a, const cv::Point& b, const cv::Point& c);
 
 	/** class which detects the facial components and calculates the face geometry */
@@ -103,8 +104,9 @@ namespace Face3D
 		/** gui interaction*/
 		int m_ColorThresValue = 10;
 		int m_OffsetCB=0, m_OffsetCR=0;
+		double m_AddTexture = 0;
 		void doFaceExtractionGUI();
-		void showResultsGUI();
+		void createTexturesAndShowResultsGUI();
 		cv::Mat combineVertically(const cv::Mat& a, const cv::Mat& b) const;
 
 
@@ -116,7 +118,7 @@ namespace Face3D
 		std::vector<cv::Mat> m_Preprocessed; ///< preprocessed images (smooth)
 		std::vector<cv::Mat> m_FaceExtracted; ///< binary image with skin as foreground
 		std::vector<cv::Mat> m_FaceMask; ///< mask of the face regions. foreground regions which are not the face are already removed
-		FaceGeometry m_FaceGeometry; ///< the geometry of the face, i.e. the coordinates of the facial components
+		FaceGeometry m_FaceGeometry, m_FaceGeometryBackup; ///< the geometry of the face, i.e. the coordinates of the facial components
 		std::vector<cv::Mat> m_Textures; ///< the textures, already in a format that can be used in OpenGL
 		
 		/** resulting images to show in the gui */
@@ -125,5 +127,6 @@ namespace Face3D
 
 
 		friend void onColorThresholdsTrackbar(int, void*);
+		friend void onTextureAdjustmentTrackbar(int, void*);
 	};
 }

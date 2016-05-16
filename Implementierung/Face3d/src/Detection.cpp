@@ -29,20 +29,18 @@ namespace Face3D
 
 	Detection::DetectFaceResult Detection::detectFace()
 	{
+		// execute the pipeline
 		doPreprocessing();	
 		doFaceExtractionGUI();
 		doFacialComponentsExtraction();
-		doMatchCoordinates();
-		createTextures();
+		doMatchCoordinates();				
+		createTexturesAndShowResultsGUI();
 
+		// prepare result and return it
 		DetectFaceResult res;
 		res.faceGeometry = m_FaceGeometry;
 		res.textureFront = m_Textures[frontImgNr];
 		res.textureSide = m_Textures[sideImgNr];
-
-		// show results in gui
-		showResultsGUI();
-
 		return res;
 	}
 
@@ -451,7 +449,11 @@ namespace Face3D
 		// allocate images		
 		m_Textures.resize(2);
 		
-		// mask images	
+		// zero-out images
+		m_Textures[frontImgNr] = cv::Mat::zeros(imgSize,imgSize,CV_8UC3);
+		m_Textures[sideImgNr] = cv::Mat::zeros(imgSize, imgSize, CV_8UC3);
+
+		// mask images
 		m_Originals[frontImgNr].copyTo(m_Textures[frontImgNr], m_FaceMask[frontImgNr]);
 		m_Originals[sideImgNr].copyTo(m_Textures[sideImgNr], m_FaceMask[sideImgNr]);		
 
@@ -499,12 +501,18 @@ namespace Face3D
 		frontBoundingBox.y = m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftEye).y;
 		frontBoundingBox.width = m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontRightCheek).x - m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftCheek).x;
 		frontBoundingBox.height = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideChin).y - m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftEye).y;
+		// add. texture
+		frontBoundingBox.y = frontBoundingBox.y*(1 - m_AddTexture);
+		frontBoundingBox.height = frontBoundingBox.height*(1 + 2 * m_AddTexture);
 
 		// side
 		sideBoundingBox.x = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideBack).x;
 		sideBoundingBox.y = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideEye).y;
 		sideBoundingBox.width = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideNoseTip).x - m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideBack).x;
 		sideBoundingBox.height = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideChin).y - m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideEye).y;
+		// add. texture
+		sideBoundingBox.y = frontBoundingBox.y*(1 - m_AddTexture);
+		sideBoundingBox.height = frontBoundingBox.height*(1 + 2 * m_AddTexture);
 
 
 		m_Textures[frontImgNr](frontBoundingBox).copyTo(m_Textures[frontImgNr]);
@@ -517,13 +525,22 @@ namespace Face3D
 		cv::resize(m_Textures[sideImgNr], m_Textures[sideImgNr], cv::Size(texSize, texSize));
 		cv::resize(m_Textures[frontImgNr], m_Textures[frontImgNr], cv::Size(texSize, texSize));
 
+		// calc the position of the eyes in the texture [0..1]
+		// left eye
+		cv::Point3d texLeftEye;
+		texLeftEye.x = (m_FaceGeometry.getDetectedPoint(FaceGeometry::FrontLeftEye).x - frontBoundingBox.x) / frontBoundingBox.width;
+		texLeftEye.y = (m_FaceGeometry.getDetectedPoint(FaceGeometry::FrontLeftEye).y - frontBoundingBox.y) / frontBoundingBox.height;
+		m_FaceGeometry.setDetectedPoint(FaceGeometry::TextureLeftEye, texLeftEye);
+
+		// right eye
+		cv::Point3d texRightEye;
+		texRightEye.x = (m_FaceGeometry.getDetectedPoint(FaceGeometry::FrontRightEye).x - frontBoundingBox.x) / frontBoundingBox.width;
+		texRightEye.y = (m_FaceGeometry.getDetectedPoint(FaceGeometry::FrontRightEye).y - frontBoundingBox.y) / frontBoundingBox.height;
+		m_FaceGeometry.setDetectedPoint(FaceGeometry::TextureRightEye,texRightEye);
 
 
-		dbgShow(m_Textures[frontImgNr], "createTextures: aligned and resized", frontImgNr);
-		dbgShow(m_Textures[sideImgNr], "createTextures: aligned and resized", sideImgNr);
-
-		m_TexturesGUI = combineVertically(m_Textures[frontImgNr], m_Textures[sideImgNr]);
-
+		//dbgShow(m_Textures[frontImgNr], "createTextures: aligned and resized", frontImgNr); already shown in gui
+		//dbgShow(m_Textures[sideImgNr], "createTextures: aligned and resized", sideImgNr);
 	}
 
 
@@ -584,7 +601,18 @@ namespace Face3D
 	}
 
 
-	void Detection::showResultsGUI()
+	void onTextureAdjustmentTrackbar(int val, void* ptr)
+	{
+		Detection* detection = static_cast<Detection*>(ptr);
+		detection->m_AddTexture = val/100.0;
+		detection->m_FaceGeometry = detection->m_FaceGeometryBackup;
+		detection->createTextures();
+
+		cv::imshow("Resulting textures", detection->combineVertically(detection->m_Textures[detection->frontImgNr], detection->m_Textures[detection->sideImgNr]));
+	}
+
+
+	void Detection::createTexturesAndShowResultsGUI()
 	{
 		// 1. facial points
 		// show gui
@@ -597,8 +625,11 @@ namespace Face3D
 
 		// 2. textures
 		// show gui
+		m_FaceGeometryBackup = m_FaceGeometry;
+		createTextures();
 		cv::namedWindow("Resulting textures");
-		cv::imshow("Resulting textures", m_TexturesGUI);
+		cv::createTrackbar("adjust size", "Resulting textures", 0, 15, onTextureAdjustmentTrackbar, this);
+		cv::imshow("Resulting textures", combineVertically(m_Textures[frontImgNr], m_Textures[sideImgNr]));
 
 		// show until any key			
 		cv::waitKey();

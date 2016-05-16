@@ -41,6 +41,8 @@ namespace Face3D
 		pointToFile(f, mouth);
 		pointToFile(f, chin);
 		pointToFile(f, faceDimensions);
+		pointToFile(f, m_DetectedPoints[TextureLeftEye]);
+		pointToFile(f, m_DetectedPoints[TextureRightEye]);
 	}
 
 
