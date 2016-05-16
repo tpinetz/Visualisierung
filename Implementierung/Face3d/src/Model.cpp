@@ -59,6 +59,13 @@ namespace Face3D
 		}
 	}
 
+
+	// is val around x, that means in [x-eps, x+eps]
+	bool isInsideEpsBall(double a, double b)
+	{
+		return std::abs(a - b) < 0.0001;
+	}
+
 	Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene, std::string name)
 	{
 		
@@ -88,7 +95,17 @@ namespace Face3D
 			vector.y = mesh->mVertices[a].y*m_fy;
 			vector.z = mesh->mVertices[a].z*m_fz;
 			vector.w = 1.0f;
+
+
+			// HIER WEITERMACHEN: verschieben an richtige Position
+			if (isInsideEpsBall(mesh->mVertices[a].x, m_ModelInfo.mouth.x) && isInsideEpsBall(mesh->mVertices[a].y, m_ModelInfo.mouth.y) && isInsideEpsBall(mesh->mVertices[a].z, m_ModelInfo.mouth.z))
+			{		
+				vector = glm::vec4(m_FaceCoords.getPoint(FaceCoordinates3d::Mouth),1.0);
+			}
+
 			vertex.position = vector;
+
+
 
 			// Normal
 			vector.x = mesh->mNormals[a].x;

@@ -492,13 +492,19 @@ namespace Face3D
 
 
 		// cut out regions of interest, but do it in a way such that the y coordinate (position of eyes) still aligns between front and side image
-		// find the contours (bounded binary regions)
-		cv::Rect frontBoundingBox = getBoundingBox(m_Textures[frontImgNr]);
-		cv::Rect sideBoundingBox = getBoundingBox(m_Textures[sideImgNr]);
+		cv::Rect frontBoundingBox, sideBoundingBox;
 
-		// adjust y values of side bounding box
-		sideBoundingBox.y = frontBoundingBox.y;
-		sideBoundingBox.height = frontBoundingBox.height;
+		// front		
+		frontBoundingBox.x = m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftCheek).x;
+		frontBoundingBox.y = m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftEye).y;
+		frontBoundingBox.width = m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontRightCheek).x - m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftCheek).x;
+		frontBoundingBox.height = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideChin).y - m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftEye).y;
+
+		// side
+		sideBoundingBox.x = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideBack).x;
+		sideBoundingBox.y = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideEye).y;
+		sideBoundingBox.width = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideNoseTip).x - m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideBack).x;
+		sideBoundingBox.height = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideChin).y - m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideEye).y;
 
 
 		m_Textures[frontImgNr](frontBoundingBox).copyTo(m_Textures[frontImgNr]);
