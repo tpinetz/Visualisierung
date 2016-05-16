@@ -7,6 +7,9 @@ in vec4 vertexNormal;
 // Uniform
 uniform sampler2D textureFrontSampler;
 uniform sampler2D textureSideSampler;
+uniform float chinVerticalPos;
+uniform float eyeVerticalPos;
+
 
 // constants
 #define M_PI 3.1415926535897932384626433832795
@@ -17,7 +20,7 @@ float frontFactor(float phi)
 {
 	float val=-cos(phi);
 	val=clamp(val, 0.0, 1.0);
-	
+
 	return val;
 }
 
@@ -40,18 +43,19 @@ vec4 textureShading()
 	float phi=atan(modelPosition.z, -modelPosition.x)+M_PI;	
 
 	
-	// z coordinate of cylinder 
-	float z=1.0-(modelPosition.y+2.25)/4.0; // TODO read value from image processing app!
+	// vertical coordinate of cylinder 
+	//float vertical=1.0-(modelPosition.y+2.25)/4.0; // TODO read value from image processing app!
+	float vertical=1.0-(modelPosition.y-chinVerticalPos)/(eyeVerticalPos-chinVerticalPos);
 
 	
 	// get color from texture
-	vec2 texCoordsFront=vec2( (phi-(M_PI/2.0)) / M_PI, z);
+	vec2 texCoordsFront=vec2( (phi-(M_PI/2.0)) / M_PI, vertical);
 	vec3 texColorFront = vec3(texture(textureFrontSampler, texCoordsFront));
 	
-	vec2 texCoordsSide1=vec2( phi / M_PI, z);
+	vec2 texCoordsSide1=vec2( phi / M_PI, vertical);
 	vec3 texColorSide1 = vec3(texture(textureSideSampler, texCoordsSide1));
 		
-	vec2 texCoordsSide2=vec2( 1.0-((phi-M_PI) / M_PI), z);
+	vec2 texCoordsSide2=vec2( 1.0-((phi-M_PI) / M_PI), vertical);
 	vec3 texColorSide2 = vec3(texture(textureSideSampler, texCoordsSide2));
 	
 	
@@ -60,12 +64,13 @@ vec4 textureShading()
 	float ff=frontFactor(phi),sf1=sideFactor(phi),sf2=sideFactor(phi+M_PI);
 	ff*=ff;
 	sf1*=sf1;
-	sf2*=sf2;
-	
-
+	sf2*=sf2;	
 	
 	// final color
-	return vec4(ff*texColorFront+sf1*texColorSide1+sf2*texColorSide2,1.0);		
+	return vec4(ff*texColorFront+sf1*texColorSide1+sf2*texColorSide2,1.0);	
+
+	// test color
+	//return vec4(vertical,vertical,vertical,1.0);
 }
 
 

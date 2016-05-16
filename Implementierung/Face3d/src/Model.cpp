@@ -3,7 +3,6 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "Texture.hpp"
-#include "FaceCoordinates3d.hpp"
 
 
 // Implementation follows: http://www.learnopengl.com/#!Model-Loading/Model
@@ -13,6 +12,7 @@ namespace Face3D
 	Model::Model(const ModelInfo& modelInfo)
 	:m_ModelInfo(modelInfo)
 	{
+		m_FaceCoords.fromFile("ipc/faceGeometry.txt");
 		load(modelInfo.modelPath);
 		m_TextureFrontID = Texture::Instance().loadFromImage(modelInfo.textureFront);
 		m_TextureSideID = Texture::Instance().loadFromImage(modelInfo.textureSide);
@@ -26,7 +26,9 @@ namespace Face3D
 		m_ShaderID = ShaderLoader::Instance().getProgram("Default");
 		m_MVPMatrixLocation = glGetUniformLocation(m_ShaderID, "mvpMatrix");
 		m_TextureFrontSamplerLocation = glGetUniformLocation(m_ShaderID, "textureFrontSampler");
-		m_TextureSideSamplerLocation = glGetUniformLocation(m_ShaderID, "textureSideSampler");
+		m_TextureSideSamplerLocation = glGetUniformLocation(m_ShaderID, "textureSideSampler");			
+		m_ChinVerticalPosLocation = glGetUniformLocation(m_ShaderID, "chinVerticalPos");
+		m_EyeVerticalPosLocation = glGetUniformLocation(m_ShaderID, "eyeVerticalPos");
 
 		// Create an instance of the importer class
 		Assimp::Importer importer;
@@ -59,25 +61,20 @@ namespace Face3D
 
 	Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene, std::string name)
 	{
-
-		FaceCoordinates3d faceCoords; 
-		faceCoords.fromFile("ipc/faceGeometry.txt");
-
+		
 		// dimension according to detection
-		const glm::vec3 detectedFaceDimensions=faceCoords.getPoint(FaceCoordinates3d::FaceDimensions);
+		const glm::vec3 detectedFaceDimensions = m_FaceCoords.getPoint(FaceCoordinates3d::FaceDimensions);
 
 		// dimensions according to generic model 
 		const glm::vec3& modelDimensions = m_ModelInfo.modelDimension;
 
 		// change mesh: global changes to mesh	
 		// calc resizing factors
-		GLdouble fx = detectedFaceDimensions.x / modelDimensions.x;
-		GLdouble fy = detectedFaceDimensions.y / modelDimensions.y;
-		GLdouble fz = detectedFaceDimensions.z / modelDimensions.z;
+		m_fx = detectedFaceDimensions.x / modelDimensions.x;
+		m_fy = detectedFaceDimensions.y / modelDimensions.y;
+		m_fz = detectedFaceDimensions.z / modelDimensions.z;
 
-		
-
-		
+				
 		std::vector<Vertex> vertices;
 		std::vector<GLuint> indices;
 
@@ -87,9 +84,9 @@ namespace Face3D
 			glm::vec4 vector;
 
 			// Position
-			vector.x = mesh->mVertices[a].x*fx;
-			vector.y = mesh->mVertices[a].y*fy;
-			vector.z = mesh->mVertices[a].z*fz;
+			vector.x = mesh->mVertices[a].x*m_fx;
+			vector.y = mesh->mVertices[a].y*m_fy;
+			vector.z = mesh->mVertices[a].z*m_fz;
 			vector.w = 1.0f;
 			vertex.position = vector;
 
@@ -117,19 +114,19 @@ namespace Face3D
 
 
 		if (name.compare(0, m_LEyeName.size(), m_LEyeName) == 0) {
-			positionInModel = faceCoords.getPoint(FaceCoordinates3d::LeftEye);
+			positionInModel = m_FaceCoords.getPoint(FaceCoordinates3d::LeftEye);
 		}
 		else if (name.compare(0, m_REyeName.size(), m_REyeName) == 0) {
-			positionInModel = faceCoords.getPoint(FaceCoordinates3d::RightEye);
+			positionInModel = m_FaceCoords.getPoint(FaceCoordinates3d::RightEye);
 		}
 		else if (name.compare(0, m_MouthName.size(), m_MouthName) == 0) {
-			positionInModel = faceCoords.getPoint(FaceCoordinates3d::Mouth);
+			positionInModel = m_FaceCoords.getPoint(FaceCoordinates3d::Mouth);
 		}
 		else if (name.compare(0, m_NoseName.size(), m_NoseName) == 0) {
-			positionInModel = faceCoords.getPoint(FaceCoordinates3d::Nose);
+			positionInModel = m_FaceCoords.getPoint(FaceCoordinates3d::Nose);
 		}
 		else if (name.compare(0, m_ChinName.size(), m_ChinName) == 0) {
-			positionInModel = faceCoords.getPoint(FaceCoordinates3d::Chin);
+			positionInModel = m_FaceCoords.getPoint(FaceCoordinates3d::Chin);
 		}
 
 
@@ -144,6 +141,10 @@ namespace Face3D
 		glUseProgram(m_ShaderID);
 		glUniform1i(m_TextureFrontSamplerLocation, 0);
 		glUniform1i(m_TextureSideSamplerLocation, 1);
+		GLdouble chinYPos = m_ModelInfo.chin.y * m_fy;
+		GLdouble eyeYPos = m_ModelInfo.leftEye.y * m_fy;
+		glUniform1f(m_ChinVerticalPosLocation, chinYPos);
+		glUniform1f(m_EyeVerticalPosLocation, eyeYPos);
 		
 		// calc MVP matrix			
 		m_MVPMatrix = glm::rotate(glm::mat4(1.0f), m_RotationAngle, glm::vec3(0, 1, 0));

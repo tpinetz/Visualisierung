@@ -68,11 +68,12 @@ namespace Face3D
 		modelInfo.textureSide = "ipc/side.jpg";
 		modelInfo.modelDimension = glm::vec3(3.4, 2.0, 2.7); 
 		// coordinates of important vertices
-		/*
-		modelInfo.leftEye = glm::vec3(-0.2, 0.78, 0.65);
-		modelInfo.rightEye = glm::vec3(-0.2, -0.78, 0.65);
-		modelInfo.mouth = glm::vec3(-0.9, 0, -.62);
-		*/
+		
+		modelInfo.leftEye = glm::vec3(-0.2, 0.65, 0.78);
+		modelInfo.rightEye = glm::vec3(-0.2, -0.65, 0.78);
+		modelInfo.mouth = glm::vec3(-0.9, -0.62, 0);
+		modelInfo.chin = glm::vec3(-0.87, -1.36, 0);
+		
 
 		// load model
 		Model model(modelInfo);
