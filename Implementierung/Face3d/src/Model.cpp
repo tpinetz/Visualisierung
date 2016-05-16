@@ -78,11 +78,13 @@ namespace Face3D
 
 	glm::vec3 Model::moveGenericVertex(const glm::vec3& genericVertex)
 	{
-		glm::vec3 res = glm::vec3(genericVertex.x*m_fx, genericVertex.y*m_fy, genericVertex.z*m_fz);;
+		glm::vec3 res = glm::vec3(genericVertex.x*m_fx, genericVertex.y*m_fy, genericVertex.z*m_fz);
 
 		
+		bool alreadyMoved = false;
+
 		// move mouth
-		for (size_t i = 0; i < m_ModelInfo.allMouthVertices.size(); ++i)
+		for (size_t i = 0; !alreadyMoved && i < m_ModelInfo.allMouthVertices.size(); ++i)
 		{
 			if (isInsideEpsBall(genericVertex, m_ModelInfo.allMouthVertices[i]))
 			{
@@ -104,11 +106,14 @@ namespace Face3D
 				diffVec.z = 0;
 
 				res = res + diffVec;
+
+				alreadyMoved = true;
+				break;
 			}		
 		}
 
 		// move nose
-		for (size_t i = 0; i < m_ModelInfo.allNoseVertices.size(); ++i)
+		for (size_t i = 0; !alreadyMoved && i < m_ModelInfo.allNoseVertices.size(); ++i)
 		{
 			if (isInsideEpsBall(genericVertex, m_ModelInfo.allNoseVertices[i]))
 			{
@@ -130,6 +135,39 @@ namespace Face3D
 				diffVec.z = 0;
 
 				res = res + diffVec;
+
+				alreadyMoved = true;
+				break;
+			}
+		}
+
+
+		// move left eye
+		for (size_t i = 0; !alreadyMoved && i < m_ModelInfo.allLeftEyeVertices.size(); ++i)
+		{
+			if (isInsideEpsBall(genericVertex, m_ModelInfo.allLeftEyeVertices[i]))
+			{
+
+				// position of nose, relative to chin: calc this both in the model and in the image
+
+				// 1. model
+				glm::vec3 eyeInModel = m_ModelInfo.leftEye - m_ModelInfo.chin;
+				eyeInModel = glm::vec3(eyeInModel.x*m_fx, eyeInModel.y*m_fy, eyeInModel.z*m_fz);
+
+				// 2. image
+				glm::vec3 eyeInImage = m_FaceCoords.getPoint(FaceCoordinates3d::LeftEye) - m_FaceCoords.getPoint(FaceCoordinates3d::Chin);
+
+				// difference beween them
+				glm::vec3 diffVec = eyeInImage - eyeInModel;
+
+				// for the eye, we're just interested in the horizontal position
+				diffVec.x = 0;
+				diffVec.y = 0;
+
+				res = res + diffVec;
+
+				alreadyMoved = true;
+				break;
 			}
 		}
 
