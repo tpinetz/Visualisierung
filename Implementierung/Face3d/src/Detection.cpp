@@ -473,7 +473,7 @@ namespace Face3D
 		m_FaceGeometry.transform(FaceGeometry::FrontRightEye, rotMat);
 		m_FaceGeometry.transform(FaceGeometry::FrontMouth, rotMat);
 		
-		dbgShow(m_Textures[frontImgNr], "createTextures: frontImage rotated");
+		//dbgShow(m_Textures[frontImgNr], "createTextures: frontImage rotated");
 
 
 
@@ -490,7 +490,7 @@ namespace Face3D
 		m_FaceGeometry.transform(FaceGeometry::SideNoseTip, transMat);
 		m_FaceGeometry.transform(FaceGeometry::SideChin, transMat);
 
-		dbgShow(m_Textures[sideImgNr], "createTextures: sideImage translated");		
+		//dbgShow(m_Textures[sideImgNr], "createTextures: sideImage translated");		
 
 
 		// cut out regions of interest, but do it in a way such that the y coordinate (position of eyes) still aligns between front and side image
