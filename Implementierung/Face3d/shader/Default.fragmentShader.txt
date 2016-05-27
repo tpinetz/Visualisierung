@@ -27,7 +27,8 @@ float frontFactor(float phi)
 	float val=-cos(phi);
 	val=clamp(val, 0.0, 1.0);
 
-	return val;
+	//return val;
+	return gaussian(M_PI, M_PI/4, phi);
 }
 
 
@@ -37,7 +38,8 @@ float sideFactor(float phi)
 	float val=sin(phi);
 	val=clamp(val, 0.0, 1.0);
 	
-	return val;
+	//return val;
+	return gaussian(M_PI/3, M_PI/4, phi);
 }
 
 // how much of the side texture should be used?
@@ -46,7 +48,8 @@ float sideFactor2(float phi)
 	float val=sin(phi);
 	val=clamp(val, 0.0, 1.0);
 	
-	return val;
+	//return val;
+	return gaussian(5*M_PI/3, M_PI/4, phi);
 }
 
 // cylinder mapping of the two textures onto face model
@@ -75,15 +78,15 @@ vec4 textureShading()
 	
 	
 	// smooth overlapping of textures. 
-	float ff=frontFactor(phi),sf1=sideFactor(phi),sf2=sideFactor2(phi + M_PI);
+	float ff=frontFactor(phi),sf1=sideFactor(phi),sf2=sideFactor2(phi );
 	ff *= ff;
 	sf1 *= sf1;
 	sf2 *= sf2;
 
-/*	ff = gaussian(1.0, 0.6, ff);
-	sf1 = gaussian(1.0, 0.1, sf1);
-	sf2 = gaussian(1.0, 0.1, sf2);
-*/		
+//	ff = gaussian(1.0, 0.6, ff);
+//	sf1 = gaussian(1.0, 0.1, sf1);
+//	sf2 = gaussian(1.0, 0.1, sf2);
+		
 
 	float fac =  (ff + sf1 + sf2); 
 
