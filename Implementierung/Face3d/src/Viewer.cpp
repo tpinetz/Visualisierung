@@ -100,10 +100,10 @@ namespace Face3D
 		};
 
 		// left eye
-		modelInfo.allLeftEyeVertices = { glm::vec3(-0.2, 0.65, 0.78) };
+		modelInfo.allLeftEyeVertices = { glm::vec3(-0.45, 0.65, 0.78) };
 
 		// right eye
-		modelInfo.allRightEyeVertices = { glm::vec3(-0.2, -0.65, 0.78) };
+		modelInfo.allRightEyeVertices = { glm::vec3(-0.45, 0.65, -0.78) };
 	}
 
 
