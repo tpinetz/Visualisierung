@@ -89,6 +89,7 @@ namespace Face3D
 			GLuint m_EyeVerticalPosLocation = 0;
 			GLuint m_LEyeTexVerticalPosLocation = 0;
 			GLuint m_REyeTexVerticalPosLocation = 0;
+			GLuint m_ChinTexVerticalPosLocation = 0;
 			glm::mat4 m_MVPMatrix;
 			GLfloat m_RotationAngle = 0.0f;
 			GLfloat m_ScaleVal = 1.0f;

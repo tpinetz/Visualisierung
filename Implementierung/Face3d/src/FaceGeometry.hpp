@@ -9,7 +9,7 @@ namespace Face3D
 	{
 	public:
 		/** the facial components in the front and side image */
-		enum DetectedPoints{ FrontLeftEye, FrontRightEye, FrontMouth, FrontLeftCheek, FrontRightCheek, SideEye, SideNoseTip, SideChin, SideBack, TextureLeftEye, TextureRightEye, InvalidPoint };
+		enum DetectedPoints{ FrontLeftEye, FrontRightEye, FrontMouth, FrontLeftCheek, FrontRightCheek, SideEye, SideNoseTip, SideChin, SideBack, TextureLeftEye, TextureRightEye, TextureChin, InvalidPoint};
 
 		/** get 2d point with datatype double */
 		cv::Point2d getDetectedPoint(DetectedPoints detectedPoint) const;

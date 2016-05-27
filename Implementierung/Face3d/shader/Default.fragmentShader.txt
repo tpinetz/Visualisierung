@@ -12,6 +12,7 @@ uniform float chinVerticalPos;
 uniform float eyeVerticalPos;
 uniform float LEyeVerticalTexPos;
 uniform float REyeVerticalTexPos;
+uniform float ChinTexVerticalPos;
 
 // constants
 #define M_PI 3.1415926535897932384626433832795
@@ -61,9 +62,15 @@ vec4 textureShading()
 	
 	// vertical coordinate of cylinder 
 	//float vertical=1.0-(modelPosition.y+2.25)/4.0; // TODO read value from image processing app!
-	float vertical=(modelPosition.y-chinVerticalPos)/(eyeVerticalPos - 10 -chinVerticalPos);
-	vertical = (vertical + LEyeVerticalTexPos) / (1 + 2 * LEyeVerticalTexPos);
+	float vertical=(modelPosition.y-chinVerticalPos) / (eyeVerticalPos - 15 - chinVerticalPos);
 	vertical = 1.0 - vertical;
+	
+	//float fact = (eyeVerticalPos - chinVerticalPos) / (LEyeVerticalTexPos + ChinTexVerticalPos)  + 1; 
+//	vertical = (vertical + ) * fact - x; 
+	
+	vertical = (vertical + LEyeVerticalTexPos) / (1 + ChinTexVerticalPos +  LEyeVerticalTexPos);
+
+	//return vec4(vertical,vertical, vertical, 1.0f);
 	
 	// get color from texture
 	vec2 texCoordsFront=vec2( (phi-(M_PI/2.0)) / M_PI, vertical);

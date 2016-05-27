@@ -31,6 +31,7 @@ namespace Face3D
 		m_EyeVerticalPosLocation = glGetUniformLocation(m_ShaderID, "eyeVerticalPos");
 		m_LEyeTexVerticalPosLocation = glGetUniformLocation(m_ShaderID, "LEyeVerticalTexPos");
 		m_REyeTexVerticalPosLocation = glGetUniformLocation(m_ShaderID, "REyeVerticalTexPos");
+		m_ChinTexVerticalPosLocation = glGetUniformLocation(m_ShaderID, "ChinTexVerticalPos");
 
 		// Create an instance of the importer class
 		Assimp::Importer importer;
@@ -221,6 +222,12 @@ namespace Face3D
 		std::vector<Vertex> vertices;
 		std::vector<GLuint> indices;
 
+
+/*		if (mesh->mNumVertices > 0) {
+			maxY = mesh->mVertices[0].y;
+			minY = mesh->mVertices[0].y;
+		}
+		*/
 		for (GLuint a = 0; a < mesh->mNumVertices; a++)
 		{
 			Vertex vertex;
@@ -228,6 +235,10 @@ namespace Face3D
 			// Position
 			glm::vec3 originalPos(mesh->mVertices[a].x, mesh->mVertices[a].y, mesh->mVertices[a].z);
 			vertex.position = glm::vec4(moveGenericVertex(originalPos), 1.0f);
+
+			// Find min and maxY;
+		//	maxY = maxY < vertex.position.y ? vertex.position.y : maxY;
+		//	minY = minY > vertex.position.y ? vertex.position.y : minY;
 
 			// Normal		
 			vertex.normal = glm::vec4(mesh->mNormals[a].x, mesh->mNormals[a].y, mesh->mNormals[a].z,1.0f);
@@ -247,6 +258,34 @@ namespace Face3D
 			}
 		}
 
+		// y is scaled upside down
+		float maxY = 2.62698f * m_fy; // taken from blender
+		float minY = -1.50149f * m_fy; // taken from blender
+
+
+		float eyeY = (m_ModelInfo.leftEye.y) * m_fy; // Eye is more than just the middle point
+		float chinY = m_ModelInfo.chin.y * m_fy;
+
+		float top = m_FaceCoords.getPoint(FaceCoordinates3d::TextureLeftEye).y; // this is in percent
+		float bot = m_FaceCoords.getPoint(FaceCoordinates3d::TextureChin).y;
+
+		float factor = ((eyeY - chinY) * (1 + top)) / (maxY - chinY);
+		float factorBot = ((eyeY - chinY) * (1 + bot)) / (eyeY - minY);		
+
+		for (size_t i = 0; i < vertices.size(); i++) {
+			Vertex& vertex = vertices[i];
+
+			if (vertex.position.y < (eyeY - 0.002)) {
+				vertex.position.y = vertex.position.y * factor ;
+			}
+			else if(vertex.position.y > chinY) {
+				vertex.position.y = (vertex.position.y - chinY) * factorBot + chinY;
+			}
+
+
+		}
+	
+
 		return Mesh(vertices, indices);
 	}
 
@@ -265,6 +304,7 @@ namespace Face3D
 		glUniform1f(m_EyeVerticalPosLocation, eyeYPos);
 		glUniform1f(m_LEyeTexVerticalPosLocation, m_FaceCoords.getPoint(FaceCoordinates3d::TextureLeftEye).y);
 		glUniform1f(m_REyeTexVerticalPosLocation, m_FaceCoords.getPoint(FaceCoordinates3d::TextureRightEye).y);
+		glUniform1f(m_ChinTexVerticalPosLocation, m_FaceCoords.getPoint(FaceCoordinates3d::TextureChin).y);
 		
 		// calc MVP matrix			
 		m_MVPMatrix = glm::rotate(glm::mat4(1.0f), m_RotationAngle, glm::vec3(0, 1, 0));

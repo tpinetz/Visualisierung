@@ -104,7 +104,8 @@ namespace Face3D
 		/** gui interaction*/
 		int m_ColorThresValue = 10;
 		int m_OffsetCB=0, m_OffsetCR=0;
-		double m_AddTexture = 0;
+		double m_AddTextureBottom = 0;
+		double m_AddTextureTop = 0;
 		void doFaceExtractionGUI();
 		void createTexturesAndShowResultsGUI();
 		cv::Mat combineVertically(const cv::Mat& a, const cv::Mat& b) const;
@@ -127,6 +128,7 @@ namespace Face3D
 
 
 		friend void onColorThresholdsTrackbar(int, void*);
-		friend void onTextureAdjustmentTrackbar(int, void*);
+		friend void onTextureAdjustmentTrackbarBottom(int, void*);
+		friend void onTextureAdjustmentTrackbarTop(int, void*);
 	};
 }

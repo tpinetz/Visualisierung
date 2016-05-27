@@ -503,8 +503,8 @@ namespace Face3D
 		frontBoundingBox.width = m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontRightCheek).x - m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftCheek).x;
 		frontBoundingBox.height = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideChin).y - m_FaceGeometry.getDetectedPointInt(FaceGeometry::FrontLeftEye).y;
 		// add. texture
-		frontBoundingBox.y = frontBoundingBox.y*(1 - m_AddTexture);
-		frontBoundingBox.height = frontBoundingBox.height*(1 + 2 * m_AddTexture);
+		frontBoundingBox.y = frontBoundingBox.y*(1 - m_AddTextureTop);
+		frontBoundingBox.height = frontBoundingBox.height*(1 + m_AddTextureBottom + m_AddTextureTop);
 
 		// side
 		sideBoundingBox.x = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideBack).x;
@@ -512,9 +512,13 @@ namespace Face3D
 		sideBoundingBox.width = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideNoseTip).x - m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideBack).x;
 		sideBoundingBox.height = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideChin).y - m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideEye).y;
 		// add. texture
-		sideBoundingBox.y = frontBoundingBox.y*(1 - m_AddTexture/2);
-		sideBoundingBox.height = frontBoundingBox.height*(1 +  m_AddTexture);
+		sideBoundingBox.y = sideBoundingBox.y*(1 - m_AddTextureTop);
+		sideBoundingBox.height = sideBoundingBox.height*(1 + (m_AddTextureTop + m_AddTextureBottom));
 
+		// Clamp img could not find a better way.
+		frontBoundingBox.height = frontBoundingBox.y + frontBoundingBox.height < imgSize ? frontBoundingBox.height : imgSize - frontBoundingBox.y;
+		sideBoundingBox.height = sideBoundingBox.y + sideBoundingBox.height < imgSize ? sideBoundingBox.height : imgSize - sideBoundingBox.y;
+		
 
 		m_Textures[frontImgNr](frontBoundingBox).copyTo(m_Textures[frontImgNr]);
 		m_Textures[sideImgNr](sideBoundingBox).copyTo(m_Textures[sideImgNr]);
@@ -538,6 +542,11 @@ namespace Face3D
 		texRightEye.x = (m_FaceGeometry.getDetectedPoint(FaceGeometry::FrontRightEye).x - frontBoundingBox.x) / frontBoundingBox.width;
 		texRightEye.y = (m_FaceGeometry.getDetectedPoint(FaceGeometry::FrontRightEye).y - frontBoundingBox.y) / frontBoundingBox.height;
 		m_FaceGeometry.setDetectedPoint(FaceGeometry::TextureRightEye,texRightEye);
+
+		cv::Point3d texChin;
+		texChin.x = (sideBoundingBox.x + sideBoundingBox.width - m_FaceGeometry.getDetectedPoint(FaceGeometry::SideChin).x) / sideBoundingBox.width;
+		texChin.y = (sideBoundingBox.y + sideBoundingBox.height - m_FaceGeometry.getDetectedPoint(FaceGeometry::SideChin).y) / sideBoundingBox.height;
+		m_FaceGeometry.setDetectedPoint(FaceGeometry::TextureChin, texChin);
 
 
 		//dbgShow(m_Textures[frontImgNr], "createTextures: aligned and resized", frontImgNr); already shown in gui
@@ -602,10 +611,20 @@ namespace Face3D
 	}
 
 
-	void onTextureAdjustmentTrackbar(int val, void* ptr)
+	void onTextureAdjustmentTrackbarBottom(int val, void* ptr)
 	{
 		Detection* detection = static_cast<Detection*>(ptr);
-		detection->m_AddTexture = val/100.0;
+		detection->m_AddTextureBottom = val/100.0;
+		detection->m_FaceGeometry = detection->m_FaceGeometryBackup;
+		detection->createTextures();
+
+		cv::imshow("Resulting textures", detection->combineVertically(detection->m_Textures[detection->frontImgNr], detection->m_Textures[detection->sideImgNr]));
+	}
+
+	void onTextureAdjustmentTrackbarTop(int val, void* ptr)
+	{
+		Detection* detection = static_cast<Detection*>(ptr);
+		detection->m_AddTextureTop = val / 100.0;
 		detection->m_FaceGeometry = detection->m_FaceGeometryBackup;
 		detection->createTextures();
 
@@ -629,8 +648,12 @@ namespace Face3D
 		m_FaceGeometryBackup = m_FaceGeometry;
 		createTextures();
 		cv::namedWindow("Resulting textures");
-		cv::createTrackbar("adjust size", "Resulting textures", 0, 25, onTextureAdjustmentTrackbar, this);
+		cv::createTrackbar("Top size", "Resulting textures", 0, 100, onTextureAdjustmentTrackbarTop, this);
 		cv::imshow("Resulting textures", combineVertically(m_Textures[frontImgNr], m_Textures[sideImgNr]));
+
+		cv::createTrackbar("Bottom size", "Resulting textures", 0, 100, onTextureAdjustmentTrackbarBottom, this);
+		cv::imshow("Resulting textures", combineVertically(m_Textures[frontImgNr], m_Textures[sideImgNr]));
+
 
 		// show until any key			
 		cv::waitKey();

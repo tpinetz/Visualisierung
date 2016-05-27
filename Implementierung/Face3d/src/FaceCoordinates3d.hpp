@@ -10,7 +10,7 @@ namespace Face3D
 	{
 	public:
 		/** the points which we've extracted so far */
-		enum FacialPoints3d{ LeftEye, RightEye, Mouth, Nose, Chin, FaceDimensions, TextureLeftEye, TextureRightEye, InvalidPoint };
+		enum FacialPoints3d{ LeftEye, RightEye, Mouth, Nose, Chin, FaceDimensions, TextureLeftEye, TextureRightEye, TextureChin, InvalidPoint };
 
 		/** specify the point (e.g. nose) and get 3d coordinates of it */
 		glm::vec3 getPoint(FacialPoints3d type) const;
