@@ -95,7 +95,7 @@ namespace Face3D
 
 				// 1. model
 				glm::vec3 mouthInModel = m_ModelInfo.mouth - m_ModelInfo.chin;
-				mouthInModel = glm::vec3(mouthInModel.x*m_fx, mouthInModel.y*m_fy, mouthInModel.z*m_fz);
+				mouthInModel = glm::vec3(mouthInModel.x*m_fx, mouthInModel.y*m_fy, genericVertex.z);
 
 				// 2. image
 				glm::vec3 mouthInImage = m_FaceCoords.getPoint(FaceCoordinates3d::Mouth) - m_FaceCoords.getPoint(FaceCoordinates3d::Chin);
@@ -157,7 +157,39 @@ namespace Face3D
 				eyeInModel = glm::vec3(eyeInModel.x*m_fx, eyeInModel.y*m_fy, eyeInModel.z*m_fz);
 
 				// 2. image
-				glm::vec3 eyeInImage = m_FaceCoords.getPoint(FaceCoordinates3d::LeftEye) - m_FaceCoords.getPoint(FaceCoordinates3d::Chin);
+				// y is upside down in the image
+				glm::vec3 eyeInImage = m_FaceCoords.getPoint(FaceCoordinates3d::Chin) - m_FaceCoords.getPoint(FaceCoordinates3d::LeftEye);
+
+				// difference beween them
+				glm::vec3 diffVec = eyeInImage - eyeInModel;
+
+				// for the eye, we're just interested in the horizontal position which is stored in the z coordinate but
+				// in the world its the y coordinate.
+				diffVec.x = 0;
+				diffVec.y = diffVec.z;
+				diffVec.z = 0;
+
+				res = res + diffVec;
+
+				alreadyMoved = true;
+				break;
+			}
+		}
+
+
+		// move right eye
+		for (size_t i = 0; !alreadyMoved && i < m_ModelInfo.allRightEyeVertices.size(); ++i)
+		{
+			if (isInsideEpsBall(genericVertex, m_ModelInfo.allRightEyeVertices[i]))
+			{
+
+
+				// 1. model
+				glm::vec3 eyeInModel = m_ModelInfo.rightEye - m_ModelInfo.chin;
+				eyeInModel = glm::vec3(eyeInModel.x*m_fx, eyeInModel.y*m_fy, eyeInModel.z*m_fz);
+
+				// 2. image
+				glm::vec3 eyeInImage = m_FaceCoords.getPoint(FaceCoordinates3d::RightEye) - m_FaceCoords.getPoint(FaceCoordinates3d::Chin);
 
 				// difference beween them
 				glm::vec3 diffVec = eyeInImage - eyeInModel;
@@ -172,7 +204,6 @@ namespace Face3D
 				break;
 			}
 		}
-
 		
 				
 		return res;
@@ -216,10 +247,9 @@ namespace Face3D
 			}
 		}
 
-
-
 		return Mesh(vertices, indices);
 	}
+
 
 	void Model::render()
 	{

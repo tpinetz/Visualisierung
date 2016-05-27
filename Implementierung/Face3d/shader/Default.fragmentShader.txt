@@ -1,3 +1,4 @@
+
 #version 330 core
 
 // In
@@ -14,6 +15,10 @@ uniform float REyeVerticalTexPos;
 
 // constants
 #define M_PI 3.1415926535897932384626433832795
+
+float gaussian(float mean, float sigma, float x) {
+	return (1 / (sigma * sqrt(2* M_PI)))*exp(-(pow((x-mean),2) / (2 * pow(sigma,2))));
+}
 
 
 // how much of the front texture should be used?
@@ -35,6 +40,14 @@ float sideFactor(float phi)
 	return val;
 }
 
+// how much of the side texture should be used?
+float sideFactor2(float phi)
+{
+	float val=sin(phi);
+	val=clamp(val, 0.0, 1.0);
+	
+	return val;
+}
 
 // cylinder mapping of the two textures onto face model
 vec4 textureShading()
@@ -42,11 +55,10 @@ vec4 textureShading()
 	// phi coordinate of cylinder
 	// phi=0 at the back of the face and then increases in CCW direction to 2pi
 	float phi=atan(modelPosition.z, -modelPosition.x)+M_PI;	
-
 	
 	// vertical coordinate of cylinder 
 	//float vertical=1.0-(modelPosition.y+2.25)/4.0; // TODO read value from image processing app!
-	float vertical=(modelPosition.y-chinVerticalPos)/(eyeVerticalPos-chinVerticalPos);
+	float vertical=(modelPosition.y-chinVerticalPos)/(eyeVerticalPos - 10 -chinVerticalPos);
 	vertical = (vertical + LEyeVerticalTexPos) / (1 + 2 * LEyeVerticalTexPos);
 	vertical = 1.0 - vertical;
 	
@@ -63,16 +75,32 @@ vec4 textureShading()
 	
 	
 	// smooth overlapping of textures. 
-	float ff=frontFactor(phi),sf1=sideFactor(phi),sf2=sideFactor(phi+M_PI);
-	ff*=ff;
-	sf1*=sf1;
-	sf2*=sf2;	
+	float ff=frontFactor(phi),sf1=sideFactor(phi),sf2=sideFactor2(phi + M_PI);
+	ff *= ff;
+	sf1 *= sf1;
+	sf2 *= sf2;
+
+/*	ff = gaussian(1.0, 0.6, ff);
+	sf1 = gaussian(1.0, 0.1, sf1);
+	sf2 = gaussian(1.0, 0.1, sf2);
+*/		
+
+	float fac =  (ff + sf1 + sf2); 
+
+	ff = ff / fac;
+	sf1 = sf1 / fac;
+	sf2 = sf2  / fac;	
 	
-	// final color
-	return vec4(ff*texColorFront+sf1*texColorSide1+sf2*texColorSide2,1.0);	
+
+	return vec4((ff*texColorFront+sf1*texColorSide1+sf2*texColorSide2)  ,1.0);	
+
 
 	// test color
 	//return vec4(vertical,vertical,vertical,1.0);
+	//return vec4(phi / (2*M_PI), phi / (2*M_PI), phi / (2*M_PI), 1.0);
+	return vec4(ff,ff,ff,1.0f);
+	//return vec4(sf1,sf1,sf1,1.0f);
+	//return vec4((texColorSide2),1.0);	
 }
 
 

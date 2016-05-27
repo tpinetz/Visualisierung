@@ -103,7 +103,7 @@ namespace Face3D
 		modelInfo.allLeftEyeVertices = { glm::vec3(-0.2, 0.65, 0.78) };
 
 		// right eye
-		modelInfo.allLeftEyeVertices = { glm::vec3(-0.2, -0.65, 0.78) };
+		modelInfo.allRightEyeVertices = { glm::vec3(-0.2, -0.65, 0.78) };
 	}
 
 
@@ -113,7 +113,7 @@ namespace Face3D
 		// load model, front and side texture
 		Model::ModelInfo modelInfo;
 		// file path
-		modelInfo.modelPath = "models/simpleSingleMesh.obj";
+		modelInfo.modelPath = "models/simpleSingleMesh2.obj";
 		modelInfo.textureFront = "ipc/front.jpg";
 		modelInfo.textureSide = "ipc/side.jpg";
 		

@@ -454,9 +454,10 @@ namespace Face3D
 		m_Textures[sideImgNr] = cv::Mat::zeros(imgSize, imgSize, CV_8UC3);
 
 		// mask images
-		m_Originals[frontImgNr].copyTo(m_Textures[frontImgNr], m_FaceMask[frontImgNr]);
-		m_Originals[sideImgNr].copyTo(m_Textures[sideImgNr], m_FaceMask[sideImgNr]);		
+		m_Originals[frontImgNr].copyTo(m_Textures[frontImgNr], m_Originals[frontImgNr]);
+		m_Originals[sideImgNr].copyTo(m_Textures[sideImgNr], m_Originals[sideImgNr]);		
 
+		//dbgShow(m_Textures[frontImgNr], "TestImage");
 
 		// front image: rotate so that eyes are on a horizontal line
 		cv::Vec2d vecEyes(m_FaceGeometry.getDetectedPoint(FaceGeometry::FrontRightEye) - m_FaceGeometry.getDetectedPoint(FaceGeometry::FrontLeftEye));
@@ -511,8 +512,8 @@ namespace Face3D
 		sideBoundingBox.width = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideNoseTip).x - m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideBack).x;
 		sideBoundingBox.height = m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideChin).y - m_FaceGeometry.getDetectedPointInt(FaceGeometry::SideEye).y;
 		// add. texture
-		sideBoundingBox.y = frontBoundingBox.y*(1 - m_AddTexture);
-		sideBoundingBox.height = frontBoundingBox.height*(1 + 2 * m_AddTexture);
+		sideBoundingBox.y = frontBoundingBox.y*(1 - m_AddTexture/2);
+		sideBoundingBox.height = frontBoundingBox.height*(1 +  m_AddTexture);
 
 
 		m_Textures[frontImgNr](frontBoundingBox).copyTo(m_Textures[frontImgNr]);
@@ -628,7 +629,7 @@ namespace Face3D
 		m_FaceGeometryBackup = m_FaceGeometry;
 		createTextures();
 		cv::namedWindow("Resulting textures");
-		cv::createTrackbar("adjust size", "Resulting textures", 0, 15, onTextureAdjustmentTrackbar, this);
+		cv::createTrackbar("adjust size", "Resulting textures", 0, 25, onTextureAdjustmentTrackbar, this);
 		cv::imshow("Resulting textures", combineVertically(m_Textures[frontImgNr], m_Textures[sideImgNr]));
 
 		// show until any key			

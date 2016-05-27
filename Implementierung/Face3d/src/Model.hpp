@@ -71,6 +71,7 @@ namespace Face3D
 			void rotate(GLfloat val){ m_RotationAngle = val; }
 			void scale(GLfloat val){ m_ScaleVal = val; }
 			void render();
+			
 
 		private:				
 			ModelInfo m_ModelInfo;
