@@ -17,7 +17,7 @@
 
 namespace Face3D
 {
-	// is val around x, that means in [x-eps, x+eps]
+	/** is val around x, that means inside the intervall [x-eps, x+eps] */
 	template<class T>
 	bool isInsideEpsBall(const T& a, const T& b)
 	{
@@ -25,14 +25,14 @@ namespace Face3D
 	}
 
 
-	// single vertex
+	/** definition of a single vertex */
 	struct Vertex
 	{
 		glm::vec4 position;
 		glm::vec4 normal;
 	};
 
-	// triangle mesh
+	/** definition of a triangle mesh */
 	class Mesh
 	{
 	public:
@@ -47,10 +47,12 @@ namespace Face3D
 		void setup();
 	};
 
-	// model of an object containing meshes and vertices
+	/** definition of a model of an object containing meshes and vertices */
 	class Model
 	{
 		public:
+
+			/** all informations we need to load the model and move the vertices around are stored in this structure */
 			struct ModelInfo
 			{
 				std::string modelPath;
@@ -59,10 +61,10 @@ namespace Face3D
 
 				glm::vec3 modelDimension;
 				 
-				// center of face components, needed as reference points when moving around the other vertices
+				/// center of face components, needed as reference points when moving around the other vertices
 				glm::vec3 leftEye, rightEye, mouth, nose, chin;
 
-				// specify all vertices of a component which should be moved around
+				/// specify all vertices of a component which should be moved around
 				std::vector<glm::vec3> allMouthVertices, allNoseVertices, allLeftEyeVertices, allRightEyeVertices;
 
 			};
@@ -95,7 +97,7 @@ namespace Face3D
 			GLfloat m_ScaleVal = 1.0f;
 			GLfloat m_fx=0, m_fy=0, m_fz=0;
 
-			// load mesh data from file
+			/// load mesh data from file
 			void load(const std::string& path);
 			void processNode(aiNode *node, const aiScene *scene);
 			Mesh processMesh(aiMesh *mesh, const aiScene *scene, std::string name);

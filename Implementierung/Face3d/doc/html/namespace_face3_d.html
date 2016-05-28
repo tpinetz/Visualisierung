@@ -137,6 +137,19 @@ Functions</h2></td></tr>
 <tr class="memitem:a3b895408a6257eb9b7cfdbaec770e356"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_face3_d.html#a3b895408a6257eb9b7cfdbaec770e356">dbgShow</a> (const cv::Mat img, const std::string &amp;msg=&quot;&quot;, int id=0)</td></tr>
 <tr class="memdesc:a3b895408a6257eb9b7cfdbaec770e356"><td class="mdescLeft">&#160;</td><td class="mdescRight">show intermediate results while debugging - does not do anything when compiled in release mode  <a href="#a3b895408a6257eb9b7cfdbaec770e356">More...</a><br /></td></tr>
 <tr class="separator:a3b895408a6257eb9b7cfdbaec770e356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30822f87a9d45e34cd2e50fffdc8daac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_face3_d.html#a30822f87a9d45e34cd2e50fffdc8daac">isConcave</a> (const cv::Point &amp;a, const cv::Point &amp;b, const cv::Point &amp;c)</td></tr>
+<tr class="separator:a30822f87a9d45e34cd2e50fffdc8daac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61c1e044078023b974eaae4e357f4749"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_face3_d.html#a61c1e044078023b974eaae4e357f4749">onColorThresholdsTrackbar</a> (int val, void *ptr)</td></tr>
+<tr class="separator:a61c1e044078023b974eaae4e357f4749"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8eef43bd9635c7b45779ee075115b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_face3_d.html#a9c8eef43bd9635c7b45779ee075115b2">onTextureAdjustmentTrackbarBottom</a> (int val, void *ptr)</td></tr>
+<tr class="separator:a9c8eef43bd9635c7b45779ee075115b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a233335d6ebf7a5bf74368546dd6ed251"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_face3_d.html#a233335d6ebf7a5bf74368546dd6ed251">onTextureAdjustmentTrackbarTop</a> (int val, void *ptr)</td></tr>
+<tr class="separator:a233335d6ebf7a5bf74368546dd6ed251"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb3ec7550bca690a5e6249f98ef6b197"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_face3_d.html#abb3ec7550bca690a5e6249f98ef6b197">onTextureAdjustmentTrackbar</a> (int val, void *ptr)</td></tr>
+<tr class="separator:abb3ec7550bca690a5e6249f98ef6b197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07f1036620b33d2297d1f7e28ec630a3"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a07f1036620b33d2297d1f7e28ec630a3"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_face3_d.html#a07f1036620b33d2297d1f7e28ec630a3">isInsideEpsBall</a> (const T &amp;a, const T &amp;b)</td></tr>
+<tr class="separator:a07f1036620b33d2297d1f7e28ec630a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a3b895408a6257eb9b7cfdbaec770e356"></a>
@@ -186,6 +199,171 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a30822f87a9d45e34cd2e50fffdc8daac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Face3D::isConcave </td>
+          <td>(</td>
+          <td class="paramtype">const cv::Point &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cv::Point &amp;&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cv::Point &amp;&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a07f1036620b33d2297d1f7e28ec630a3"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Face3D::isInsideEpsBall </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>is val around x, that means inside the intervall [x-eps, x+eps] </p>
+
+</div>
+</div>
+<a class="anchor" id="a61c1e044078023b974eaae4e357f4749"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Face3D::onColorThresholdsTrackbar </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abb3ec7550bca690a5e6249f98ef6b197"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Face3D::onTextureAdjustmentTrackbar </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9c8eef43bd9635c7b45779ee075115b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Face3D::onTextureAdjustmentTrackbarBottom </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a233335d6ebf7a5bf74368546dd6ed251"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Face3D::onTextureAdjustmentTrackbarTop </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

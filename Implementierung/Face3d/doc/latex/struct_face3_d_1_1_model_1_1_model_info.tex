@@ -13,24 +13,70 @@ std\+::string \hyperlink{struct_face3_d_1_1_model_1_1_model_info_aa31a18f8553efb
 \item 
 std\+::string \hyperlink{struct_face3_d_1_1_model_1_1_model_info_a0afbed21c950938c52f4a02da26cfb75}{texture\+Side}
 \item 
-glm\+::vec3 \hyperlink{struct_face3_d_1_1_model_1_1_model_info_a8c085a7458ad7cadd13c64a632faa837}{left\+Eye}
+glm\+::vec3 \hyperlink{struct_face3_d_1_1_model_1_1_model_info_a4e2b64e11591be649d15eca8c6180376}{model\+Dimension}
 \item 
+glm\+::vec3 \hyperlink{struct_face3_d_1_1_model_1_1_model_info_a8c085a7458ad7cadd13c64a632faa837}{left\+Eye}
+\begin{DoxyCompactList}\small\item\em center of face components, needed as reference points when moving around the other vertices \end{DoxyCompactList}\item 
 glm\+::vec3 \hyperlink{struct_face3_d_1_1_model_1_1_model_info_acc12c6496e68aa15bcdf996f9bb3b58f}{right\+Eye}
 \item 
 glm\+::vec3 \hyperlink{struct_face3_d_1_1_model_1_1_model_info_ae0837733aacbb7d04ce34b2f240abf4f}{mouth}
+\item 
+glm\+::vec3 \hyperlink{struct_face3_d_1_1_model_1_1_model_info_afeddc5304d7cb7c77d3239efeef56747}{nose}
+\item 
+glm\+::vec3 \hyperlink{struct_face3_d_1_1_model_1_1_model_info_a1f6688ce6effce5f529d8b4f3019766e}{chin}
+\item 
+std\+::vector$<$ glm\+::vec3 $>$ \hyperlink{struct_face3_d_1_1_model_1_1_model_info_a31db594ca5e11d12cb5965c5a6e3ee2d}{all\+Mouth\+Vertices}
+\begin{DoxyCompactList}\small\item\em specify all vertices of a component which should be moved around \end{DoxyCompactList}\item 
+std\+::vector$<$ glm\+::vec3 $>$ \hyperlink{struct_face3_d_1_1_model_1_1_model_info_a789b548861f05b8bd79f4a3f26b84bbb}{all\+Nose\+Vertices}
+\item 
+std\+::vector$<$ glm\+::vec3 $>$ \hyperlink{struct_face3_d_1_1_model_1_1_model_info_a8ff9da28559de5ae3a242ce6e18fea75}{all\+Left\+Eye\+Vertices}
+\item 
+std\+::vector$<$ glm\+::vec3 $>$ \hyperlink{struct_face3_d_1_1_model_1_1_model_info_ab8c6d263cbdc8768344617e03d1e3c24}{all\+Right\+Eye\+Vertices}
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+all informations we need to load the model and move the vertices around are stored in this structure 
+
 \subsection{Member Data Documentation}
+\index{Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}!all\+Left\+Eye\+Vertices@{all\+Left\+Eye\+Vertices}}
+\index{all\+Left\+Eye\+Vertices@{all\+Left\+Eye\+Vertices}!Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}}
+\subsubsection[{\texorpdfstring{all\+Left\+Eye\+Vertices}{allLeftEyeVertices}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$glm\+::vec3$>$ Face3\+D\+::\+Model\+::\+Model\+Info\+::all\+Left\+Eye\+Vertices}\hypertarget{struct_face3_d_1_1_model_1_1_model_info_a8ff9da28559de5ae3a242ce6e18fea75}{}\label{struct_face3_d_1_1_model_1_1_model_info_a8ff9da28559de5ae3a242ce6e18fea75}
+\index{Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}!all\+Mouth\+Vertices@{all\+Mouth\+Vertices}}
+\index{all\+Mouth\+Vertices@{all\+Mouth\+Vertices}!Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}}
+\subsubsection[{\texorpdfstring{all\+Mouth\+Vertices}{allMouthVertices}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$glm\+::vec3$>$ Face3\+D\+::\+Model\+::\+Model\+Info\+::all\+Mouth\+Vertices}\hypertarget{struct_face3_d_1_1_model_1_1_model_info_a31db594ca5e11d12cb5965c5a6e3ee2d}{}\label{struct_face3_d_1_1_model_1_1_model_info_a31db594ca5e11d12cb5965c5a6e3ee2d}
+
+
+specify all vertices of a component which should be moved around 
+
+\index{Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}!all\+Nose\+Vertices@{all\+Nose\+Vertices}}
+\index{all\+Nose\+Vertices@{all\+Nose\+Vertices}!Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}}
+\subsubsection[{\texorpdfstring{all\+Nose\+Vertices}{allNoseVertices}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$glm\+::vec3$>$ Face3\+D\+::\+Model\+::\+Model\+Info\+::all\+Nose\+Vertices}\hypertarget{struct_face3_d_1_1_model_1_1_model_info_a789b548861f05b8bd79f4a3f26b84bbb}{}\label{struct_face3_d_1_1_model_1_1_model_info_a789b548861f05b8bd79f4a3f26b84bbb}
+\index{Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}!all\+Right\+Eye\+Vertices@{all\+Right\+Eye\+Vertices}}
+\index{all\+Right\+Eye\+Vertices@{all\+Right\+Eye\+Vertices}!Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}}
+\subsubsection[{\texorpdfstring{all\+Right\+Eye\+Vertices}{allRightEyeVertices}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$glm\+::vec3$>$ Face3\+D\+::\+Model\+::\+Model\+Info\+::all\+Right\+Eye\+Vertices}\hypertarget{struct_face3_d_1_1_model_1_1_model_info_ab8c6d263cbdc8768344617e03d1e3c24}{}\label{struct_face3_d_1_1_model_1_1_model_info_ab8c6d263cbdc8768344617e03d1e3c24}
+\index{Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}!chin@{chin}}
+\index{chin@{chin}!Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}}
+\subsubsection[{\texorpdfstring{chin}{chin}}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Model\+::\+Model\+Info\+::chin}\hypertarget{struct_face3_d_1_1_model_1_1_model_info_a1f6688ce6effce5f529d8b4f3019766e}{}\label{struct_face3_d_1_1_model_1_1_model_info_a1f6688ce6effce5f529d8b4f3019766e}
 \index{Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}!left\+Eye@{left\+Eye}}
 \index{left\+Eye@{left\+Eye}!Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}}
 \subsubsection[{\texorpdfstring{left\+Eye}{leftEye}}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Model\+::\+Model\+Info\+::left\+Eye}\hypertarget{struct_face3_d_1_1_model_1_1_model_info_a8c085a7458ad7cadd13c64a632faa837}{}\label{struct_face3_d_1_1_model_1_1_model_info_a8c085a7458ad7cadd13c64a632faa837}
+
+
+center of face components, needed as reference points when moving around the other vertices 
+
+\index{Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}!model\+Dimension@{model\+Dimension}}
+\index{model\+Dimension@{model\+Dimension}!Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}}
+\subsubsection[{\texorpdfstring{model\+Dimension}{modelDimension}}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Model\+::\+Model\+Info\+::model\+Dimension}\hypertarget{struct_face3_d_1_1_model_1_1_model_info_a4e2b64e11591be649d15eca8c6180376}{}\label{struct_face3_d_1_1_model_1_1_model_info_a4e2b64e11591be649d15eca8c6180376}
 \index{Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}!model\+Path@{model\+Path}}
 \index{model\+Path@{model\+Path}!Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}}
 \subsubsection[{\texorpdfstring{model\+Path}{modelPath}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Face3\+D\+::\+Model\+::\+Model\+Info\+::model\+Path}\hypertarget{struct_face3_d_1_1_model_1_1_model_info_a7f6cacf9ae39c86e2007f87dacff16e3}{}\label{struct_face3_d_1_1_model_1_1_model_info_a7f6cacf9ae39c86e2007f87dacff16e3}
 \index{Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}!mouth@{mouth}}
 \index{mouth@{mouth}!Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}}
 \subsubsection[{\texorpdfstring{mouth}{mouth}}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Model\+::\+Model\+Info\+::mouth}\hypertarget{struct_face3_d_1_1_model_1_1_model_info_ae0837733aacbb7d04ce34b2f240abf4f}{}\label{struct_face3_d_1_1_model_1_1_model_info_ae0837733aacbb7d04ce34b2f240abf4f}
+\index{Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}!nose@{nose}}
+\index{nose@{nose}!Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}}
+\subsubsection[{\texorpdfstring{nose}{nose}}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Model\+::\+Model\+Info\+::nose}\hypertarget{struct_face3_d_1_1_model_1_1_model_info_afeddc5304d7cb7c77d3239efeef56747}{}\label{struct_face3_d_1_1_model_1_1_model_info_afeddc5304d7cb7c77d3239efeef56747}
 \index{Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}!right\+Eye@{right\+Eye}}
 \index{right\+Eye@{right\+Eye}!Face3\+D\+::\+Model\+::\+Model\+Info@{Face3\+D\+::\+Model\+::\+Model\+Info}}
 \subsubsection[{\texorpdfstring{right\+Eye}{rightEye}}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Model\+::\+Model\+Info\+::right\+Eye}\hypertarget{struct_face3_d_1_1_model_1_1_model_info_acc12c6496e68aa15bcdf996f9bb3b58f}{}\label{struct_face3_d_1_1_model_1_1_model_info_acc12c6496e68aa15bcdf996f9bb3b58f}

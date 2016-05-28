@@ -24,15 +24,21 @@ void \hyperlink{class_face3_d_1_1_model_a88e8ee28d3babfcb7090f7941663e594}{rende
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{class_face3_d_1_1_model_a6a5aeb80314d44476b3964c4b977be7d}{load} (const std\+::string \&path)
-\item 
+\begin{DoxyCompactList}\small\item\em load mesh data from file \end{DoxyCompactList}\item 
 void \hyperlink{class_face3_d_1_1_model_a483e8a42f180d07ccbeaa10a56b130e0}{process\+Node} (ai\+Node $\ast$node, const ai\+Scene $\ast$scene)
 \item 
-\hyperlink{class_face3_d_1_1_mesh}{Mesh} \hyperlink{class_face3_d_1_1_model_aca2d4b10b7468235c5d01c1adc717f87}{process\+Mesh} (ai\+Mesh $\ast$mesh, const ai\+Scene $\ast$scene)
+\hyperlink{class_face3_d_1_1_mesh}{Mesh} \hyperlink{class_face3_d_1_1_model_adfe25f21ec62de6fe960a87031ef5134}{process\+Mesh} (ai\+Mesh $\ast$mesh, const ai\+Scene $\ast$scene, std\+::string name)
+\item 
+void \hyperlink{class_face3_d_1_1_model_aa5aa4570539e2783c797195bb0e679d1}{calc\+Scaling\+Factors} ()
+\item 
+glm\+::vec3 \hyperlink{class_face3_d_1_1_model_ab2700b8f556dbdd9ecc6ddbcd25d59d1}{move\+Generic\+Vertex} (const glm\+::vec3 \&generic\+Vertex)
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{struct_face3_d_1_1_model_1_1_model_info}{Model\+Info} \hyperlink{class_face3_d_1_1_model_a4e781e1061417cad95eb99640fc4f77b}{m\+\_\+\+Model\+Info}
+\item 
+\hyperlink{class_face3_d_1_1_face_coordinates3d}{Face\+Coordinates3d} \hyperlink{class_face3_d_1_1_model_a340fc99b4793025ab7775c6242dcfda7}{m\+\_\+\+Face\+Coords}
 \item 
 G\+Luint \hyperlink{class_face3_d_1_1_model_adf4a54487670014da5422dc36940a332}{m\+\_\+\+Texture\+Front\+ID} = 0
 \item 
@@ -50,13 +56,32 @@ G\+Luint \hyperlink{class_face3_d_1_1_model_a327fa317ef7aeb53d98a11c98325ca8c}{m
 \item 
 G\+Luint \hyperlink{class_face3_d_1_1_model_a206d2e11c046acd3bbbb8a6ce8aa4586}{m\+\_\+\+Texture\+Side\+Sampler\+Location} = 0
 \item 
+G\+Luint \hyperlink{class_face3_d_1_1_model_a6b5d007981b8b32ea025de8b9a6111eb}{m\+\_\+\+Chin\+Vertical\+Pos\+Location} = 0
+\item 
+G\+Luint \hyperlink{class_face3_d_1_1_model_ac6c2485555e2ed5b92ef69f17e0beeb6}{m\+\_\+\+Eye\+Vertical\+Pos\+Location} = 0
+\item 
+G\+Luint \hyperlink{class_face3_d_1_1_model_a87378c96c0bf29bbf4f4615461498a18}{m\+\_\+\+L\+Eye\+Tex\+Vertical\+Pos\+Location} = 0
+\item 
+G\+Luint \hyperlink{class_face3_d_1_1_model_a79e5b9a3c19a532ad34debe76ccea406}{m\+\_\+\+R\+Eye\+Tex\+Vertical\+Pos\+Location} = 0
+\item 
+G\+Luint \hyperlink{class_face3_d_1_1_model_a3cdae9ddaee69e3add15fe4cce91eeb0}{m\+\_\+\+Chin\+Tex\+Vertical\+Pos\+Location} = 0
+\item 
 glm\+::mat4 \hyperlink{class_face3_d_1_1_model_abf3da04870854ee1b1fa4c02d214f3cc}{m\+\_\+\+M\+V\+P\+Matrix}
 \item 
 G\+Lfloat \hyperlink{class_face3_d_1_1_model_a5097ce51273431b3684239a51af9fa72}{m\+\_\+\+Rotation\+Angle} = 0.\+0f
 \item 
 G\+Lfloat \hyperlink{class_face3_d_1_1_model_a08dad50dd45a852f2426f43236b7c81c}{m\+\_\+\+Scale\+Val} = 1.\+0f
+\item 
+G\+Lfloat \hyperlink{class_face3_d_1_1_model_a8776b7226af5f91bccec2b9b9dc373b6}{m\+\_\+fx} =0
+\item 
+G\+Lfloat \hyperlink{class_face3_d_1_1_model_aa08cc40241dd122ad566993b71cf0168}{m\+\_\+fy} =0
+\item 
+G\+Lfloat \hyperlink{class_face3_d_1_1_model_ae92e67a07cb4ebb7621e3c03a7ce8791}{m\+\_\+fz} =0
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+definition of a model of an object containing meshes and vertices 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!Model@{Model}}
@@ -69,21 +94,40 @@ G\+Lfloat \hyperlink{class_face3_d_1_1_model_a08dad50dd45a852f2426f43236b7c81c}{
 
 
 \subsection{Member Function Documentation}
-\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!load@{load}}
+\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!calc\+Scaling\+Factors@{calc\+Scaling\+Factors}}
+\index{calc\+Scaling\+Factors@{calc\+Scaling\+Factors}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
+\subsubsection[{\texorpdfstring{calc\+Scaling\+Factors()}{calcScalingFactors()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Model\+::calc\+Scaling\+Factors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_aa5aa4570539e2783c797195bb0e679d1}{}\label{class_face3_d_1_1_model_aa5aa4570539e2783c797195bb0e679d1}
+calculate the scaling factors to resize the generic face such that it looks like the face on the images \index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!load@{load}}
 \index{load@{load}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
 \subsubsection[{\texorpdfstring{load(const std\+::string \&path)}{load(const std::string &path)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Model\+::load (
 \begin{DoxyParamCaption}
 \item[{const std\+::string \&}]{path}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_a6a5aeb80314d44476b3964c4b977be7d}{}\label{class_face3_d_1_1_model_a6a5aeb80314d44476b3964c4b977be7d}
-\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!process\+Mesh@{process\+Mesh}}
+
+
+load mesh data from file 
+
+\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!move\+Generic\+Vertex@{move\+Generic\+Vertex}}
+\index{move\+Generic\+Vertex@{move\+Generic\+Vertex}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
+\subsubsection[{\texorpdfstring{move\+Generic\+Vertex(const glm\+::vec3 \&generic\+Vertex)}{moveGenericVertex(const glm::vec3 &genericVertex)}}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Model\+::move\+Generic\+Vertex (
+\begin{DoxyParamCaption}
+\item[{const glm\+::vec3 \&}]{generic\+Vertex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_ab2700b8f556dbdd9ecc6ddbcd25d59d1}{}\label{class_face3_d_1_1_model_ab2700b8f556dbdd9ecc6ddbcd25d59d1}
+move a vrtex of the generic model to its final position according to the face detection \index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!process\+Mesh@{process\+Mesh}}
 \index{process\+Mesh@{process\+Mesh}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
-\subsubsection[{\texorpdfstring{process\+Mesh(ai\+Mesh $\ast$mesh, const ai\+Scene $\ast$scene)}{processMesh(aiMesh *mesh, const aiScene *scene)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} Face3\+D\+::\+Model\+::process\+Mesh (
+\subsubsection[{\texorpdfstring{process\+Mesh(ai\+Mesh $\ast$mesh, const ai\+Scene $\ast$scene, std\+::string name)}{processMesh(aiMesh *mesh, const aiScene *scene, std::string name)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} Face3\+D\+::\+Model\+::process\+Mesh (
 \begin{DoxyParamCaption}
 \item[{ai\+Mesh $\ast$}]{mesh, }
-\item[{const ai\+Scene $\ast$}]{scene}
+\item[{const ai\+Scene $\ast$}]{scene, }
+\item[{std\+::string}]{name}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_aca2d4b10b7468235c5d01c1adc717f87}{}\label{class_face3_d_1_1_model_aca2d4b10b7468235c5d01c1adc717f87}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_adfe25f21ec62de6fe960a87031ef5134}{}\label{class_face3_d_1_1_model_adfe25f21ec62de6fe960a87031ef5134}
 \index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!process\+Node@{process\+Node}}
 \index{process\+Node@{process\+Node}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
 \subsubsection[{\texorpdfstring{process\+Node(ai\+Node $\ast$node, const ai\+Scene $\ast$scene)}{processNode(aiNode *node, const aiScene *scene)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Model\+::process\+Node (
@@ -116,6 +160,30 @@ G\+Lfloat \hyperlink{class_face3_d_1_1_model_a08dad50dd45a852f2426f43236b7c81c}{
 
 
 \subsection{Member Data Documentation}
+\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!m\+\_\+\+Chin\+Tex\+Vertical\+Pos\+Location@{m\+\_\+\+Chin\+Tex\+Vertical\+Pos\+Location}}
+\index{m\+\_\+\+Chin\+Tex\+Vertical\+Pos\+Location@{m\+\_\+\+Chin\+Tex\+Vertical\+Pos\+Location}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Chin\+Tex\+Vertical\+Pos\+Location}{m_ChinTexVerticalPosLocation}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Model\+::m\+\_\+\+Chin\+Tex\+Vertical\+Pos\+Location = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_a3cdae9ddaee69e3add15fe4cce91eeb0}{}\label{class_face3_d_1_1_model_a3cdae9ddaee69e3add15fe4cce91eeb0}
+\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!m\+\_\+\+Chin\+Vertical\+Pos\+Location@{m\+\_\+\+Chin\+Vertical\+Pos\+Location}}
+\index{m\+\_\+\+Chin\+Vertical\+Pos\+Location@{m\+\_\+\+Chin\+Vertical\+Pos\+Location}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Chin\+Vertical\+Pos\+Location}{m_ChinVerticalPosLocation}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Model\+::m\+\_\+\+Chin\+Vertical\+Pos\+Location = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_a6b5d007981b8b32ea025de8b9a6111eb}{}\label{class_face3_d_1_1_model_a6b5d007981b8b32ea025de8b9a6111eb}
+\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!m\+\_\+\+Eye\+Vertical\+Pos\+Location@{m\+\_\+\+Eye\+Vertical\+Pos\+Location}}
+\index{m\+\_\+\+Eye\+Vertical\+Pos\+Location@{m\+\_\+\+Eye\+Vertical\+Pos\+Location}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Eye\+Vertical\+Pos\+Location}{m_EyeVerticalPosLocation}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Model\+::m\+\_\+\+Eye\+Vertical\+Pos\+Location = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_ac6c2485555e2ed5b92ef69f17e0beeb6}{}\label{class_face3_d_1_1_model_ac6c2485555e2ed5b92ef69f17e0beeb6}
+\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!m\+\_\+\+Face\+Coords@{m\+\_\+\+Face\+Coords}}
+\index{m\+\_\+\+Face\+Coords@{m\+\_\+\+Face\+Coords}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Face\+Coords}{m_FaceCoords}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Face\+Coordinates3d} Face3\+D\+::\+Model\+::m\+\_\+\+Face\+Coords\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_a340fc99b4793025ab7775c6242dcfda7}{}\label{class_face3_d_1_1_model_a340fc99b4793025ab7775c6242dcfda7}
+\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!m\+\_\+fx@{m\+\_\+fx}}
+\index{m\+\_\+fx@{m\+\_\+fx}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
+\subsubsection[{\texorpdfstring{m\+\_\+fx}{m_fx}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Lfloat Face3\+D\+::\+Model\+::m\+\_\+fx =0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_a8776b7226af5f91bccec2b9b9dc373b6}{}\label{class_face3_d_1_1_model_a8776b7226af5f91bccec2b9b9dc373b6}
+\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!m\+\_\+fy@{m\+\_\+fy}}
+\index{m\+\_\+fy@{m\+\_\+fy}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
+\subsubsection[{\texorpdfstring{m\+\_\+fy}{m_fy}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Lfloat Face3\+D\+::\+Model\+::m\+\_\+fy =0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_aa08cc40241dd122ad566993b71cf0168}{}\label{class_face3_d_1_1_model_aa08cc40241dd122ad566993b71cf0168}
+\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!m\+\_\+fz@{m\+\_\+fz}}
+\index{m\+\_\+fz@{m\+\_\+fz}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
+\subsubsection[{\texorpdfstring{m\+\_\+fz}{m_fz}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Lfloat Face3\+D\+::\+Model\+::m\+\_\+fz =0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_ae92e67a07cb4ebb7621e3c03a7ce8791}{}\label{class_face3_d_1_1_model_ae92e67a07cb4ebb7621e3c03a7ce8791}
+\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!m\+\_\+\+L\+Eye\+Tex\+Vertical\+Pos\+Location@{m\+\_\+\+L\+Eye\+Tex\+Vertical\+Pos\+Location}}
+\index{m\+\_\+\+L\+Eye\+Tex\+Vertical\+Pos\+Location@{m\+\_\+\+L\+Eye\+Tex\+Vertical\+Pos\+Location}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+L\+Eye\+Tex\+Vertical\+Pos\+Location}{m_LEyeTexVerticalPosLocation}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Model\+::m\+\_\+\+L\+Eye\+Tex\+Vertical\+Pos\+Location = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_a87378c96c0bf29bbf4f4615461498a18}{}\label{class_face3_d_1_1_model_a87378c96c0bf29bbf4f4615461498a18}
 \index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!m\+\_\+\+Model\+Info@{m\+\_\+\+Model\+Info}}
 \index{m\+\_\+\+Model\+Info@{m\+\_\+\+Model\+Info}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
 \subsubsection[{\texorpdfstring{m\+\_\+\+Model\+Info}{m_ModelInfo}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Model\+Info} Face3\+D\+::\+Model\+::m\+\_\+\+Model\+Info\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_a4e781e1061417cad95eb99640fc4f77b}{}\label{class_face3_d_1_1_model_a4e781e1061417cad95eb99640fc4f77b}
@@ -128,6 +196,9 @@ G\+Lfloat \hyperlink{class_face3_d_1_1_model_a08dad50dd45a852f2426f43236b7c81c}{
 \index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!m\+\_\+p\+Meshes@{m\+\_\+p\+Meshes}}
 \index{m\+\_\+p\+Meshes@{m\+\_\+p\+Meshes}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
 \subsubsection[{\texorpdfstring{m\+\_\+p\+Meshes}{m_pMeshes}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<$std\+::vector$<${\bf Mesh}$>$ $>$ Face3\+D\+::\+Model\+::m\+\_\+p\+Meshes\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_a8e66abbba8d896017fe33c247036f133}{}\label{class_face3_d_1_1_model_a8e66abbba8d896017fe33c247036f133}
+\index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!m\+\_\+\+R\+Eye\+Tex\+Vertical\+Pos\+Location@{m\+\_\+\+R\+Eye\+Tex\+Vertical\+Pos\+Location}}
+\index{m\+\_\+\+R\+Eye\+Tex\+Vertical\+Pos\+Location@{m\+\_\+\+R\+Eye\+Tex\+Vertical\+Pos\+Location}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+R\+Eye\+Tex\+Vertical\+Pos\+Location}{m_REyeTexVerticalPosLocation}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Model\+::m\+\_\+\+R\+Eye\+Tex\+Vertical\+Pos\+Location = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_a79e5b9a3c19a532ad34debe76ccea406}{}\label{class_face3_d_1_1_model_a79e5b9a3c19a532ad34debe76ccea406}
 \index{Face3\+D\+::\+Model@{Face3\+D\+::\+Model}!m\+\_\+\+Rotation\+Angle@{m\+\_\+\+Rotation\+Angle}}
 \index{m\+\_\+\+Rotation\+Angle@{m\+\_\+\+Rotation\+Angle}!Face3\+D\+::\+Model@{Face3\+D\+::\+Model}}
 \subsubsection[{\texorpdfstring{m\+\_\+\+Rotation\+Angle}{m_RotationAngle}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Lfloat Face3\+D\+::\+Model\+::m\+\_\+\+Rotation\+Angle = 0.\+0f\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_model_a5097ce51273431b3684239a51af9fa72}{}\label{class_face3_d_1_1_model_a5097ce51273431b3684239a51af9fa72}

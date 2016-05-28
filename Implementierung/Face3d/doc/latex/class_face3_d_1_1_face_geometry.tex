@@ -11,15 +11,19 @@ enum \hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf1
 \hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a3b8d42b7b6a50b21aa7b45f91d6ca101}{Front\+Left\+Eye}, 
 \hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a8f7e43bdc4f5063cbd2077f07839fefa}{Front\+Right\+Eye}, 
 \hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11ae026cb5d275298596d8271989547f308}{Front\+Mouth}, 
-\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11ae6070e4323042c54fd618a58ee59096d}{Side\+Eye}, 
+\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a25003b7445b9bd1e32893e182fb7a64e}{Front\+Left\+Cheek}, 
 \\*
+\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a50f3b130a82bbb888aea798da7593158}{Front\+Right\+Cheek}, 
+\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11ae6070e4323042c54fd618a58ee59096d}{Side\+Eye}, 
 \hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11aede62853a8d83e60bedafd0ad9fccaf6}{Side\+Nose\+Tip}, 
+\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a4dc0a580b65985a111a42af5bec1c4d1}{Side\+Chin}, 
+\\*
+\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11adfaa5defb1292f1feaa168235cbcc5ff}{Side\+Back}, 
+\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a645e3accf36dcc84d39f389bf086a486}{Texture\+Left\+Eye}, 
+\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a02343df464cc8f17becb3d60df94d977}{Texture\+Right\+Eye}, 
+\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a0507d043e77cf67c967bb77c0efb98f7}{Texture\+Chin}, 
+\\*
 \hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11aef08736c0cf92fe26e5d281571ac319d}{Invalid\+Point}
- \}
-\item 
-enum \hyperlink{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77}{Detected\+Regions} \{ \hyperlink{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77ab67d7eec01dde53411fead2352b3225f}{Front\+Facial\+Region}, 
-\hyperlink{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77a2e8f6c6895172ac83574e641b90de35a}{Side\+Facial\+Region}, 
-\hyperlink{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77ac1c1cfae295c068738737d0bdbd3cb78}{Invalid\+Region}
  \}
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
@@ -34,10 +38,6 @@ cv\+::\+Point3d \hyperlink{class_face3_d_1_1_face_geometry_a6aed421ae667cc1b67b4
 void \hyperlink{class_face3_d_1_1_face_geometry_a0cbcfd1b63284e1d1fa1f91a87b8f06a}{set\+Detected\+Point} (\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11}{Detected\+Points} detected\+Point, const cv\+::\+Point2d \&p)
 \item 
 void \hyperlink{class_face3_d_1_1_face_geometry_a737543f3299fee8c845f2af2e25355e1}{set\+Detected\+Point} (\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11}{Detected\+Points} detected\+Point, const cv\+::\+Point3d \&p)
-\item 
-void \hyperlink{class_face3_d_1_1_face_geometry_a9728c2a48b99682f74910f8924cc3f91}{set\+Detected\+Region} (\hyperlink{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77}{Detected\+Regions} detected\+Region, const cv\+::\+Rect r)
-\item 
-cv\+::\+Rect \hyperlink{class_face3_d_1_1_face_geometry_a85251824e8909cca4d35461744ccc40f}{get\+Detected\+Region} (\hyperlink{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77}{Detected\+Regions} detected\+Region)
 \item 
 void \hyperlink{class_face3_d_1_1_face_geometry_a876baec2ea039287ec5d45784d9b0242}{transform} (\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11}{Detected\+Points} point, const cv\+::\+Mat \&transform)
 \item 
@@ -55,8 +55,6 @@ void \hyperlink{class_face3_d_1_1_face_geometry_adfb84290b1363a7f37c785640464bc4
 \item 
 cv\+::\+Point3d \hyperlink{class_face3_d_1_1_face_geometry_a695d2f7b17ed80f56f4e6af44c796a9a}{m\+\_\+\+Detected\+Points} \mbox{[}\hyperlink{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11aef08736c0cf92fe26e5d281571ac319d}{Invalid\+Point}\mbox{]}
 \begin{DoxyCompactList}\small\item\em the 2d points in homogeneous coordinates such that an affine transformation can be applied \end{DoxyCompactList}\item 
-cv\+::\+Rect \hyperlink{class_face3_d_1_1_face_geometry_a41bdb9ec230523b1bc19bc8f7f2b48ea}{m\+\_\+\+Detected\+Regions} \mbox{[}\hyperlink{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77ac1c1cfae295c068738737d0bdbd3cb78}{Invalid\+Region}\mbox{]}
-\begin{DoxyCompactList}\small\item\em the face (skin) regions \end{DoxyCompactList}\item 
 cv\+::\+Point3d \hyperlink{class_face3_d_1_1_face_geometry_a67446b08935c867d465743452d674f71}{left\+Eye}
 \item 
 cv\+::\+Point3d \hyperlink{class_face3_d_1_1_face_geometry_a2843e84aaa697a4cd418d1940378955b}{right\+Eye}
@@ -64,6 +62,10 @@ cv\+::\+Point3d \hyperlink{class_face3_d_1_1_face_geometry_a2843e84aaa697a4cd418
 cv\+::\+Point3d \hyperlink{class_face3_d_1_1_face_geometry_a51b5cf29a6deac13aad7ab3ba3858eca}{nose}
 \item 
 cv\+::\+Point3d \hyperlink{class_face3_d_1_1_face_geometry_a1c36fe81650a276b523d8dc17b30038e}{mouth}
+\item 
+cv\+::\+Point3d \hyperlink{class_face3_d_1_1_face_geometry_a1c10c36a6624d30328d54b28f2829ac0}{chin}
+\item 
+cv\+::\+Point3d \hyperlink{class_face3_d_1_1_face_geometry_a41a5f4561198a1296a9d37ad7f562c68}{face\+Dimensions}
 \begin{DoxyCompactList}\small\item\em 3d position \end{DoxyCompactList}\item 
 cv\+::\+Rect \hyperlink{class_face3_d_1_1_face_geometry_a50fd03eb7de07088b36d3e4dea286b94}{side\+Skin\+Region}
 \begin{DoxyCompactList}\small\item\em region of the skin in the side image \end{DoxyCompactList}\item 
@@ -87,26 +89,26 @@ Front\+Left\+Eye\hypertarget{class_face3_d_1_1_face_geometry_aab597f009660108829
 Front\+Right\+Eye\hypertarget{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a8f7e43bdc4f5063cbd2077f07839fefa}{}\label{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a8f7e43bdc4f5063cbd2077f07839fefa}
 }]\index{Front\+Mouth@{Front\+Mouth}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Front\+Mouth@{Front\+Mouth}}\item[{\em 
 Front\+Mouth\hypertarget{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11ae026cb5d275298596d8271989547f308}{}\label{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11ae026cb5d275298596d8271989547f308}
+}]\index{Front\+Left\+Cheek@{Front\+Left\+Cheek}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Front\+Left\+Cheek@{Front\+Left\+Cheek}}\item[{\em 
+Front\+Left\+Cheek\hypertarget{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a25003b7445b9bd1e32893e182fb7a64e}{}\label{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a25003b7445b9bd1e32893e182fb7a64e}
+}]\index{Front\+Right\+Cheek@{Front\+Right\+Cheek}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Front\+Right\+Cheek@{Front\+Right\+Cheek}}\item[{\em 
+Front\+Right\+Cheek\hypertarget{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a50f3b130a82bbb888aea798da7593158}{}\label{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a50f3b130a82bbb888aea798da7593158}
 }]\index{Side\+Eye@{Side\+Eye}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Side\+Eye@{Side\+Eye}}\item[{\em 
 Side\+Eye\hypertarget{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11ae6070e4323042c54fd618a58ee59096d}{}\label{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11ae6070e4323042c54fd618a58ee59096d}
 }]\index{Side\+Nose\+Tip@{Side\+Nose\+Tip}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Side\+Nose\+Tip@{Side\+Nose\+Tip}}\item[{\em 
 Side\+Nose\+Tip\hypertarget{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11aede62853a8d83e60bedafd0ad9fccaf6}{}\label{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11aede62853a8d83e60bedafd0ad9fccaf6}
+}]\index{Side\+Chin@{Side\+Chin}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Side\+Chin@{Side\+Chin}}\item[{\em 
+Side\+Chin\hypertarget{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a4dc0a580b65985a111a42af5bec1c4d1}{}\label{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a4dc0a580b65985a111a42af5bec1c4d1}
+}]\index{Side\+Back@{Side\+Back}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Side\+Back@{Side\+Back}}\item[{\em 
+Side\+Back\hypertarget{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11adfaa5defb1292f1feaa168235cbcc5ff}{}\label{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11adfaa5defb1292f1feaa168235cbcc5ff}
+}]\index{Texture\+Left\+Eye@{Texture\+Left\+Eye}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Texture\+Left\+Eye@{Texture\+Left\+Eye}}\item[{\em 
+Texture\+Left\+Eye\hypertarget{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a645e3accf36dcc84d39f389bf086a486}{}\label{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a645e3accf36dcc84d39f389bf086a486}
+}]\index{Texture\+Right\+Eye@{Texture\+Right\+Eye}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Texture\+Right\+Eye@{Texture\+Right\+Eye}}\item[{\em 
+Texture\+Right\+Eye\hypertarget{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a02343df464cc8f17becb3d60df94d977}{}\label{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a02343df464cc8f17becb3d60df94d977}
+}]\index{Texture\+Chin@{Texture\+Chin}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Texture\+Chin@{Texture\+Chin}}\item[{\em 
+Texture\+Chin\hypertarget{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a0507d043e77cf67c967bb77c0efb98f7}{}\label{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11a0507d043e77cf67c967bb77c0efb98f7}
 }]\index{Invalid\+Point@{Invalid\+Point}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Invalid\+Point@{Invalid\+Point}}\item[{\em 
 Invalid\+Point\hypertarget{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11aef08736c0cf92fe26e5d281571ac319d}{}\label{class_face3_d_1_1_face_geometry_aab597f00966010882927a4974649bf11aef08736c0cf92fe26e5d281571ac319d}
-}]\end{description}
-\end{Desc}
-\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Detected\+Regions@{Detected\+Regions}}
-\index{Detected\+Regions@{Detected\+Regions}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
-\subsubsection[{\texorpdfstring{Detected\+Regions}{DetectedRegions}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Face3\+D\+::\+Face\+Geometry\+::\+Detected\+Regions}}\hypertarget{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77}{}\label{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77}
-the skin regions \begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Front\+Facial\+Region@{Front\+Facial\+Region}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Front\+Facial\+Region@{Front\+Facial\+Region}}\item[{\em 
-Front\+Facial\+Region\hypertarget{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77ab67d7eec01dde53411fead2352b3225f}{}\label{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77ab67d7eec01dde53411fead2352b3225f}
-}]\index{Side\+Facial\+Region@{Side\+Facial\+Region}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Side\+Facial\+Region@{Side\+Facial\+Region}}\item[{\em 
-Side\+Facial\+Region\hypertarget{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77a2e8f6c6895172ac83574e641b90de35a}{}\label{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77a2e8f6c6895172ac83574e641b90de35a}
-}]\index{Invalid\+Region@{Invalid\+Region}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!Invalid\+Region@{Invalid\+Region}}\item[{\em 
-Invalid\+Region\hypertarget{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77ac1c1cfae295c068738737d0bdbd3cb78}{}\label{class_face3_d_1_1_face_geometry_a6db32685a7f429d507b8e31f7c42fe77ac1c1cfae295c068738737d0bdbd3cb78}
 }]\end{description}
 \end{Desc}
 
@@ -133,14 +135,7 @@ get 3d point (homogeneous coordinates) with datatype double \index{Face3\+D\+::\
 \item[{{\bf Detected\+Points}}]{detected\+Point}
 \end{DoxyParamCaption}
 ) const}\hypertarget{class_face3_d_1_1_face_geometry_a3c4e46361330951648193f24b8a5329d}{}\label{class_face3_d_1_1_face_geometry_a3c4e46361330951648193f24b8a5329d}
-get 2d point with datatype int \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!get\+Detected\+Region@{get\+Detected\+Region}}
-\index{get\+Detected\+Region@{get\+Detected\+Region}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
-\subsubsection[{\texorpdfstring{get\+Detected\+Region(\+Detected\+Regions detected\+Region)}{getDetectedRegion(DetectedRegions detectedRegion)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Rect Face3\+D\+::\+Face\+Geometry\+::get\+Detected\+Region (
-\begin{DoxyParamCaption}
-\item[{{\bf Detected\+Regions}}]{detected\+Region}
-\end{DoxyParamCaption}
-)}\hypertarget{class_face3_d_1_1_face_geometry_a85251824e8909cca4d35461744ccc40f}{}\label{class_face3_d_1_1_face_geometry_a85251824e8909cca4d35461744ccc40f}
-get a face (skin) region \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!merge3d@{merge3d}}
+get 2d point with datatype int \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!merge3d@{merge3d}}
 \index{merge3d@{merge3d}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
 \subsubsection[{\texorpdfstring{merge3d()}{merge3d()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Face\+Geometry\+::merge3d (
 \begin{DoxyParamCaption}
@@ -171,15 +166,7 @@ set 2d point with datatype double \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\
 \item[{const cv\+::\+Point3d \&}]{p}
 \end{DoxyParamCaption}
 )}\hypertarget{class_face3_d_1_1_face_geometry_a737543f3299fee8c845f2af2e25355e1}{}\label{class_face3_d_1_1_face_geometry_a737543f3299fee8c845f2af2e25355e1}
-set 3d (homogeneous coordinates) point with datatype double \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!set\+Detected\+Region@{set\+Detected\+Region}}
-\index{set\+Detected\+Region@{set\+Detected\+Region}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
-\subsubsection[{\texorpdfstring{set\+Detected\+Region(\+Detected\+Regions detected\+Region, const cv\+::\+Rect r)}{setDetectedRegion(DetectedRegions detectedRegion, const cv::Rect r)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Face\+Geometry\+::set\+Detected\+Region (
-\begin{DoxyParamCaption}
-\item[{{\bf Detected\+Regions}}]{detected\+Region, }
-\item[{const cv\+::\+Rect}]{r}
-\end{DoxyParamCaption}
-)}\hypertarget{class_face3_d_1_1_face_geometry_a9728c2a48b99682f74910f8924cc3f91}{}\label{class_face3_d_1_1_face_geometry_a9728c2a48b99682f74910f8924cc3f91}
-set a face (skin) region \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!to\+File@{to\+File}}
+set 3d (homogeneous coordinates) point with datatype double \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!to\+File@{to\+File}}
 \index{to\+File@{to\+File}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
 \subsubsection[{\texorpdfstring{to\+File(const std\+::string \&fn)}{toFile(const std::string &fn)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Face\+Geometry\+::to\+File (
 \begin{DoxyParamCaption}
@@ -197,6 +184,16 @@ ipc -\/ serialize current object state to file \index{Face3\+D\+::\+Face\+Geomet
 apply an affine transform to a point. can be a 2x3 or 3x3 matrix. 
 
 \subsection{Member Data Documentation}
+\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!chin@{chin}}
+\index{chin@{chin}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
+\subsubsection[{\texorpdfstring{chin}{chin}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Point3d Face3\+D\+::\+Face\+Geometry\+::chin\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_face_geometry_a1c10c36a6624d30328d54b28f2829ac0}{}\label{class_face3_d_1_1_face_geometry_a1c10c36a6624d30328d54b28f2829ac0}
+\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!face\+Dimensions@{face\+Dimensions}}
+\index{face\+Dimensions@{face\+Dimensions}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
+\subsubsection[{\texorpdfstring{face\+Dimensions}{faceDimensions}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Point3d Face3\+D\+::\+Face\+Geometry\+::face\+Dimensions\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_face_geometry_a41a5f4561198a1296a9d37ad7f562c68}{}\label{class_face3_d_1_1_face_geometry_a41a5f4561198a1296a9d37ad7f562c68}
+
+
+3d position 
+
 \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!front\+Skin\+Region@{front\+Skin\+Region}}
 \index{front\+Skin\+Region@{front\+Skin\+Region}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
 \subsubsection[{\texorpdfstring{front\+Skin\+Region}{frontSkinRegion}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Rect Face3\+D\+::\+Face\+Geometry\+::front\+Skin\+Region\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_face_geometry_aec3c5ac2a67745348df5aa68651bf616}{}\label{class_face3_d_1_1_face_geometry_aec3c5ac2a67745348df5aa68651bf616}
@@ -214,20 +211,9 @@ region of the skin in the front image
 
 the 2d points in homogeneous coordinates such that an affine transformation can be applied 
 
-\index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!m\+\_\+\+Detected\+Regions@{m\+\_\+\+Detected\+Regions}}
-\index{m\+\_\+\+Detected\+Regions@{m\+\_\+\+Detected\+Regions}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
-\subsubsection[{\texorpdfstring{m\+\_\+\+Detected\+Regions}{m_DetectedRegions}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Rect Face3\+D\+::\+Face\+Geometry\+::m\+\_\+\+Detected\+Regions\mbox{[}{\bf Invalid\+Region}\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_face_geometry_a41bdb9ec230523b1bc19bc8f7f2b48ea}{}\label{class_face3_d_1_1_face_geometry_a41bdb9ec230523b1bc19bc8f7f2b48ea}
-
-
-the face (skin) regions 
-
 \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!mouth@{mouth}}
 \index{mouth@{mouth}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
 \subsubsection[{\texorpdfstring{mouth}{mouth}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Point3d Face3\+D\+::\+Face\+Geometry\+::mouth\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_face_geometry_a1c36fe81650a276b523d8dc17b30038e}{}\label{class_face3_d_1_1_face_geometry_a1c36fe81650a276b523d8dc17b30038e}
-
-
-3d position 
-
 \index{Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}!nose@{nose}}
 \index{nose@{nose}!Face3\+D\+::\+Face\+Geometry@{Face3\+D\+::\+Face\+Geometry}}
 \subsubsection[{\texorpdfstring{nose}{nose}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Point3d Face3\+D\+::\+Face\+Geometry\+::nose\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_face_geometry_a51b5cf29a6deac13aad7ab3ba3858eca}{}\label{class_face3_d_1_1_face_geometry_a51b5cf29a6deac13aad7ab3ba3858eca}

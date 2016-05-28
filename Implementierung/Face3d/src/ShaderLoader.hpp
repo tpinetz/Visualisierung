@@ -8,13 +8,14 @@
 
 namespace Face3D
 {	
+	/** singleton class to load shaders and compile them */
 	class ShaderLoader
 	{
 		public:
-			// get instance
+			/// get instance
 			static ShaderLoader& Instance();
 
-			// get shader program
+			/// get shader program
 			GLuint getProgram(const std::string& shaderClassName);
 
 			GLuint loadShader(const std::string& shaderClassName, GLenum shaderType);

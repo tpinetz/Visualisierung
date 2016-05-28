@@ -8,7 +8,7 @@
 \begin{DoxyCompactItemize}
 \item 
 G\+Luint \hyperlink{class_face3_d_1_1_shader_loader_a4091dd965bb5ea248179037bf5ff78de}{get\+Program} (const std\+::string \&shader\+Class\+Name)
-\item 
+\begin{DoxyCompactList}\small\item\em get shader program \end{DoxyCompactList}\item 
 G\+Luint \hyperlink{class_face3_d_1_1_shader_loader_adc8a9f009531395a7f3799282f37e4af}{load\+Shader} (const std\+::string \&shader\+Class\+Name, G\+Lenum shader\+Type)
 \item 
 void \hyperlink{class_face3_d_1_1_shader_loader_ac239e9bba960ea43d26af1e9c8acd891}{delete\+Shader} (const G\+Luint shader\+ID)
@@ -27,7 +27,7 @@ void \hyperlink{class_face3_d_1_1_shader_loader_ad688d7d2ba116947d5ff286e4810c62
 \begin{DoxyCompactItemize}
 \item 
 static \hyperlink{class_face3_d_1_1_shader_loader}{Shader\+Loader} \& \hyperlink{class_face3_d_1_1_shader_loader_a903512f7a8cfd41c480f088e50fb1287}{Instance} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em get instance \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -47,6 +47,9 @@ void \hyperlink{class_face3_d_1_1_shader_loader_a12fd88e002fc3b31b7b687bcea0684d
 std\+::map$<$ std\+::string, G\+Luint $>$ \hyperlink{class_face3_d_1_1_shader_loader_a9a137962d55baa91ba83e90b08147164}{m\+\_\+\+Shader\+Program\+Map}
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+singleton class to load shaders and compile them 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!Shader\+Loader@{Shader\+Loader}}
@@ -119,6 +122,10 @@ std\+::map$<$ std\+::string, G\+Luint $>$ \hyperlink{class_face3_d_1_1_shader_lo
 \item[{const std\+::string \&}]{shader\+Class\+Name}
 \end{DoxyParamCaption}
 )}\hypertarget{class_face3_d_1_1_shader_loader_a4091dd965bb5ea248179037bf5ff78de}{}\label{class_face3_d_1_1_shader_loader_a4091dd965bb5ea248179037bf5ff78de}
+
+
+get shader program 
+
 \index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!Instance@{Instance}}
 \index{Instance@{Instance}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
 \subsubsection[{\texorpdfstring{Instance()}{Instance()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shader\+Loader} \& Face3\+D\+::\+Shader\+Loader\+::\+Instance (
@@ -126,6 +133,10 @@ std\+::map$<$ std\+::string, G\+Luint $>$ \hyperlink{class_face3_d_1_1_shader_lo
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_face3_d_1_1_shader_loader_a903512f7a8cfd41c480f088e50fb1287}{}\label{class_face3_d_1_1_shader_loader_a903512f7a8cfd41c480f088e50fb1287}
+
+
+get instance 
+
 \index{Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}!link\+Program@{link\+Program}}
 \index{link\+Program@{link\+Program}!Face3\+D\+::\+Shader\+Loader@{Face3\+D\+::\+Shader\+Loader}}
 \subsubsection[{\texorpdfstring{link\+Program(const G\+Luint program\+I\+D)}{linkProgram(const GLuint programID)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Shader\+Loader\+::link\+Program (

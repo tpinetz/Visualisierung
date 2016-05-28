@@ -25,7 +25,19 @@ class \hyperlink{class_face3_d_1_1_viewer}{Viewer}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{namespace_face3_d_a3b895408a6257eb9b7cfdbaec770e356}{dbg\+Show} (const cv\+::\+Mat img, const std\+::string \&msg=\char`\"{}\char`\"{}, int id=0)
-\begin{DoxyCompactList}\small\item\em show intermediate results while debugging -\/ does not do anything when compiled in release mode \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em show intermediate results while debugging -\/ does not do anything when compiled in release mode \end{DoxyCompactList}\item 
+bool \hyperlink{namespace_face3_d_a30822f87a9d45e34cd2e50fffdc8daac}{is\+Concave} (const cv\+::\+Point \&a, const cv\+::\+Point \&b, const cv\+::\+Point \&c)
+\item 
+void \hyperlink{namespace_face3_d_a61c1e044078023b974eaae4e357f4749}{on\+Color\+Thresholds\+Trackbar} (int val, void $\ast$ptr)
+\item 
+void \hyperlink{namespace_face3_d_a9c8eef43bd9635c7b45779ee075115b2}{on\+Texture\+Adjustment\+Trackbar\+Bottom} (int val, void $\ast$ptr)
+\item 
+void \hyperlink{namespace_face3_d_a233335d6ebf7a5bf74368546dd6ed251}{on\+Texture\+Adjustment\+Trackbar\+Top} (int val, void $\ast$ptr)
+\item 
+void \hyperlink{namespace_face3_d_abb3ec7550bca690a5e6249f98ef6b197}{on\+Texture\+Adjustment\+Trackbar} (int val, void $\ast$ptr)
+\item 
+{\footnotesize template$<$class T $>$ }\\bool \hyperlink{namespace_face3_d_a07f1036620b33d2297d1f7e28ec630a3}{is\+Inside\+Eps\+Ball} (const T \&a, const T \&b)
+\end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
@@ -51,3 +63,52 @@ show intermediate results while debugging -\/ does not do anything when compiled
 {\em id} & optional id if the same title is used twice \\
 \hline
 \end{DoxyParams}
+\index{Face3D@{Face3D}!is\+Concave@{is\+Concave}}
+\index{is\+Concave@{is\+Concave}!Face3D@{Face3D}}
+\subsubsection[{\texorpdfstring{is\+Concave(const cv\+::\+Point \&a, const cv\+::\+Point \&b, const cv\+::\+Point \&c)}{isConcave(const cv::Point &a, const cv::Point &b, const cv::Point &c)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Face3\+D\+::is\+Concave (
+\begin{DoxyParamCaption}
+\item[{const cv\+::\+Point \&}]{a, }
+\item[{const cv\+::\+Point \&}]{b, }
+\item[{const cv\+::\+Point \&}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_face3_d_a30822f87a9d45e34cd2e50fffdc8daac}{}\label{namespace_face3_d_a30822f87a9d45e34cd2e50fffdc8daac}
+\index{Face3D@{Face3D}!is\+Inside\+Eps\+Ball@{is\+Inside\+Eps\+Ball}}
+\index{is\+Inside\+Eps\+Ball@{is\+Inside\+Eps\+Ball}!Face3D@{Face3D}}
+\subsubsection[{\texorpdfstring{is\+Inside\+Eps\+Ball(const T \&a, const T \&b)}{isInsideEpsBall(const T &a, const T &b)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ bool Face3\+D\+::is\+Inside\+Eps\+Ball (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{a, }
+\item[{const T \&}]{b}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_face3_d_a07f1036620b33d2297d1f7e28ec630a3}{}\label{namespace_face3_d_a07f1036620b33d2297d1f7e28ec630a3}
+is val around x, that means inside the intervall \mbox{[}x-\/eps, x+eps\mbox{]} \index{Face3D@{Face3D}!on\+Color\+Thresholds\+Trackbar@{on\+Color\+Thresholds\+Trackbar}}
+\index{on\+Color\+Thresholds\+Trackbar@{on\+Color\+Thresholds\+Trackbar}!Face3D@{Face3D}}
+\subsubsection[{\texorpdfstring{on\+Color\+Thresholds\+Trackbar(int val, void $\ast$ptr)}{onColorThresholdsTrackbar(int val, void *ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::on\+Color\+Thresholds\+Trackbar (
+\begin{DoxyParamCaption}
+\item[{int}]{val, }
+\item[{void $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_face3_d_a61c1e044078023b974eaae4e357f4749}{}\label{namespace_face3_d_a61c1e044078023b974eaae4e357f4749}
+\index{Face3D@{Face3D}!on\+Texture\+Adjustment\+Trackbar@{on\+Texture\+Adjustment\+Trackbar}}
+\index{on\+Texture\+Adjustment\+Trackbar@{on\+Texture\+Adjustment\+Trackbar}!Face3D@{Face3D}}
+\subsubsection[{\texorpdfstring{on\+Texture\+Adjustment\+Trackbar(int val, void $\ast$ptr)}{onTextureAdjustmentTrackbar(int val, void *ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::on\+Texture\+Adjustment\+Trackbar (
+\begin{DoxyParamCaption}
+\item[{int}]{val, }
+\item[{void $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_face3_d_abb3ec7550bca690a5e6249f98ef6b197}{}\label{namespace_face3_d_abb3ec7550bca690a5e6249f98ef6b197}
+\index{Face3D@{Face3D}!on\+Texture\+Adjustment\+Trackbar\+Bottom@{on\+Texture\+Adjustment\+Trackbar\+Bottom}}
+\index{on\+Texture\+Adjustment\+Trackbar\+Bottom@{on\+Texture\+Adjustment\+Trackbar\+Bottom}!Face3D@{Face3D}}
+\subsubsection[{\texorpdfstring{on\+Texture\+Adjustment\+Trackbar\+Bottom(int val, void $\ast$ptr)}{onTextureAdjustmentTrackbarBottom(int val, void *ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::on\+Texture\+Adjustment\+Trackbar\+Bottom (
+\begin{DoxyParamCaption}
+\item[{int}]{val, }
+\item[{void $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_face3_d_a9c8eef43bd9635c7b45779ee075115b2}{}\label{namespace_face3_d_a9c8eef43bd9635c7b45779ee075115b2}
+\index{Face3D@{Face3D}!on\+Texture\+Adjustment\+Trackbar\+Top@{on\+Texture\+Adjustment\+Trackbar\+Top}}
+\index{on\+Texture\+Adjustment\+Trackbar\+Top@{on\+Texture\+Adjustment\+Trackbar\+Top}!Face3D@{Face3D}}
+\subsubsection[{\texorpdfstring{on\+Texture\+Adjustment\+Trackbar\+Top(int val, void $\ast$ptr)}{onTextureAdjustmentTrackbarTop(int val, void *ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::on\+Texture\+Adjustment\+Trackbar\+Top (
+\begin{DoxyParamCaption}
+\item[{int}]{val, }
+\item[{void $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_face3_d_a233335d6ebf7a5bf74368546dd6ed251}{}\label{namespace_face3_d_a233335d6ebf7a5bf74368546dd6ed251}

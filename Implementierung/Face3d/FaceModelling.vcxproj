@@ -21,6 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\FaceCoordinates3d.hpp" />
+    <ClInclude Include="src\GLDebug.hpp" />
     <ClInclude Include="src\GLHeader.hpp" />
     <ClInclude Include="src\Model.hpp" />
     <ClInclude Include="src\ShaderLoader.hpp" />

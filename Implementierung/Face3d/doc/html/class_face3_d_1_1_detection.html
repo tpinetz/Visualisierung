@@ -110,6 +110,7 @@ $(document).ready(function(){initNavTree('class_face3_d_1_1_detection.html','');
 <a href="#pri-types">Private Types</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_face3_d_1_1_detection-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Face3D::Detection Class Reference</div>  </div>
@@ -165,9 +166,25 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a7a6c141eb4ecee4385a84b541275f1df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4cc64a1037a3e09f8e7b8016528bafd"><td class="memItemLeft" align="right" valign="top">cv::Rect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#ac4cc64a1037a3e09f8e7b8016528bafd">getBoundingBox</a> (const cv::Mat &amp;color)</td></tr>
 <tr class="separator:ac4cc64a1037a3e09f8e7b8016528bafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67a87b44d2ab09621b801ee8e0def41b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#a67a87b44d2ab09621b801ee8e0def41b">doFaceExtractionGUI</a> ()</td></tr>
+<tr class="separator:a67a87b44d2ab09621b801ee8e0def41b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c778bd31454950913a53a71b97a137d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#a3c778bd31454950913a53a71b97a137d">createTexturesAndShowResultsGUI</a> ()</td></tr>
+<tr class="separator:a3c778bd31454950913a53a71b97a137d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacd34a01327ecdccad51559902aa3c0d"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#aacd34a01327ecdccad51559902aa3c0d">combineVertically</a> (const cv::Mat &amp;a, const cv::Mat &amp;b) const </td></tr>
+<tr class="separator:aacd34a01327ecdccad51559902aa3c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:af355af4e433dcf85e4ebdfbd36ae8939"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#af355af4e433dcf85e4ebdfbd36ae8939">m_ColorThresValue</a> = 10</td></tr>
+<tr class="separator:af355af4e433dcf85e4ebdfbd36ae8939"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8e12b00e14ee4ef67c7316163625ac4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#aa8e12b00e14ee4ef67c7316163625ac4">m_OffsetCB</a> =0</td></tr>
+<tr class="separator:aa8e12b00e14ee4ef67c7316163625ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0507241bc6482cebf174e53ea311c885"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#a0507241bc6482cebf174e53ea311c885">m_OffsetCR</a> =0</td></tr>
+<tr class="separator:a0507241bc6482cebf174e53ea311c885"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ce314f4e8ab7f9ce1d2c8d38d7ed6b3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#a7ce314f4e8ab7f9ce1d2c8d38d7ed6b3">m_AddTextureBottom</a> = 0</td></tr>
+<tr class="separator:a7ce314f4e8ab7f9ce1d2c8d38d7ed6b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af14dc904e457d96b31ac6e329160936a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#af14dc904e457d96b31ac6e329160936a">m_AddTextureTop</a> = 0</td></tr>
+<tr class="separator:af14dc904e457d96b31ac6e329160936a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c1137f1d9972fd213a04f93084a0d5c"><td class="memItemLeft" align="right" valign="top">const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#a1c1137f1d9972fd213a04f93084a0d5c">frontImgNr</a> = 0</td></tr>
 <tr class="memdesc:a1c1137f1d9972fd213a04f93084a0d5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">index of the front image when both images are stored in an array  <a href="#a1c1137f1d9972fd213a04f93084a0d5c">More...</a><br /></td></tr>
 <tr class="separator:a1c1137f1d9972fd213a04f93084a0d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,11 +207,26 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a4dff33b175f5b2aff949db62e4c95b88"><td class="mdescLeft">&#160;</td><td class="mdescRight">mask of the face regions. foreground regions which are not the face are already removed  <a href="#a4dff33b175f5b2aff949db62e4c95b88">More...</a><br /></td></tr>
 <tr class="separator:a4dff33b175f5b2aff949db62e4c95b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4eed1e18b8465d43d75102bf10ce8575"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_face3_d_1_1_face_geometry.html">FaceGeometry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#a4eed1e18b8465d43d75102bf10ce8575">m_FaceGeometry</a></td></tr>
-<tr class="memdesc:a4eed1e18b8465d43d75102bf10ce8575"><td class="mdescLeft">&#160;</td><td class="mdescRight">the geometry of the face, i.e. the coordinates of the facial components  <a href="#a4eed1e18b8465d43d75102bf10ce8575">More...</a><br /></td></tr>
 <tr class="separator:a4eed1e18b8465d43d75102bf10ce8575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45ddf526188a8eb73de53bc2029c66f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_face3_d_1_1_face_geometry.html">FaceGeometry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#a45ddf526188a8eb73de53bc2029c66f6">m_FaceGeometryBackup</a></td></tr>
+<tr class="memdesc:a45ddf526188a8eb73de53bc2029c66f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">the geometry of the face, i.e. the coordinates of the facial components  <a href="#a45ddf526188a8eb73de53bc2029c66f6">More...</a><br /></td></tr>
+<tr class="separator:a45ddf526188a8eb73de53bc2029c66f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5dbd240320bc7a4c1661b63e23bee777"><td class="memItemLeft" align="right" valign="top">std::vector&lt; cv::Mat &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#a5dbd240320bc7a4c1661b63e23bee777">m_Textures</a></td></tr>
 <tr class="memdesc:a5dbd240320bc7a4c1661b63e23bee777"><td class="mdescLeft">&#160;</td><td class="mdescRight">the textures, already in a format that can be used in OpenGL  <a href="#a5dbd240320bc7a4c1661b63e23bee777">More...</a><br /></td></tr>
 <tr class="separator:a5dbd240320bc7a4c1661b63e23bee777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e74ffc6d6f1835f6eceac7b0609012c"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#a7e74ffc6d6f1835f6eceac7b0609012c">m_FacialPointsGUI</a></td></tr>
+<tr class="separator:a7e74ffc6d6f1835f6eceac7b0609012c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac17e78111f48d10d80316dc1e0b7e76"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#aac17e78111f48d10d80316dc1e0b7e76">m_TexturesGUI</a></td></tr>
+<tr class="separator:aac17e78111f48d10d80316dc1e0b7e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:aa1df55e432668286b0705ca933e88be0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#aa1df55e432668286b0705ca933e88be0">onColorThresholdsTrackbar</a> (int, void *)</td></tr>
+<tr class="separator:aa1df55e432668286b0705ca933e88be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83b038e3b7bdcd6905035f605cb09573"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#a83b038e3b7bdcd6905035f605cb09573">onTextureAdjustmentTrackbarBottom</a> (int, void *)</td></tr>
+<tr class="separator:a83b038e3b7bdcd6905035f605cb09573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99b67e3274cb430d73791bfd4cf0cd8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_detection.html#a99b67e3274cb430d73791bfd4cf0cd8b">onTextureAdjustmentTrackbarTop</a> (int, void *)</td></tr>
+<tr class="separator:a99b67e3274cb430d73791bfd4cf0cd8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>class which detects the facial components and calculates the face geometry </p>
@@ -263,6 +295,40 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aacd34a01327ecdccad51559902aa3c0d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat Face3D::Detection::combineVertically </td>
+          <td>(</td>
+          <td class="paramtype">const cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a7a6c141eb4ecee4385a84b541275f1df"></a>
 <div class="memitem">
 <div class="memproto">
@@ -284,6 +350,29 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>create the textures from the two images and align them </p>
+
+</div>
+</div>
+<a class="anchor" id="a3c778bd31454950913a53a71b97a137d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Face3D::Detection::createTexturesAndShowResultsGUI </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -326,6 +415,29 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>extracts face (skin) region </p>
+
+</div>
+</div>
+<a class="anchor" id="a67a87b44d2ab09621b801ee8e0def41b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Face3D::Detection::doFaceExtractionGUI </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -609,6 +721,109 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a class="anchor" id="aa1df55e432668286b0705ca933e88be0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void onColorThresholdsTrackbar </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a83b038e3b7bdcd6905035f605cb09573"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void onTextureAdjustmentTrackbarBottom </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a99b67e3274cb430d73791bfd4cf0cd8b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void onTextureAdjustmentTrackbarTop </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="a1c1137f1d9972fd213a04f93084a0d5c"></a>
 <div class="memitem">
@@ -629,6 +844,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>index of the front image when both images are stored in an array </p>
+<p>images (originals and processed) </p>
 
 </div>
 </div>
@@ -651,6 +867,67 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>size of the images we are working with. 320x320 seems good as its fast but has still enough details </p>
+
+</div>
+</div>
+<a class="anchor" id="a7ce314f4e8ab7f9ce1d2c8d38d7ed6b3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Face3D::Detection::m_AddTextureBottom = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af14dc904e457d96b31ac6e329160936a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Face3D::Detection::m_AddTextureTop = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af355af4e433dcf85e4ebdfbd36ae8939"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Face3D::Detection::m_ColorThresValue = 10</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>gui interaction </p>
 
 </div>
 </div>
@@ -694,6 +971,26 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+</div>
+</div>
+<a class="anchor" id="a45ddf526188a8eb73de53bc2029c66f6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_face3_d_1_1_face_geometry.html">FaceGeometry</a> Face3D::Detection::m_FaceGeometryBackup</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
 <p>the geometry of the face, i.e. the coordinates of the facial components </p>
 
 </div>
@@ -717,6 +1014,67 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>mask of the face regions. foreground regions which are not the face are already removed </p>
+
+</div>
+</div>
+<a class="anchor" id="a7e74ffc6d6f1835f6eceac7b0609012c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat Face3D::Detection::m_FacialPointsGUI</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>resulting images to show in the gui </p>
+
+</div>
+</div>
+<a class="anchor" id="aa8e12b00e14ee4ef67c7316163625ac4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Face3D::Detection::m_OffsetCB =0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0507241bc6482cebf174e53ea311c885"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Face3D::Detection::m_OffsetCR =0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -783,6 +1141,26 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>the textures, already in a format that can be used in OpenGL </p>
+
+</div>
+</div>
+<a class="anchor" id="aac17e78111f48d10d80316dc1e0b7e76"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat Face3D::Detection::m_TexturesGUI</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

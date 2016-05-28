@@ -50,5 +50,8 @@
     <ClInclude Include="src\FaceCoordinates3d.hpp">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\GLDebug.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

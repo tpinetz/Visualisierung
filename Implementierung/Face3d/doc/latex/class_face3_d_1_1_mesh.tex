@@ -15,19 +15,11 @@ void \hyperlink{class_face3_d_1_1_mesh_acb8245a0c2988983410da0c43f9699f5}{render
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{class_face3_d_1_1_mesh_a103b2560543b838b2271a7aeb4377297}{setup} ()
-\item 
-void \hyperlink{class_face3_d_1_1_mesh_a89e9b42105ddce6408d18fd795b3b846}{calc\+Mesh\+Info} ()
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::vector$<$ \hyperlink{struct_face3_d_1_1_vertex}{Vertex} $>$ \hyperlink{class_face3_d_1_1_mesh_a471af3fd09f58640e4e279d145a7b757}{m\+\_\+\+Vertices}
-\item 
-glm\+::vec3 \hyperlink{class_face3_d_1_1_mesh_aac9ab2607f4273a37c504772a00eecbd}{m\+\_\+\+Min\+Vertex}
-\item 
-glm\+::vec3 \hyperlink{class_face3_d_1_1_mesh_aaa0710a5361684391c957bbf5d88fa3e}{m\+\_\+\+Max\+Vertex}
-\item 
-glm\+::vec3 \hyperlink{class_face3_d_1_1_mesh_a6063cf010ac6b26b42de7eafdd8eed3c}{m\+\_\+\+Mean\+Vertex}
 \item 
 std\+::vector$<$ G\+Luint $>$ \hyperlink{class_face3_d_1_1_mesh_ade1ee09c57f88c22ca5f49d5779d6db7}{m\+\_\+\+Indices}
 \item 
@@ -38,6 +30,9 @@ G\+Luint \hyperlink{class_face3_d_1_1_mesh_a1dcd0d3819ab75aac1dd9762048d2a3f}{m\
 G\+Luint \hyperlink{class_face3_d_1_1_mesh_a38779bcc6db79f6a1a30ab66bde3680f}{m\+\_\+\+Ebo\+ID} =0
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+definition of a triangle mesh 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}!Mesh@{Mesh}}
@@ -51,13 +46,6 @@ G\+Luint \hyperlink{class_face3_d_1_1_mesh_a38779bcc6db79f6a1a30ab66bde3680f}{m\
 
 
 \subsection{Member Function Documentation}
-\index{Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}!calc\+Mesh\+Info@{calc\+Mesh\+Info}}
-\index{calc\+Mesh\+Info@{calc\+Mesh\+Info}!Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}}
-\subsubsection[{\texorpdfstring{calc\+Mesh\+Info()}{calcMeshInfo()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Mesh\+::calc\+Mesh\+Info (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_mesh_a89e9b42105ddce6408d18fd795b3b846}{}\label{class_face3_d_1_1_mesh_a89e9b42105ddce6408d18fd795b3b846}
 \index{Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}!render@{render}}
 \index{render@{render}!Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}}
 \subsubsection[{\texorpdfstring{render()}{render()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Mesh\+::render (
@@ -81,15 +69,6 @@ G\+Luint \hyperlink{class_face3_d_1_1_mesh_a38779bcc6db79f6a1a30ab66bde3680f}{m\
 \index{Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}!m\+\_\+\+Indices@{m\+\_\+\+Indices}}
 \index{m\+\_\+\+Indices@{m\+\_\+\+Indices}!Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}}
 \subsubsection[{\texorpdfstring{m\+\_\+\+Indices}{m_Indices}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$G\+Luint$>$ Face3\+D\+::\+Mesh\+::m\+\_\+\+Indices\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_mesh_ade1ee09c57f88c22ca5f49d5779d6db7}{}\label{class_face3_d_1_1_mesh_ade1ee09c57f88c22ca5f49d5779d6db7}
-\index{Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}!m\+\_\+\+Max\+Vertex@{m\+\_\+\+Max\+Vertex}}
-\index{m\+\_\+\+Max\+Vertex@{m\+\_\+\+Max\+Vertex}!Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}}
-\subsubsection[{\texorpdfstring{m\+\_\+\+Max\+Vertex}{m_MaxVertex}}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Mesh\+::m\+\_\+\+Max\+Vertex\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_mesh_aaa0710a5361684391c957bbf5d88fa3e}{}\label{class_face3_d_1_1_mesh_aaa0710a5361684391c957bbf5d88fa3e}
-\index{Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}!m\+\_\+\+Mean\+Vertex@{m\+\_\+\+Mean\+Vertex}}
-\index{m\+\_\+\+Mean\+Vertex@{m\+\_\+\+Mean\+Vertex}!Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}}
-\subsubsection[{\texorpdfstring{m\+\_\+\+Mean\+Vertex}{m_MeanVertex}}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Mesh\+::m\+\_\+\+Mean\+Vertex\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_mesh_a6063cf010ac6b26b42de7eafdd8eed3c}{}\label{class_face3_d_1_1_mesh_a6063cf010ac6b26b42de7eafdd8eed3c}
-\index{Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}!m\+\_\+\+Min\+Vertex@{m\+\_\+\+Min\+Vertex}}
-\index{m\+\_\+\+Min\+Vertex@{m\+\_\+\+Min\+Vertex}!Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}}
-\subsubsection[{\texorpdfstring{m\+\_\+\+Min\+Vertex}{m_MinVertex}}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Face3\+D\+::\+Mesh\+::m\+\_\+\+Min\+Vertex\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_mesh_aac9ab2607f4273a37c504772a00eecbd}{}\label{class_face3_d_1_1_mesh_aac9ab2607f4273a37c504772a00eecbd}
 \index{Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}!m\+\_\+\+Vao\+ID@{m\+\_\+\+Vao\+ID}}
 \index{m\+\_\+\+Vao\+ID@{m\+\_\+\+Vao\+ID}!Face3\+D\+::\+Mesh@{Face3\+D\+::\+Mesh}}
 \subsubsection[{\texorpdfstring{m\+\_\+\+Vao\+ID}{m_VaoID}}]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint Face3\+D\+::\+Mesh\+::m\+\_\+\+Vao\+ID =0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_mesh_a1fee49a00035fde16a18d4befc261a05}{}\label{class_face3_d_1_1_mesh_a1fee49a00035fde16a18d4befc261a05}

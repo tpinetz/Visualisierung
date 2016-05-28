@@ -8,7 +8,7 @@
 
 namespace Face3D
 {
-	
+	/** singleton class to load textures */
 	class Texture
 	{
 		public:

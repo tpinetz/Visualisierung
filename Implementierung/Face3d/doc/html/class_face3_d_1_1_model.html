@@ -136,16 +136,23 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a6a5aeb80314d44476b3964c4b977be7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a6a5aeb80314d44476b3964c4b977be7d">load</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:a6a5aeb80314d44476b3964c4b977be7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">load mesh data from file  <a href="#a6a5aeb80314d44476b3964c4b977be7d">More...</a><br /></td></tr>
 <tr class="separator:a6a5aeb80314d44476b3964c4b977be7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a483e8a42f180d07ccbeaa10a56b130e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a483e8a42f180d07ccbeaa10a56b130e0">processNode</a> (aiNode *node, const aiScene *scene)</td></tr>
 <tr class="separator:a483e8a42f180d07ccbeaa10a56b130e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca2d4b10b7468235c5d01c1adc717f87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_face3_d_1_1_mesh.html">Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#aca2d4b10b7468235c5d01c1adc717f87">processMesh</a> (aiMesh *mesh, const aiScene *scene)</td></tr>
-<tr class="separator:aca2d4b10b7468235c5d01c1adc717f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfe25f21ec62de6fe960a87031ef5134"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_face3_d_1_1_mesh.html">Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#adfe25f21ec62de6fe960a87031ef5134">processMesh</a> (aiMesh *mesh, const aiScene *scene, std::string name)</td></tr>
+<tr class="separator:adfe25f21ec62de6fe960a87031ef5134"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5aa4570539e2783c797195bb0e679d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#aa5aa4570539e2783c797195bb0e679d1">calcScalingFactors</a> ()</td></tr>
+<tr class="separator:aa5aa4570539e2783c797195bb0e679d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2700b8f556dbdd9ecc6ddbcd25d59d1"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#ab2700b8f556dbdd9ecc6ddbcd25d59d1">moveGenericVertex</a> (const glm::vec3 &amp;genericVertex)</td></tr>
+<tr class="separator:ab2700b8f556dbdd9ecc6ddbcd25d59d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a4e781e1061417cad95eb99640fc4f77b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_face3_d_1_1_model_1_1_model_info.html">ModelInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a4e781e1061417cad95eb99640fc4f77b">m_ModelInfo</a></td></tr>
 <tr class="separator:a4e781e1061417cad95eb99640fc4f77b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a340fc99b4793025ab7775c6242dcfda7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_face3_d_1_1_face_coordinates3d.html">FaceCoordinates3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a340fc99b4793025ab7775c6242dcfda7">m_FaceCoords</a></td></tr>
+<tr class="separator:a340fc99b4793025ab7775c6242dcfda7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf4a54487670014da5422dc36940a332"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#adf4a54487670014da5422dc36940a332">m_TextureFrontID</a> = 0</td></tr>
 <tr class="separator:adf4a54487670014da5422dc36940a332"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bd8337f56d992cc16d26ae1b6af4c21"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a6bd8337f56d992cc16d26ae1b6af4c21">m_TextureSideID</a> = 0</td></tr>
@@ -162,14 +169,32 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a327fa317ef7aeb53d98a11c98325ca8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a206d2e11c046acd3bbbb8a6ce8aa4586"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a206d2e11c046acd3bbbb8a6ce8aa4586">m_TextureSideSamplerLocation</a> = 0</td></tr>
 <tr class="separator:a206d2e11c046acd3bbbb8a6ce8aa4586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b5d007981b8b32ea025de8b9a6111eb"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a6b5d007981b8b32ea025de8b9a6111eb">m_ChinVerticalPosLocation</a> = 0</td></tr>
+<tr class="separator:a6b5d007981b8b32ea025de8b9a6111eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6c2485555e2ed5b92ef69f17e0beeb6"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#ac6c2485555e2ed5b92ef69f17e0beeb6">m_EyeVerticalPosLocation</a> = 0</td></tr>
+<tr class="separator:ac6c2485555e2ed5b92ef69f17e0beeb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87378c96c0bf29bbf4f4615461498a18"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a87378c96c0bf29bbf4f4615461498a18">m_LEyeTexVerticalPosLocation</a> = 0</td></tr>
+<tr class="separator:a87378c96c0bf29bbf4f4615461498a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79e5b9a3c19a532ad34debe76ccea406"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a79e5b9a3c19a532ad34debe76ccea406">m_REyeTexVerticalPosLocation</a> = 0</td></tr>
+<tr class="separator:a79e5b9a3c19a532ad34debe76ccea406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cdae9ddaee69e3add15fe4cce91eeb0"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a3cdae9ddaee69e3add15fe4cce91eeb0">m_ChinTexVerticalPosLocation</a> = 0</td></tr>
+<tr class="separator:a3cdae9ddaee69e3add15fe4cce91eeb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf3da04870854ee1b1fa4c02d214f3cc"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#abf3da04870854ee1b1fa4c02d214f3cc">m_MVPMatrix</a></td></tr>
 <tr class="separator:abf3da04870854ee1b1fa4c02d214f3cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5097ce51273431b3684239a51af9fa72"><td class="memItemLeft" align="right" valign="top">GLfloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a5097ce51273431b3684239a51af9fa72">m_RotationAngle</a> = 0.0f</td></tr>
 <tr class="separator:a5097ce51273431b3684239a51af9fa72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08dad50dd45a852f2426f43236b7c81c"><td class="memItemLeft" align="right" valign="top">GLfloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a08dad50dd45a852f2426f43236b7c81c">m_ScaleVal</a> = 1.0f</td></tr>
 <tr class="separator:a08dad50dd45a852f2426f43236b7c81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8776b7226af5f91bccec2b9b9dc373b6"><td class="memItemLeft" align="right" valign="top">GLfloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#a8776b7226af5f91bccec2b9b9dc373b6">m_fx</a> =0</td></tr>
+<tr class="separator:a8776b7226af5f91bccec2b9b9dc373b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa08cc40241dd122ad566993b71cf0168"><td class="memItemLeft" align="right" valign="top">GLfloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#aa08cc40241dd122ad566993b71cf0168">m_fy</a> =0</td></tr>
+<tr class="separator:aa08cc40241dd122ad566993b71cf0168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92e67a07cb4ebb7621e3c03a7ce8791"><td class="memItemLeft" align="right" valign="top">GLfloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face3_d_1_1_model.html#ae92e67a07cb4ebb7621e3c03a7ce8791">m_fz</a> =0</td></tr>
+<tr class="separator:ae92e67a07cb4ebb7621e3c03a7ce8791"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>definition of a model of an object containing meshes and vertices </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae6cd2c6069f0c1f0898ea45356f31250"></a>
 <div class="memitem">
 <div class="memproto">
@@ -187,6 +212,30 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aa5aa4570539e2783c797195bb0e679d1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Face3D::Model::calcScalingFactors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>calculate the scaling factors to resize the generic face such that it looks like the face on the images </p>
+
+</div>
+</div>
 <a class="anchor" id="a6a5aeb80314d44476b3964c4b977be7d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -209,9 +258,36 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>load mesh data from file </p>
+
 </div>
 </div>
-<a class="anchor" id="aca2d4b10b7468235c5d01c1adc717f87"></a>
+<a class="anchor" id="ab2700b8f556dbdd9ecc6ddbcd25d59d1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec3 Face3D::Model::moveGenericVertex </td>
+          <td>(</td>
+          <td class="paramtype">const glm::vec3 &amp;&#160;</td>
+          <td class="paramname"><em>genericVertex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>move a vrtex of the generic model to its final position according to the face detection </p>
+
+</div>
+</div>
+<a class="anchor" id="adfe25f21ec62de6fe960a87031ef5134"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -228,7 +304,13 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const aiScene *&#160;</td>
-          <td class="paramname"><em>scene</em>&#160;</td>
+          <td class="paramname"><em>scene</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -343,6 +425,166 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a3cdae9ddaee69e3add15fe4cce91eeb0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint Face3D::Model::m_ChinTexVerticalPosLocation = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6b5d007981b8b32ea025de8b9a6111eb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint Face3D::Model::m_ChinVerticalPosLocation = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac6c2485555e2ed5b92ef69f17e0beeb6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint Face3D::Model::m_EyeVerticalPosLocation = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a340fc99b4793025ab7775c6242dcfda7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_face3_d_1_1_face_coordinates3d.html">FaceCoordinates3d</a> Face3D::Model::m_FaceCoords</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8776b7226af5f91bccec2b9b9dc373b6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLfloat Face3D::Model::m_fx =0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa08cc40241dd122ad566993b71cf0168"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLfloat Face3D::Model::m_fy =0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae92e67a07cb4ebb7621e3c03a7ce8791"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLfloat Face3D::Model::m_fz =0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a87378c96c0bf29bbf4f4615461498a18"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint Face3D::Model::m_LEyeTexVerticalPosLocation = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a4e781e1061417cad95eb99640fc4f77b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -412,6 +654,26 @@ Private Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">std::shared_ptr&lt;std::vector&lt;<a class="el" href="class_face3_d_1_1_mesh.html">Mesh</a>&gt; &gt; Face3D::Model::m_pMeshes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a79e5b9a3c19a532ad34debe76ccea406"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint Face3D::Model::m_REyeTexVerticalPosLocation = 0</td>
         </tr>
       </table>
   </td>

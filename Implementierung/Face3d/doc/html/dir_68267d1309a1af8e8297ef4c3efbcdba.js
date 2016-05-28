@@ -2,11 +2,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
 [
     [ "Common.hpp", "_common_8hpp.html", "_common_8hpp" ],
     [ "Detection.cpp", "_detection_8cpp.html", "_detection_8cpp" ],
-    [ "Detection.hpp", "_detection_8hpp.html", [
-      [ "Detection", "class_face3_d_1_1_detection.html", "class_face3_d_1_1_detection" ],
-      [ "DetectFaceResult", "struct_face3_d_1_1_detection_1_1_detect_face_result.html", "struct_face3_d_1_1_detection_1_1_detect_face_result" ],
-      [ "ContourInfo", "struct_face3_d_1_1_detection_1_1_contour_info.html", "struct_face3_d_1_1_detection_1_1_contour_info" ]
-    ] ],
+    [ "Detection.hpp", "_detection_8hpp.html", "_detection_8hpp" ],
     [ "FaceCoordinates3d.cpp", "_face_coordinates3d_8cpp.html", null ],
     [ "FaceCoordinates3d.hpp", "_face_coordinates3d_8hpp.html", [
       [ "FaceCoordinates3d", "class_face3_d_1_1_face_coordinates3d.html", "class_face3_d_1_1_face_coordinates3d" ]
@@ -21,12 +17,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "GLDebug.hpp", "_g_l_debug_8hpp.html", "_g_l_debug_8hpp" ],
     [ "GLHeader.hpp", "_g_l_header_8hpp.html", "_g_l_header_8hpp" ],
     [ "Model.cpp", "_model_8cpp.html", "_model_8cpp" ],
-    [ "Model.hpp", "_model_8hpp.html", [
-      [ "Vertex", "struct_face3_d_1_1_vertex.html", "struct_face3_d_1_1_vertex" ],
-      [ "Mesh", "class_face3_d_1_1_mesh.html", "class_face3_d_1_1_mesh" ],
-      [ "Model", "class_face3_d_1_1_model.html", "class_face3_d_1_1_model" ],
-      [ "ModelInfo", "struct_face3_d_1_1_model_1_1_model_info.html", "struct_face3_d_1_1_model_1_1_model_info" ]
-    ] ],
+    [ "Model.hpp", "_model_8hpp.html", "_model_8hpp" ],
     [ "ShaderLoader.cpp", "_shader_loader_8cpp.html", null ],
     [ "ShaderLoader.hpp", "_shader_loader_8hpp.html", [
       [ "ShaderLoader", "class_face3_d_1_1_shader_loader.html", "class_face3_d_1_1_shader_loader" ]

@@ -2,9 +2,9 @@ var searchData=
 [
   ['scale',['scale',['../class_face3_d_1_1_model.html#ae4317800ef498c03728e7c82dbe5c3c7',1,'Face3D::Model']]],
   ['setdetectedpoint',['setDetectedPoint',['../class_face3_d_1_1_face_geometry.html#a0cbcfd1b63284e1d1fa1f91a87b8f06a',1,'Face3D::FaceGeometry::setDetectedPoint(DetectedPoints detectedPoint, const cv::Point2d &amp;p)'],['../class_face3_d_1_1_face_geometry.html#a737543f3299fee8c845f2af2e25355e1',1,'Face3D::FaceGeometry::setDetectedPoint(DetectedPoints detectedPoint, const cv::Point3d &amp;p)']]],
-  ['setdetectedregion',['setDetectedRegion',['../class_face3_d_1_1_face_geometry.html#a9728c2a48b99682f74910f8924cc3f91',1,'Face3D::FaceGeometry']]],
   ['setup',['setup',['../class_face3_d_1_1_mesh.html#a103b2560543b838b2271a7aeb4377297',1,'Face3D::Mesh']]],
   ['shaderloader',['ShaderLoader',['../class_face3_d_1_1_shader_loader.html#a8b3d631eb9b438a1783517ecd85fac1a',1,'Face3D::ShaderLoader']]],
+  ['showerrormsg',['showErrorMsg',['../_face_detection_8cpp.html#ab00533cc39a7290f80b3cfc2ff249d18',1,'FaceDetection.cpp']]],
   ['stbi_5fconvert_5fiphone_5fpng_5fto_5frgb',['stbi_convert_iphone_png_to_rgb',['../stb__image_8h.html#a23525ef2b882f3de426b47ecf8d9151b',1,'stb_image.h']]],
   ['stbi_5ffailure_5freason',['stbi_failure_reason',['../stb__image_8h.html#aa874b3ba909f3281d499894909678336',1,'stb_image.h']]],
   ['stbi_5fhdr_5fto_5fldr_5fgamma',['stbi_hdr_to_ldr_gamma',['../stb__image_8h.html#ab18889e43518d6b4421b705782bb1b5e',1,'stb_image.h']]],

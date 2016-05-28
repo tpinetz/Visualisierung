@@ -3,7 +3,7 @@
 #include "Viewer.hpp"
 
 
-
+/** main function for the modelling program */
 int main(int argc, char** argv)
 {
 

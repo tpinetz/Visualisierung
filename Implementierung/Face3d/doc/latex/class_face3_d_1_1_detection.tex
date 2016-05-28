@@ -49,9 +49,25 @@ void \hyperlink{class_face3_d_1_1_detection_a0cf36050ade66d18074b6fa78ee7c7ca}{d
 void \hyperlink{class_face3_d_1_1_detection_a7a6c141eb4ecee4385a84b541275f1df}{create\+Textures} ()
 \item 
 cv\+::\+Rect \hyperlink{class_face3_d_1_1_detection_ac4cc64a1037a3e09f8e7b8016528bafd}{get\+Bounding\+Box} (const cv\+::\+Mat \&color)
+\item 
+void \hyperlink{class_face3_d_1_1_detection_a67a87b44d2ab09621b801ee8e0def41b}{do\+Face\+Extraction\+G\+UI} ()
+\item 
+void \hyperlink{class_face3_d_1_1_detection_a3c778bd31454950913a53a71b97a137d}{create\+Textures\+And\+Show\+Results\+G\+UI} ()
+\item 
+cv\+::\+Mat \hyperlink{class_face3_d_1_1_detection_aacd34a01327ecdccad51559902aa3c0d}{combine\+Vertically} (const cv\+::\+Mat \&a, const cv\+::\+Mat \&b) const 
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_face3_d_1_1_detection_af355af4e433dcf85e4ebdfbd36ae8939}{m\+\_\+\+Color\+Thres\+Value} = 10
+\item 
+int \hyperlink{class_face3_d_1_1_detection_aa8e12b00e14ee4ef67c7316163625ac4}{m\+\_\+\+Offset\+CB} =0
+\item 
+int \hyperlink{class_face3_d_1_1_detection_a0507241bc6482cebf174e53ea311c885}{m\+\_\+\+Offset\+CR} =0
+\item 
+double \hyperlink{class_face3_d_1_1_detection_a7ce314f4e8ab7f9ce1d2c8d38d7ed6b3}{m\+\_\+\+Add\+Texture\+Bottom} = 0
+\item 
+double \hyperlink{class_face3_d_1_1_detection_af14dc904e457d96b31ac6e329160936a}{m\+\_\+\+Add\+Texture\+Top} = 0
 \item 
 const size\+\_\+t \hyperlink{class_face3_d_1_1_detection_a1c1137f1d9972fd213a04f93084a0d5c}{front\+Img\+Nr} = 0
 \begin{DoxyCompactList}\small\item\em index of the front image when both images are stored in an array \end{DoxyCompactList}\item 
@@ -68,9 +84,24 @@ std\+::vector$<$ cv\+::\+Mat $>$ \hyperlink{class_face3_d_1_1_detection_a835e20d
 std\+::vector$<$ cv\+::\+Mat $>$ \hyperlink{class_face3_d_1_1_detection_a4dff33b175f5b2aff949db62e4c95b88}{m\+\_\+\+Face\+Mask}
 \begin{DoxyCompactList}\small\item\em mask of the face regions. foreground regions which are not the face are already removed \end{DoxyCompactList}\item 
 \hyperlink{class_face3_d_1_1_face_geometry}{Face\+Geometry} \hyperlink{class_face3_d_1_1_detection_a4eed1e18b8465d43d75102bf10ce8575}{m\+\_\+\+Face\+Geometry}
+\item 
+\hyperlink{class_face3_d_1_1_face_geometry}{Face\+Geometry} \hyperlink{class_face3_d_1_1_detection_a45ddf526188a8eb73de53bc2029c66f6}{m\+\_\+\+Face\+Geometry\+Backup}
 \begin{DoxyCompactList}\small\item\em the geometry of the face, i.\+e. the coordinates of the facial components \end{DoxyCompactList}\item 
 std\+::vector$<$ cv\+::\+Mat $>$ \hyperlink{class_face3_d_1_1_detection_a5dbd240320bc7a4c1661b63e23bee777}{m\+\_\+\+Textures}
-\begin{DoxyCompactList}\small\item\em the textures, already in a format that can be used in Open\+GL \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em the textures, already in a format that can be used in Open\+GL \end{DoxyCompactList}\item 
+cv\+::\+Mat \hyperlink{class_face3_d_1_1_detection_a7e74ffc6d6f1835f6eceac7b0609012c}{m\+\_\+\+Facial\+Points\+G\+UI}
+\item 
+cv\+::\+Mat \hyperlink{class_face3_d_1_1_detection_aac17e78111f48d10d80316dc1e0b7e76}{m\+\_\+\+Textures\+G\+UI}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_face3_d_1_1_detection_aa1df55e432668286b0705ca933e88be0}{on\+Color\+Thresholds\+Trackbar} (int, void $\ast$)
+\item 
+void \hyperlink{class_face3_d_1_1_detection_a83b038e3b7bdcd6905035f605cb09573}{on\+Texture\+Adjustment\+Trackbar\+Bottom} (int, void $\ast$)
+\item 
+void \hyperlink{class_face3_d_1_1_detection_a99b67e3274cb430d73791bfd4cf0cd8b}{on\+Texture\+Adjustment\+Trackbar\+Top} (int, void $\ast$)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -114,6 +145,14 @@ create a \hyperlink{class_face3_d_1_1_detection}{Detection} object
 
 
 \subsection{Member Function Documentation}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!combine\+Vertically@{combine\+Vertically}}
+\index{combine\+Vertically@{combine\+Vertically}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{combine\+Vertically(const cv\+::\+Mat \&a, const cv\+::\+Mat \&b) const }{combineVertically(const cv::Mat &a, const cv::Mat &b) const }}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat Face3\+D\+::\+Detection\+::combine\+Vertically (
+\begin{DoxyParamCaption}
+\item[{const cv\+::\+Mat \&}]{a, }
+\item[{const cv\+::\+Mat \&}]{b}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_aacd34a01327ecdccad51559902aa3c0d}{}\label{class_face3_d_1_1_detection_aacd34a01327ecdccad51559902aa3c0d}
 \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!create\+Textures@{create\+Textures}}
 \index{create\+Textures@{create\+Textures}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
 \subsubsection[{\texorpdfstring{create\+Textures()}{createTextures()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Detection\+::create\+Textures (
@@ -121,7 +160,14 @@ create a \hyperlink{class_face3_d_1_1_detection}{Detection} object
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a7a6c141eb4ecee4385a84b541275f1df}{}\label{class_face3_d_1_1_detection_a7a6c141eb4ecee4385a84b541275f1df}
-create the textures from the two images and align them \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!detect\+Face@{detect\+Face}}
+create the textures from the two images and align them \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!create\+Textures\+And\+Show\+Results\+G\+UI@{create\+Textures\+And\+Show\+Results\+G\+UI}}
+\index{create\+Textures\+And\+Show\+Results\+G\+UI@{create\+Textures\+And\+Show\+Results\+G\+UI}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{create\+Textures\+And\+Show\+Results\+G\+U\+I()}{createTexturesAndShowResultsGUI()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Detection\+::create\+Textures\+And\+Show\+Results\+G\+UI (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a3c778bd31454950913a53a71b97a137d}{}\label{class_face3_d_1_1_detection_a3c778bd31454950913a53a71b97a137d}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!detect\+Face@{detect\+Face}}
 \index{detect\+Face@{detect\+Face}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
 \subsubsection[{\texorpdfstring{detect\+Face()}{detectFace()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Detection\+::\+Detect\+Face\+Result} Face3\+D\+::\+Detection\+::detect\+Face (
 \begin{DoxyParamCaption}
@@ -142,7 +188,14 @@ a \hyperlink{struct_face3_d_1_1_detection_1_1_detect_face_result}{Detect\+Face\+
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a424c3fba1ee4b7d24a84edebca9ecf14}{}\label{class_face3_d_1_1_detection_a424c3fba1ee4b7d24a84edebca9ecf14}
-extracts face (skin) region \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!do\+Facial\+Components\+Extraction@{do\+Facial\+Components\+Extraction}}
+extracts face (skin) region \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!do\+Face\+Extraction\+G\+UI@{do\+Face\+Extraction\+G\+UI}}
+\index{do\+Face\+Extraction\+G\+UI@{do\+Face\+Extraction\+G\+UI}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{do\+Face\+Extraction\+G\+U\+I()}{doFaceExtractionGUI()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Detection\+::do\+Face\+Extraction\+G\+UI (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a67a87b44d2ab09621b801ee8e0def41b}{}\label{class_face3_d_1_1_detection_a67a87b44d2ab09621b801ee8e0def41b}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!do\+Facial\+Components\+Extraction@{do\+Facial\+Components\+Extraction}}
 \index{do\+Facial\+Components\+Extraction@{do\+Facial\+Components\+Extraction}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
 \subsubsection[{\texorpdfstring{do\+Facial\+Components\+Extraction()}{doFacialComponentsExtraction()}}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\+D\+::\+Detection\+::do\+Facial\+Components\+Extraction (
 \begin{DoxyParamCaption}
@@ -214,6 +267,33 @@ get the bounding box of the color image. background must be black, everything el
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_ad151547c47b89dc4673c51c43e22b6d3}{}\label{class_face3_d_1_1_detection_ad151547c47b89dc4673c51c43e22b6d3}
 helper function to get original image to draw on for debug output 
 
+\subsection{Friends And Related Function Documentation}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!on\+Color\+Thresholds\+Trackbar@{on\+Color\+Thresholds\+Trackbar}}
+\index{on\+Color\+Thresholds\+Trackbar@{on\+Color\+Thresholds\+Trackbar}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{on\+Color\+Thresholds\+Trackbar}{onColorThresholdsTrackbar}}]{\setlength{\rightskip}{0pt plus 5cm}void on\+Color\+Thresholds\+Trackbar (
+\begin{DoxyParamCaption}
+\item[{int}]{, }
+\item[{void $\ast$}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{class_face3_d_1_1_detection_aa1df55e432668286b0705ca933e88be0}{}\label{class_face3_d_1_1_detection_aa1df55e432668286b0705ca933e88be0}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!on\+Texture\+Adjustment\+Trackbar\+Bottom@{on\+Texture\+Adjustment\+Trackbar\+Bottom}}
+\index{on\+Texture\+Adjustment\+Trackbar\+Bottom@{on\+Texture\+Adjustment\+Trackbar\+Bottom}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{on\+Texture\+Adjustment\+Trackbar\+Bottom}{onTextureAdjustmentTrackbarBottom}}]{\setlength{\rightskip}{0pt plus 5cm}void on\+Texture\+Adjustment\+Trackbar\+Bottom (
+\begin{DoxyParamCaption}
+\item[{int}]{val, }
+\item[{void $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{class_face3_d_1_1_detection_a83b038e3b7bdcd6905035f605cb09573}{}\label{class_face3_d_1_1_detection_a83b038e3b7bdcd6905035f605cb09573}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!on\+Texture\+Adjustment\+Trackbar\+Top@{on\+Texture\+Adjustment\+Trackbar\+Top}}
+\index{on\+Texture\+Adjustment\+Trackbar\+Top@{on\+Texture\+Adjustment\+Trackbar\+Top}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{on\+Texture\+Adjustment\+Trackbar\+Top}{onTextureAdjustmentTrackbarTop}}]{\setlength{\rightskip}{0pt plus 5cm}void on\+Texture\+Adjustment\+Trackbar\+Top (
+\begin{DoxyParamCaption}
+\item[{int}]{val, }
+\item[{void $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{class_face3_d_1_1_detection_a99b67e3274cb430d73791bfd4cf0cd8b}{}\label{class_face3_d_1_1_detection_a99b67e3274cb430d73791bfd4cf0cd8b}
+
+
 \subsection{Member Data Documentation}
 \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!front\+Img\+Nr@{front\+Img\+Nr}}
 \index{front\+Img\+Nr@{front\+Img\+Nr}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
@@ -222,14 +302,23 @@ helper function to get original image to draw on for debug output
 
 index of the front image when both images are stored in an array 
 
-\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!img\+Size@{img\+Size}}
+images (originals and processed) \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!img\+Size@{img\+Size}}
 \index{img\+Size@{img\+Size}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
 \subsubsection[{\texorpdfstring{img\+Size}{imgSize}}]{\setlength{\rightskip}{0pt plus 5cm}const size\+\_\+t Face3\+D\+::\+Detection\+::img\+Size = 320\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a7d9ef90ae57f59f0e73edec0dffd9bd7}{}\label{class_face3_d_1_1_detection_a7d9ef90ae57f59f0e73edec0dffd9bd7}
 
 
 size of the images we are working with. 320x320 seems good as its fast but has still enough details 
 
-\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Face\+Extracted@{m\+\_\+\+Face\+Extracted}}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Add\+Texture\+Bottom@{m\+\_\+\+Add\+Texture\+Bottom}}
+\index{m\+\_\+\+Add\+Texture\+Bottom@{m\+\_\+\+Add\+Texture\+Bottom}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Add\+Texture\+Bottom}{m_AddTextureBottom}}]{\setlength{\rightskip}{0pt plus 5cm}double Face3\+D\+::\+Detection\+::m\+\_\+\+Add\+Texture\+Bottom = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a7ce314f4e8ab7f9ce1d2c8d38d7ed6b3}{}\label{class_face3_d_1_1_detection_a7ce314f4e8ab7f9ce1d2c8d38d7ed6b3}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Add\+Texture\+Top@{m\+\_\+\+Add\+Texture\+Top}}
+\index{m\+\_\+\+Add\+Texture\+Top@{m\+\_\+\+Add\+Texture\+Top}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Add\+Texture\+Top}{m_AddTextureTop}}]{\setlength{\rightskip}{0pt plus 5cm}double Face3\+D\+::\+Detection\+::m\+\_\+\+Add\+Texture\+Top = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_af14dc904e457d96b31ac6e329160936a}{}\label{class_face3_d_1_1_detection_af14dc904e457d96b31ac6e329160936a}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Color\+Thres\+Value@{m\+\_\+\+Color\+Thres\+Value}}
+\index{m\+\_\+\+Color\+Thres\+Value@{m\+\_\+\+Color\+Thres\+Value}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Color\+Thres\+Value}{m_ColorThresValue}}]{\setlength{\rightskip}{0pt plus 5cm}int Face3\+D\+::\+Detection\+::m\+\_\+\+Color\+Thres\+Value = 10\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_af355af4e433dcf85e4ebdfbd36ae8939}{}\label{class_face3_d_1_1_detection_af355af4e433dcf85e4ebdfbd36ae8939}
+gui interaction \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Face\+Extracted@{m\+\_\+\+Face\+Extracted}}
 \index{m\+\_\+\+Face\+Extracted@{m\+\_\+\+Face\+Extracted}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
 \subsubsection[{\texorpdfstring{m\+\_\+\+Face\+Extracted}{m_FaceExtracted}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$cv\+::\+Mat$>$ Face3\+D\+::\+Detection\+::m\+\_\+\+Face\+Extracted\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a835e20dfe0fc3c9cee63168c4467dd82}{}\label{class_face3_d_1_1_detection_a835e20dfe0fc3c9cee63168c4467dd82}
 
@@ -239,6 +328,9 @@ binary image with skin as foreground
 \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Face\+Geometry@{m\+\_\+\+Face\+Geometry}}
 \index{m\+\_\+\+Face\+Geometry@{m\+\_\+\+Face\+Geometry}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
 \subsubsection[{\texorpdfstring{m\+\_\+\+Face\+Geometry}{m_FaceGeometry}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Face\+Geometry} Face3\+D\+::\+Detection\+::m\+\_\+\+Face\+Geometry\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a4eed1e18b8465d43d75102bf10ce8575}{}\label{class_face3_d_1_1_detection_a4eed1e18b8465d43d75102bf10ce8575}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Face\+Geometry\+Backup@{m\+\_\+\+Face\+Geometry\+Backup}}
+\index{m\+\_\+\+Face\+Geometry\+Backup@{m\+\_\+\+Face\+Geometry\+Backup}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Face\+Geometry\+Backup}{m_FaceGeometryBackup}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Face\+Geometry} Face3\+D\+::\+Detection\+::m\+\_\+\+Face\+Geometry\+Backup\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a45ddf526188a8eb73de53bc2029c66f6}{}\label{class_face3_d_1_1_detection_a45ddf526188a8eb73de53bc2029c66f6}
 
 
 the geometry of the face, i.\+e. the coordinates of the facial components 
@@ -250,6 +342,15 @@ the geometry of the face, i.\+e. the coordinates of the facial components
 
 mask of the face regions. foreground regions which are not the face are already removed 
 
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Facial\+Points\+G\+UI@{m\+\_\+\+Facial\+Points\+G\+UI}}
+\index{m\+\_\+\+Facial\+Points\+G\+UI@{m\+\_\+\+Facial\+Points\+G\+UI}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Facial\+Points\+G\+UI}{m_FacialPointsGUI}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat Face3\+D\+::\+Detection\+::m\+\_\+\+Facial\+Points\+G\+UI\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a7e74ffc6d6f1835f6eceac7b0609012c}{}\label{class_face3_d_1_1_detection_a7e74ffc6d6f1835f6eceac7b0609012c}
+resulting images to show in the gui \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Offset\+CB@{m\+\_\+\+Offset\+CB}}
+\index{m\+\_\+\+Offset\+CB@{m\+\_\+\+Offset\+CB}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Offset\+CB}{m_OffsetCB}}]{\setlength{\rightskip}{0pt plus 5cm}int Face3\+D\+::\+Detection\+::m\+\_\+\+Offset\+CB =0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_aa8e12b00e14ee4ef67c7316163625ac4}{}\label{class_face3_d_1_1_detection_aa8e12b00e14ee4ef67c7316163625ac4}
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Offset\+CR@{m\+\_\+\+Offset\+CR}}
+\index{m\+\_\+\+Offset\+CR@{m\+\_\+\+Offset\+CR}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Offset\+CR}{m_OffsetCR}}]{\setlength{\rightskip}{0pt plus 5cm}int Face3\+D\+::\+Detection\+::m\+\_\+\+Offset\+CR =0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a0507241bc6482cebf174e53ea311c885}{}\label{class_face3_d_1_1_detection_a0507241bc6482cebf174e53ea311c885}
 \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Originals@{m\+\_\+\+Originals}}
 \index{m\+\_\+\+Originals@{m\+\_\+\+Originals}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
 \subsubsection[{\texorpdfstring{m\+\_\+\+Originals}{m_Originals}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$cv\+::\+Mat$>$ Face3\+D\+::\+Detection\+::m\+\_\+\+Originals\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a237f409f79b8417f906732dc522322a8}{}\label{class_face3_d_1_1_detection_a237f409f79b8417f906732dc522322a8}
@@ -271,6 +372,9 @@ preprocessed images (smooth)
 
 the textures, already in a format that can be used in Open\+GL 
 
+\index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!m\+\_\+\+Textures\+G\+UI@{m\+\_\+\+Textures\+G\+UI}}
+\index{m\+\_\+\+Textures\+G\+UI@{m\+\_\+\+Textures\+G\+UI}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
+\subsubsection[{\texorpdfstring{m\+\_\+\+Textures\+G\+UI}{m_TexturesGUI}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat Face3\+D\+::\+Detection\+::m\+\_\+\+Textures\+G\+UI\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_aac17e78111f48d10d80316dc1e0b7e76}{}\label{class_face3_d_1_1_detection_aac17e78111f48d10d80316dc1e0b7e76}
 \index{Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}!side\+Img\+Nr@{side\+Img\+Nr}}
 \index{side\+Img\+Nr@{side\+Img\+Nr}!Face3\+D\+::\+Detection@{Face3\+D\+::\+Detection}}
 \subsubsection[{\texorpdfstring{side\+Img\+Nr}{sideImgNr}}]{\setlength{\rightskip}{0pt plus 5cm}const size\+\_\+t Face3\+D\+::\+Detection\+::side\+Img\+Nr = 1\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_face3_d_1_1_detection_a7a2e671e0ba9133f1fd8e877bc5a89f9}{}\label{class_face3_d_1_1_detection_a7a2e671e0ba9133f1fd8e877bc5a89f9}

@@ -6,7 +6,7 @@
 
 namespace Face3D
 {
-
+	/** the viewer class does all the OpenGL setup stuff and loads the face, the textures and finally shows them in 3d */
 	class Viewer
 	{
 	public:

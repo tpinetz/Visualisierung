@@ -6,6 +6,7 @@ var searchData=
   ['detectface',['detectFace',['../class_face3_d_1_1_detection.html#ac00b0ed49bbcc9efeccf307309b1723a',1,'Face3D::Detection']]],
   ['detection',['Detection',['../class_face3_d_1_1_detection.html#ab51a4a8e01db10e473fa38db9d77fd18',1,'Face3D::Detection']]],
   ['dofaceextraction',['doFaceExtraction',['../class_face3_d_1_1_detection.html#a424c3fba1ee4b7d24a84edebca9ecf14',1,'Face3D::Detection']]],
+  ['dofaceextractiongui',['doFaceExtractionGUI',['../class_face3_d_1_1_detection.html#a67a87b44d2ab09621b801ee8e0def41b',1,'Face3D::Detection']]],
   ['dofacialcomponentsextraction',['doFacialComponentsExtraction',['../class_face3_d_1_1_detection.html#a2345b11759e84ca94409cb65cef557f3',1,'Face3D::Detection']]],
   ['dofacialcomponentsextractionfront',['doFacialComponentsExtractionFront',['../class_face3_d_1_1_detection.html#aeca140a4cb5eb2d035afabd66b90b42c',1,'Face3D::Detection']]],
   ['dofacialcomponentsextractionside',['doFacialComponentsExtractionSide',['../class_face3_d_1_1_detection.html#ae630778f107162e95580608fcb87aedc',1,'Face3D::Detection']]],
