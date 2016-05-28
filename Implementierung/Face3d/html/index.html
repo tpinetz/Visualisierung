@@ -8,25 +8,60 @@
 <p>Visualisierung 2. SS2016. Pinetz Thomas, Scheidl Harald</p>
 
 
+<h1>Our goal</h1>
+<p>
+We want to modify a generic 3d model of a face according to two orthogonal images of a face.
+Imagine you take a picture of yourself ("selfie") from front and from the side. From those pictures, it should be possible for our application to modify a generic 3d model and then project the texture (from the pictures) onto this model. In the next figure, an overview is given.
+</p>
+
+<img src="overview.png"> 
+
+
+<p>According to the original paper (citation see below), the following pipeline was proposed. It is split into two main parts: 1) detection of the face in the pictures and 2) modifying the generic model and texturing it.
+At some steps, we simplified the methods a bit. For example, we don't use active contours to find the eyes, but we just use binary regions for this task. 
+In the following all steps are explained. 
+</p>
+
+<img src="pipeline.png" width="640"> 
+
+<p><b>Original paper:</b></p>
+<p>[Weon] Weon, SunHee, SungIl Joo, and HyungIl Choi. "Individualized 3D Face Model
+Reconstruction using Two Orthogonal Face Images." Proceedings of the World Congress on
+Engineering and Computer Science. Vol. 1. 2012</p>
+
+
 
 <h1>Part 1: Face detection</h1>
 
 <h2>Input images</h2>
-<p>We're taking two orthogonal images: one from front, the other from the right (as seen from the photographed person)</p>
+<p>We're taking two orthogonal images: one from front, the other from the right (as seen from the photographed person). 
+We require that the picture was taken from the same distance and that the images are square (e.g. 640x640).
+</p>
 <img src="inputFront.jpg" width="320" height="320"> 
 <img src="inputSide.jpg" width="320" height="320"> 
 
 
 
 <h2>Preprocessing</h2>
-<p>A Gaussian blur is applied to remove noise in the input images. This yields a better segmentation.</p>
+<p>First, we resize the input images to 320x320, as this size is a good compromise between enough details and good performance.
+A Gaussian blur is applied to remove noise in the input images. This yields a better segmentation.</p>
+
+
 
 <h2>Skin color threshold</h2>
-<p>Skin segmentation is done in the YCrCb color space. 
+<p>Skin segmentation is done in the YCrCb color space (Y=luma, Cr=red-difference, Cb=blue-difference). 
 The threshold values from the original paper work very well, but we provide a slider in the user interface to adjust this threshold if needed.
+The goal is to get a good segmentation of the facial region.
 </p>
 <img src="thres.png"> 
 
+
+
+<h2>Potential facial components</h2>
+<p>The three biggest inner regions in the front image are used as potential face components (eyes and mouth). Only the biggest inner region in the side image is used (eye).</p>
+
+<img src="potentialComponentsFront.png"> 
+<img src="potentialComponentsSide.png"> 
 
 
 <h2>Fitted Polygon to find nose and chin</h2>
@@ -38,18 +73,9 @@ The chin can be found by starting at the nose and then going down, searching for
 <img src="polygon.png"> 
 
 
-
-<h2>Potential facial components</h2>
-<p>The three biggest inner regions are used as potential face components.</p>
-
-<img src="potentialComponentsFront.png"> 
-<img src="potentialComponentsSide.png"> 
-
-
-
-
 <h2>Classified facial components</h2>
-<p>Classification of potential face components is done by using a set of geometric rules (e.g. that eyes are above nose).
+<p>We now have the potential face components (inner regions) and the polygon. With a set of simple geometric rules, the classification of the mouth and eyes can be found. 
+With the help of the polygon, the chin and the nose can be found. The size of the face is also important, as the model later on has to be resized according to the detected face. For this task, we use the boundary points (shown white in the following figure) of the face left and right to the eyes and the last facial point on the line back from the chin. 
 </p>
 <img src="detectedComponentsFront.png"> 
 <img src="detectedComponentsSide.png"> 
@@ -58,21 +84,62 @@ The chin can be found by starting at the nose and then going down, searching for
 
 
 <h2>Segmented face region</h2>
-<p>A binary mask is used to segment the face.</p>
+<p>The binary mask already found is used to segment the face.</p>
 <img src="faceRegionFront.png"> 
 <img src="faceRegionSide.png"> 
 
 
 
 <h2>Generating OpenGL textures</h2>
-<p>Aligning and resizing the segmented face images to get the textures.</p>
-<img src="textureFront.png" width="320" height="320"> 
-<img src="textureSide.png" width="320" height="320"> 
+<p>The detected face points are used to cut out an initial guess of the textures from the original image. If the user wants to change this texture (e.g. the user wants to use more of the hair from the image), this can be adjusted with two sliders. After this step, we're done</p>
+<img src="textures.png" width="320"> 
+
+
+<h2>Output of detection and input to modelling</h2>
+
+<p>Two textures are generated, one for the front, the other for the side. We first masked the textures to show only the facial components, but to also show the hair we changed this and now just cut out a region of the original image and resize it.</p>
+<img src="textureSide.jpg" width="320"> 
+<img src="textureFront.jpg" width="320"> 
+
+
+<p>The modelling part also has to know where each facial component lies in the face. Therefore also a textfile holding those informations is written: faceGeometry.txt. It looks something like this and contains the 3d coordinates of eyes, mouth and so on as coordinate triples (that means, 3 lines define the coordinate of one component):
+</p>
+<code>
+104.983<br>
+147.506<br>
+227.81<br>
+190.057<br>
+139.277<br>
+227.81<br>
+147.52<br>
+187<br>
+279<br>
+148.166<br>
+233.958<br>
+253.405<br>
+147.52<br>
+267<br>
+240<br>
+154<br>
+120.772<br>
+181<br>
+0.210661<br>
+0.00220755<br>
+1<br>
+0.765665<br>
+0.00220755<br>
+1<br>
+0.177273<br>
+-0.000319867<br>
+1
+<br>
+</code>
+
 
 
 <h1>Part 2: Generic face model</h1>
 
-<h2>Final result</h2>
+<p>A generic facial model (open source) was used. We adjusted it with Blender a little bit to fit better for our needs.</p>
 <img src="blender.png" width="320" height="320"> 
 
 
@@ -80,6 +147,19 @@ The chin can be found by starting at the nose and then going down, searching for
 
 
 <h1>Part 3: Face Model</h1>
+
+<h2>Adjust model</h2>
+We use a model (OBJ file) which defines all vertices and implicitly defines a mesh on them.
+Additionally, we know the coordinates of important vertices, those are vertices which represent facial components, e.g. there are 14 vertices which represent the mouth in the model.
+We know the boundary of the face in the original pictures, therefore we can adjust the overall size of the generic mesh according to the pictures.
+Then, we move the facial components (eyes, nose, mouth) to their 3d position which was calculated from the pictures and was transferred to the modelling program via the file faceGeometry.txt.
+This is simple done by searching for the vertex (as mentioned, we know the coordinates), and then adjust the vertex coordinates.
+The result of this step is a model which has the proportions of the face and the position of the facial components as in the pictures.
+
+
+<h2>Texturing</h2>
+Cylinder mapping and linear blending between the front and side textures is used. A perfect alignment is possible because we know the position of the facial components in the texture images. 
+
 
 <h2>Final result</h2>
 <img src="finalModel.png" width="320" height="320"> 
