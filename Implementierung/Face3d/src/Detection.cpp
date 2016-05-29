@@ -454,8 +454,8 @@ namespace Face3D
 		m_Textures[sideImgNr] = cv::Mat::zeros(imgSize, imgSize, CV_8UC3);
 
 		// mask images
-		m_Originals[frontImgNr].copyTo(m_Textures[frontImgNr], m_Originals[frontImgNr]);
-		m_Originals[sideImgNr].copyTo(m_Textures[sideImgNr], m_Originals[sideImgNr]);		
+		m_Originals[frontImgNr].copyTo(m_Textures[frontImgNr]);
+		m_Originals[sideImgNr].copyTo(m_Textures[sideImgNr]);		
 
 		//dbgShow(m_Textures[frontImgNr], "TestImage");
 
@@ -646,12 +646,19 @@ namespace Face3D
 		// 2. textures
 		// show gui
 		m_FaceGeometryBackup = m_FaceGeometry;
+		static int topValue = 70;
+		static int bottomValue = 50;
+		m_AddTextureTop = topValue/100.0;
+		m_AddTextureBottom = bottomValue/100.0;
 		createTextures();
+
 		cv::namedWindow("Resulting textures");
-		cv::createTrackbar("Top size", "Resulting textures", 0, 100, onTextureAdjustmentTrackbarTop, this);
+		
+		cv::createTrackbar("Top size", "Resulting textures", &topValue, 100, onTextureAdjustmentTrackbarTop, this);
 		cv::imshow("Resulting textures", combineVertically(m_Textures[frontImgNr], m_Textures[sideImgNr]));
 
-		cv::createTrackbar("Bottom size", "Resulting textures", 0, 100, onTextureAdjustmentTrackbarBottom, this);
+		
+		cv::createTrackbar("Bottom size", "Resulting textures", &bottomValue, 100, onTextureAdjustmentTrackbarBottom, this);
 		cv::imshow("Resulting textures", combineVertically(m_Textures[frontImgNr], m_Textures[sideImgNr]));
 
 
