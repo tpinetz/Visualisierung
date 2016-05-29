@@ -279,7 +279,7 @@ namespace Face3D
 				vertex.position.y = vertex.position.y * factor ;
 			}
 			else if(vertex.position.y > chinY) {
-				vertex.position.y = (vertex.position.y - chinY) * factorBot + chinY;
+				vertex.position.y = vertex.position.y * factorBot;
 			}
 
 
@@ -293,6 +293,7 @@ namespace Face3D
 	void Model::render()
 	{
 		assert(!m_pMeshes->empty());
+
 
 		// enable shader
 		glUseProgram(m_ShaderID);

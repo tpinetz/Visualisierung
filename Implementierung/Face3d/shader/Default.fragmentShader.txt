@@ -65,8 +65,6 @@ vec4 textureShading()
 	float vertical=(modelPosition.y-chinVerticalPos) / (eyeVerticalPos - 15 - chinVerticalPos);
 	vertical = 1.0 - vertical;
 	
-	//float fact = (eyeVerticalPos - chinVerticalPos) / (LEyeVerticalTexPos + ChinTexVerticalPos)  + 1; 
-//	vertical = (vertical + ) * fact - x; 
 	
 	vertical = (vertical + LEyeVerticalTexPos) / (1 + ChinTexVerticalPos +  LEyeVerticalTexPos);
 

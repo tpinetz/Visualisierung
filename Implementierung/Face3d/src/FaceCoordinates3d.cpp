@@ -23,7 +23,7 @@ namespace Face3D
 		m_Points[TextureLeftEye] = fileToPoint(f);
 		m_Points[TextureRightEye] = fileToPoint(f);
 		m_Points[TextureChin] = fileToPoint(f);
-		m_Points[TextureChin].y = glm::clamp(m_Points[TextureChin].y, 0.0f, 0.10f); // Our model cant rly be extended at the chin.
+		//m_Points[TextureChin].y = glm::clamp(m_Points[TextureChin].y, 0.0f, 0.10f); // Our model cant rly be extended at the chin.
 	}
 
 
